@@ -1,0 +1,15 @@
+.postsBlock {
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.posts {
+    margin-top: 10px;
+}
+
+.border_radius {
+    border-radius: 7px;
+    border: 1px solid lightgray;
+    resize: none;
+    outline: none;
+}

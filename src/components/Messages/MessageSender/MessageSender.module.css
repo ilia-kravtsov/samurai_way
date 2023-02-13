@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    align-items: flex-end;
+    margin-left: 150px;
+    /*border: 1px solid red;*/
+}
+
+.inpBtnContainer {
+    display: flex;
+    width: 400px;
+    margin-left: 50px;
+    margin-top: 330px;
+    /*border: 1px solid blue;*/
+}
+
+.textareaS {
+    max-height: 40%;
+    min-width: 90%;
+    padding: 10px 10px 10px 15px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: transparent;
+    outline:none;
+    word-wrap: break-word;
+    resize: none;
+}
+
+.textareaS:hover {
+
+}
+
+.btnS {
+    width: 70px;
+    height: 35px;
+    padding: 5px;
+    border-radius: 10px;
+    border: transparent;
+    background-color: #0066cc;
+    color: white;
+    margin: 0px 50px 0px 20px;
+}
+
+.btnS:hover {
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+.btnS:active {
+    background-color: green;
+}
+
+

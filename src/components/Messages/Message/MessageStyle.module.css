@@ -1,0 +1,72 @@
+.txtAndAvaMe {
+    /*border: 1px solid red;*/
+    display: flex;
+    max-height: 80px;
+    align-items: flex-end;
+    margin-left: 600px;
+    margin-top: 20px;
+}
+
+.txtAndAvaHim {
+    /*border: 1px solid red;*/
+    display: flex;
+    flex-direction: row-reverse;
+    max-height: 50px;
+    align-items: flex-end;
+    margin-top: 50px;
+}
+
+.txtAndAvaMeNew {
+    /*border: 1px solid red;*/
+    display: flex;
+    max-height: 80px;
+    align-items: flex-end;
+    margin-left: 600px;
+    margin-top: 20px;
+}
+
+.txtMe {
+    /*border: 1px solid blue;*/
+    background-color: #0066cc;
+    border-radius: 5px 5px 0px 5px;
+    max-width: 350px;
+    min-width: 100px;
+    min-height: 50px;
+    padding: 10px;
+}
+
+.txtHim {
+    /*border: 1px solid blue;*/
+    background-color: #0066cc;
+    border-radius: 5px 5px 5px 0px;
+    max-width: 350px;
+    min-width: 100px;
+    min-height: 50px;
+    padding: 10px;
+}
+
+.avaMe {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.avaHim {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.angleMe {
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(circle at top right, rgba(0,0,0,0) 15px, rgba(0,102,204)0);
+}
+
+.angleHim {
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(circle at 0 0, rgba(0,0,0,0) 15px, rgba(0,102,204)0);
+}
+
+

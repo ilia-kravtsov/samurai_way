@@ -1,0 +1,11 @@
+.headers {
+    grid-area: header;
+    background-color: darkgreen;
+    text-align: left;
+}
+
+.headers img {
+    width: 80px;
+    margin-top: 7px;
+    transform: translate(0px,0);
+}

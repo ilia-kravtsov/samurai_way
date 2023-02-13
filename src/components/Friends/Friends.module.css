@@ -1,0 +1,23 @@
+.divFriends{
+    color: white;
+    margin: 70px 0px 0px 0px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.friendsBlockAva{
+    display: flex;
+    flex-direction: column;
+}
+
+.friendAva {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    margin: 10px 11px 5px 0px;
+}
+
+.names {
+    margin: 16.5px;
+}
