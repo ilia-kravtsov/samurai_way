@@ -10,6 +10,7 @@ import Settings from './components/Settings/Settings';
 import Video from "./components/Video/Video";
 import Messages from "./components/Messages/Messages";
 import {StateAppType} from "./redux/state";
+import {useAutoAnimate} from "@formkit/auto-animate/react";
 
 const App = (props: StateAppType) => {
 

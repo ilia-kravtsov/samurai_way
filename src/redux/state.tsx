@@ -1,6 +1,5 @@
 import {v1} from "uuid";
 import React from "react";
-import {rerenderEntireTree} from "../render";
 
 export type StateAppType = {
     state: StateType
@@ -46,6 +45,10 @@ export type StateType = {
     images: Array<string>
 }
 
+let rerenderEntireTree = () => {
+    console.log('State changed')
+}
+
 let state: StateType = {
     profilePage: {
         postsData: [
@@ -75,40 +78,44 @@ let state: StateType = {
     ],
 }
 
+export const subscribeToRerenderEntireTree = (observer: () => void) => {
+    rerenderEntireTree = observer
+}
+
 export const addPost = () => {
     let newPost: PostsData = {id: v1(), message: state.profilePage.newPostText, likesCount: 0, disLikesCount: 0}
     state.profilePage.postsData.push(newPost)
     state.profilePage.newPostText = ''
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 export const updateMyPostText = (newText: string) => {
     state.profilePage.newPostText = newText
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 export const onLikeHandler = (index: number) => {
     let likesCount = state.profilePage.postsData[index].likesCount + 1
     state.profilePage.postsData[index].likesCount = likesCount
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 export const onDisLikeHandler = (index: number) => {
     let disLikesCount = state.profilePage.postsData[index].disLikesCount + 1
     state.profilePage.postsData[index].disLikesCount = disLikesCount
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 export const addMyNewMessage = () => {
     let myNewMessage: MessageDataType = {id: v1(), message: state.messagesPage.myNewMessageText}
     state.messagesPage.messageData.push(myNewMessage)
     state.messagesPage.myNewMessageText = ''
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 export const updateMyNewMessage = (myNewMessageText: string) => {
     state.messagesPage.myNewMessageText = myNewMessageText
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 

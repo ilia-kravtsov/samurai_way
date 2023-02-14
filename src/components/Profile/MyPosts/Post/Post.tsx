@@ -1,5 +1,6 @@
 import React from "react";
 import postStyle from './Post.module.css';
+import {useAutoAnimate} from "@formkit/auto-animate/react";
 
 type PostType = {
     message: string

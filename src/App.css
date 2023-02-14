@@ -1,6 +1,6 @@
 .app_wrapper {
     display: grid;
-    max-width: 1200px;
+
     margin: 0 auto;
     grid-template-areas:
     "header header"
