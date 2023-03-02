@@ -15,7 +15,7 @@ export let rerenderEntireTree = () => {
 }
 
 rerenderEntireTree()
-store.subscribeToRerenderEntireTree(rerenderEntireTree)
+store.subscriber(rerenderEntireTree)
 
 
 

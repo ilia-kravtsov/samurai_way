@@ -37,8 +37,8 @@ export type StateType = {
 
 export type StoreType = {
     _state: StateType
-    _rerenderEntireTree: () => void
-    subscribeToRerenderEntireTree: (observer: () => void) => void
+    _callSubscriber: () => void
+    subscriber: (observer: () => void) => void
     addPost: () => void
     updateMyPostText: (newText: string) => void
     onLikeHandler: (index: number) => void
@@ -80,41 +80,41 @@ export const store: StoreType = {
     getState() {
         return this._state
     },
-    _rerenderEntireTree() {
+    _callSubscriber() {
         console.log('State changed')
     },
-    subscribeToRerenderEntireTree(observer: () => void) {
-        this._rerenderEntireTree = observer
+    subscriber(observer: () => void) {
+        this._callSubscriber = observer
     },
     addPost() {
         let newPost: PostsData = {id: v1(), message: this._state.profilePage.newPostText, likesCount: 0, disLikesCount: 0}
         this._state.profilePage.postsData.push(newPost)
         this._state.profilePage.newPostText = ''
-        this._rerenderEntireTree()
+        this._callSubscriber()
     },
     updateMyPostText(newText: string) {
         this._state.profilePage.newPostText = newText
-        this._rerenderEntireTree()
+        this._callSubscriber()
     },
     onLikeHandler(index: number) {
         let likesCount = this._state.profilePage.postsData[index].likesCount + 1
         this._state.profilePage.postsData[index].likesCount = likesCount
-        this._rerenderEntireTree()
+        this._callSubscriber()
     },
     onDisLikeHandler(index: number) {
         let disLikesCount = this._state.profilePage.postsData[index].disLikesCount + 1
         this._state.profilePage.postsData[index].disLikesCount = disLikesCount
-        this._rerenderEntireTree()
+        this._callSubscriber()
     },
     addMyNewMessage() {
         let myNewMessage: MessageDataType = {id: v1(), message: this._state.messagesPage.myNewMessageText}
         this._state.messagesPage.messageData.push(myNewMessage)
         this._state.messagesPage.myNewMessageText = ''
-        this._rerenderEntireTree()
+        this._callSubscriber()
     },
     updateMyNewMessage(myNewMessageText: string) {
         this._state.messagesPage.myNewMessageText = myNewMessageText
-        this._rerenderEntireTree()
+        this._callSubscriber()
     }
 }
 

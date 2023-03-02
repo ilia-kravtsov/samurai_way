@@ -1,4 +1,4 @@
-import React, {RefObject} from 'react';
+import React, {KeyboardEvent} from 'react';
 import myPostsStyle from './MyPosts.module.css';
 import Post from './Post/Post';
 
@@ -14,17 +14,17 @@ type MyPostsType = {
 
 const MyPosts = (props: MyPostsType) => {
 
-    let postsDataContent = props.postsData.map( (p,i) =>
+    const postsDataContent = props.postsData.map( (p,i) =>
         <Post message={p.message} likesCount={p.likesCount} disLikesCount={p.disLikesCount} key={p.id} images={props.images} index={i} onLikeHandler={props.onLikeHandler} onDisLikeHandler={props.onDisLikeHandler}/>
     );
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>()
+    const newPostElement = React.createRef<HTMLTextAreaElement>()
 
-    let addPost = () => props.addPost()
+    const addPost = () => props.addPost()
 
-    let onPostChange = () => {
+    const onPostChange = () => {
         if (newPostElement.current) {
-            let text = newPostElement.current.value
+            const text = newPostElement.current.value
             props.updateMyPostText(text)
         }
     }
