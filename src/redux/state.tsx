@@ -78,6 +78,69 @@ let state: StateType = {
     ],
 }
 
+export const store = {
+    _state: {
+        profilePage: {
+            postsData: [
+                {id: v1(), message: 'Hi, how are you?', likesCount: 11, disLikesCount: 1},
+                {id: v1(), message: 'It is my first post',  likesCount: 7, disLikesCount: 2},
+            ],
+            newPostText: ''
+        },
+        messagesPage: {
+            companionsData:  [
+                {id: v1(), name: 'ilia'},
+                {id: v1(), name: 'oleg'},
+                {id: v1(), name: 'ivan'},
+                {id: v1(), name: 'anna'},
+                {id: v1(), name: 'ilai'},
+                {id: v1(), name: 'petr'},
+            ],
+            messageData: [
+                {id: v1(), message: 'push me'},
+                {id: v1(), message: 'and then just touch me'},
+            ],
+            myNewMessageText: ''
+        },
+        images: [
+            'https://wantshop.ru/media/tmp/6b79c121716e872a9fb16be3ea0f85ea.jpeg',
+            "https://avatars.mds.yandex.net/i?id=a69847b56ccbe331769d0552889e756a-5234578-images-thumbs&n=13",
+        ],
+    },
+    rerenderEntireTree: () => console.log('State changed'),
+    subscribeToRerenderEntireTree: (observer: () => void) => rerenderEntireTree = observer,
+    addPost: () => {
+        let newPost: PostsData = {id: v1(), message: state.profilePage.newPostText, likesCount: 0, disLikesCount: 0}
+        state.profilePage.postsData.push(newPost)
+        state.profilePage.newPostText = ''
+        rerenderEntireTree()
+    },
+    updateMyPostText: (newText: string) => {
+        state.profilePage.newPostText = newText
+        rerenderEntireTree()
+    },
+    onLikeHandler: (index: number) => {
+        let likesCount = state.profilePage.postsData[index].likesCount + 1
+        state.profilePage.postsData[index].likesCount = likesCount
+        rerenderEntireTree()
+    },
+    onDisLikeHandler: (index: number) => {
+        let disLikesCount = state.profilePage.postsData[index].disLikesCount + 1
+        state.profilePage.postsData[index].disLikesCount = disLikesCount
+        rerenderEntireTree()
+    },
+    addMyNewMessage: () => {
+        let myNewMessage: MessageDataType = {id: v1(), message: state.messagesPage.myNewMessageText}
+        state.messagesPage.messageData.push(myNewMessage)
+        state.messagesPage.myNewMessageText = ''
+        rerenderEntireTree()
+    },
+    updateMyNewMessage: (myNewMessageText: string) => {
+        state.messagesPage.myNewMessageText = myNewMessageText
+        rerenderEntireTree()
+    }
+}
+
 export const subscribeToRerenderEntireTree = (observer: () => void) => {
     rerenderEntireTree = observer
 }
