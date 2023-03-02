@@ -9,28 +9,33 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import Video from "./components/Video/Video";
 import Messages from "./components/Messages/Messages";
-import {StateAppType} from "./redux/state";
-import {useAutoAnimate} from "@formkit/auto-animate/react";
+import {StoreType} from "./redux/state";
 
-const App = (props: StateAppType) => {
+type AppType = {
+    store: StoreType
+}
+
+const App: React.FC<AppType> = (props) => {
+
+    const state = props.store.getState();
 
     return (
             <div className='app_wrapper'>
                 <Header/>
-                <Navbar friendName={props.state.messagesPage.companionsData} images={props.state.images}/>
+                <Navbar friendName={state.messagesPage.companionsData} images={state.images}/>
                 <div className='app_wrapper_content'>
-                    <Route path='/profile' render={() => <Profile profilePageState={props.state.profilePage}
-                                                                  images={props.state.images}
-                                                                  addPost={props.addPost}
-                                                                  newPostText={props.state.profilePage.newPostText}
-                                                                  updateMyPostText={props.updateMyPostText}
-                                                                  onLikeHandler={props.onLikeHandler}
-                                                                  onDisLikeHandler={props.onDisLikeHandler}/>}/>
-                    <Route path='/messages' render={() => <Messages messagesPage={props.state.messagesPage}
-                                                                    images={props.state.images}
-                                                                    addMyNewMessage={props.addMyNewMessage}
-                                                                    updateMyNewMessage={props.updateMyNewMessage}
-                                                                    myNewMessageText={props.state.messagesPage.myNewMessageText}/>}/>
+                    <Route path='/profile' render={() => <Profile profilePageState={state.profilePage}
+                                                                  images={state.images}
+                                                                  addPost={props.store.addPost.bind(props.store)}
+                                                                  newPostText={state.profilePage.newPostText}
+                                                                  updateMyPostText={props.store.updateMyPostText.bind(props.store)}
+                                                                  onLikeHandler={props.store.onLikeHandler.bind(props.store)}
+                                                                  onDisLikeHandler={props.store.onDisLikeHandler.bind(props.store)}/>}/>
+                    <Route path='/messages' render={() => <Messages messagesPage={state.messagesPage}
+                                                                    images={state.images}
+                                                                    addMyNewMessage={props.store.addMyNewMessage.bind(props.store)}
+                                                                    updateMyNewMessage={props.store.updateMyNewMessage.bind(props.store)}
+                                                                    myNewMessageText={state.messagesPage.myNewMessageText}/>}/>
                     <Route path='/news' render={() => <News />}/>
                     <Route path='/music' render={() => <Music />}/>
                     <Route path='/settings' render={() => <Settings />}/>
