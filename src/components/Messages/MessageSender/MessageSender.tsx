@@ -1,6 +1,7 @@
-import React, {ChangeEvent, useEffect, useRef, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './MessageSender.module.css'
-import {ActionsTypes, addMyNewMessage, updateMyNewMessage} from "../../../redux/state";
+import {addMyNewMessage, updateMyNewMessage} from "../../../redux/messages_page_reducer";
+import {ActionsTypes} from "../../../redux/state";
 
 type MessageSenderType = {
     myNewMessageText: string

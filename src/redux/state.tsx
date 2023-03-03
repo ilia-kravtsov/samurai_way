@@ -1,40 +1,42 @@
 import {v1} from "uuid";
 import React from "react";
+import {
+    addPostAC,
+    onDisLikeHandlerAC,
+    onLikeHandlerAC,
+    profilePageReducer,
+    updateMyPostTextAC
+} from "./profile_page_reducer";
+import {addMyNewMessage, messagesPageReducer, updateMyNewMessage} from "./messages_page_reducer";
 
-type MessagesItemDataType = {
+export type MessagesItemDataType = {
     id: string
     name: string
 }
-
 export type MessageDataType = {
     id: string
     message: string
 }
-
-type PostsData = {
+export type PostsData = {
     id: string
     message: string
     likesCount: number
     disLikesCount: number
 }
-
 export type ProfilePageType = {
     postsData: Array<PostsData>
     newPostText: string
 }
-
 export type MessagesPageType = {
     companionsData: Array<MessagesItemDataType>
     messageData: Array<MessageDataType>
     myNewMessageText: string
 }
-
 export type StateType = {
     profilePage: ProfilePageType
     messagesPage: MessagesPageType
     images: Array<string>
 }
-
 export type StoreType = {
     _state: StateType
     _callSubscriber: () => void
@@ -44,13 +46,6 @@ export type StoreType = {
 }
 
 export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateMyPostTextAC> |  ReturnType<typeof addMyNewMessage> | ReturnType<typeof updateMyNewMessage> | ReturnType<typeof onLikeHandlerAC> | ReturnType<typeof onDisLikeHandlerAC>
-
-const ADD_POST = 'ADD-POST';
-const UPDATE_MY_POST_TEXT = 'UPDATE-MY-POST-TEXT';
-const UPDATE_MY_NEW_MESSAGE = 'UPDATE-MY-NEW-MESSAGE';
-const ADD_MY_NEW_MESSAGE = 'ADD-MY-NEW-MESSAGE';
-const ON_LIKE_HANDLER_TYPE = 'ON-LIKE-HANDLER-TYPE';
-const ON_DISLIKE_HANDLER_TYPE = 'ON-DISLIKE-HANDLER-TYPE';
 
 export const store: StoreType = {
     _state: {
@@ -81,48 +76,14 @@ export const store: StoreType = {
             "https://avatars.mds.yandex.net/i?id=a69847b56ccbe331769d0552889e756a-5234578-images-thumbs&n=13",
         ],
     },
-    _callSubscriber() {
-        console.log('State changed')
-    },
-    getState() {
-        return this._state
-    },
-    subscriber(observer: () => void) {
-        this._callSubscriber = observer
-    },
+    _callSubscriber() {console.log('State changed')},
+    getState() {return this._state},
+    subscriber(observer: () => void) {this._callSubscriber = observer},
     dispatch(action) { // {type: 'ADD POST'}
-        if (action.type === ADD_POST) {
-            let newPost: PostsData = {id: v1(), message: this._state.profilePage.newPostText, likesCount: 0, disLikesCount: 0}
-            this._state.profilePage.newPostText = ''
-            this._state.profilePage.postsData.push(newPost)
-            this._callSubscriber()
-        } else if (action.type === UPDATE_MY_NEW_MESSAGE) {
-            this._state.messagesPage.myNewMessageText = action.newText
-            this._callSubscriber()
-        } else if (action.type === ADD_MY_NEW_MESSAGE) {
-            let myNewMessage: MessageDataType = {id: v1(), message: this._state.messagesPage.myNewMessageText}
-            this._state.messagesPage.myNewMessageText = ''
-            this._state.messagesPage.messageData.push(myNewMessage)
-            this._callSubscriber()
-        } else if (action.type === UPDATE_MY_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber()
-        } else if (action.type === ON_LIKE_HANDLER_TYPE) {
-            let likesCount = this._state.profilePage.postsData[action.index].likesCount + 1
-            this._state.profilePage.postsData[action.index].likesCount = likesCount
-            this._callSubscriber()
-        }  else if (action.type === ON_DISLIKE_HANDLER_TYPE) {
-            let disLikesCount = this._state.profilePage.postsData[action.index].disLikesCount + 1
-            this._state.profilePage.postsData[action.index].disLikesCount = disLikesCount
-            this._callSubscriber()
-        }
-    },
+        this._state.profilePage = profilePageReducer( this._state.profilePage, action )
+        this._state.messagesPage = messagesPageReducer( this._state.messagesPage, action )
+        this._callSubscriber()
+    }
 }
 
-export const addPostAC = () => ({type: ADD_POST} as const)
-export const updateMyPostTextAC = (newText: string) => ({type: UPDATE_MY_POST_TEXT, newText: newText} as const)
-export const addMyNewMessage = () => ({type: ADD_MY_NEW_MESSAGE} as const)
-export const updateMyNewMessage = (newText: string) => ({type: UPDATE_MY_NEW_MESSAGE, newText: newText} as const)
-export const onLikeHandlerAC = (index: number) => ({type: ON_LIKE_HANDLER_TYPE, index: index} as const)
-export const onDisLikeHandlerAC = (index: number) => ({type: ON_DISLIKE_HANDLER_TYPE, index: index} as const)
 

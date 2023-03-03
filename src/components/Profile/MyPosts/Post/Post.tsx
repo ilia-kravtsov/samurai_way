@@ -1,7 +1,7 @@
 import React from "react";
 import postStyle from './Post.module.css';
-import {useAutoAnimate} from "@formkit/auto-animate/react";
-import {ActionsTypes, onDisLikeHandlerAC, onLikeHandlerAC} from "../../../../redux/state";
+import {onDisLikeHandlerAC, onLikeHandlerAC} from "../../../../redux/profile_page_reducer";
+import {ActionsTypes} from "../../../../redux/state";
 
 type PostType = {
     message: string
