@@ -43,40 +43,14 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-type AddPostActionType = {
-    type: 'ADD-POST'
-}
-
-type UpdateNewMessageType = {
-    type: 'UPDATE-MY-NEW-MESSAGE'
-    newText: string
-}
-
-type AddMyNewMessage = {
-    type: 'ADD-MY-NEW-MESSAGE'
-}
-
-type UpdateMyPostText = {
-    type: 'UPDATE-MY-POST-TEXT'
-    newText: string
-}
-
-type OnLikeHandlerType = {
-    type: 'ON-LIKE-HANDLER-TYPE'
-    index: number
-}
-
-type OnDisLikeHandlerType = {
-    type: 'ON-DISLIKE-HANDLER-TYPE'
-    index: number
-}
-
-export type ActionsTypes = AddPostActionType | UpdateNewMessageType | AddMyNewMessage | UpdateMyPostText | OnLikeHandlerType | OnDisLikeHandlerType
+export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateMyPostTextAC> |  ReturnType<typeof addMyNewMessage> | ReturnType<typeof updateMyNewMessage> | ReturnType<typeof onLikeHandlerAC> | ReturnType<typeof onDisLikeHandlerAC>
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_MY_POST_TEXT = 'UPDATE-MY-POST-TEXT';
 const UPDATE_MY_NEW_MESSAGE = 'UPDATE-MY-NEW-MESSAGE';
 const ADD_MY_NEW_MESSAGE = 'ADD-MY-NEW-MESSAGE';
+const ON_LIKE_HANDLER_TYPE = 'ON-LIKE-HANDLER-TYPE';
+const ON_DISLIKE_HANDLER_TYPE = 'ON-DISLIKE-HANDLER-TYPE';
 
 export const store: StoreType = {
     _state: {
@@ -133,11 +107,11 @@ export const store: StoreType = {
         } else if (action.type === UPDATE_MY_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber()
-        } else if (action.type === 'ON-LIKE-HANDLER-TYPE') {
+        } else if (action.type === ON_LIKE_HANDLER_TYPE) {
             let likesCount = this._state.profilePage.postsData[action.index].likesCount + 1
             this._state.profilePage.postsData[action.index].likesCount = likesCount
             this._callSubscriber()
-        }  else if (action.type === 'ON-DISLIKE-HANDLER-TYPE') {
+        }  else if (action.type === ON_DISLIKE_HANDLER_TYPE) {
             let disLikesCount = this._state.profilePage.postsData[action.index].disLikesCount + 1
             this._state.profilePage.postsData[action.index].disLikesCount = disLikesCount
             this._callSubscriber()
@@ -145,9 +119,10 @@ export const store: StoreType = {
     },
 }
 
-export const addPostAC = (): ActionsTypes  => ({type: ADD_POST})
-export const updateMyPostTextAC = (newText: string): ActionsTypes => ({type: UPDATE_MY_POST_TEXT, newText: newText})
-export const addMyNewMessage = (): ActionsTypes => ({type: ADD_MY_NEW_MESSAGE})
-export const updateMyNewMessage = (newText: string): ActionsTypes => ({type: UPDATE_MY_NEW_MESSAGE, newText: newText})
-
+export const addPostAC = () => ({type: ADD_POST} as const)
+export const updateMyPostTextAC = (newText: string) => ({type: UPDATE_MY_POST_TEXT, newText: newText} as const)
+export const addMyNewMessage = () => ({type: ADD_MY_NEW_MESSAGE} as const)
+export const updateMyNewMessage = (newText: string) => ({type: UPDATE_MY_NEW_MESSAGE, newText: newText} as const)
+export const onLikeHandlerAC = (index: number) => ({type: ON_LIKE_HANDLER_TYPE, index: index} as const)
+export const onDisLikeHandlerAC = (index: number) => ({type: ON_DISLIKE_HANDLER_TYPE, index: index} as const)
 

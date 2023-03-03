@@ -1,7 +1,7 @@
 import React from "react";
 import postStyle from './Post.module.css';
 import {useAutoAnimate} from "@formkit/auto-animate/react";
-import {ActionsTypes} from "../../../../redux/state";
+import {ActionsTypes, onDisLikeHandlerAC, onLikeHandlerAC} from "../../../../redux/state";
 
 type PostType = {
     message: string
@@ -15,11 +15,11 @@ type PostType = {
 const Post = (props: PostType) => {
 
     const onLikeHandler = () => {
-        props.dispatch({type: 'ON-LIKE-HANDLER-TYPE', index: props.index})
+        props.dispatch(onLikeHandlerAC(props.index))
     }
 
     const onDisLikeHandler = () => {
-        props.dispatch({type: 'ON-DISLIKE-HANDLER-TYPE', index: props.index})
+        props.dispatch(onDisLikeHandlerAC(props.index))
     }
 
     return (
