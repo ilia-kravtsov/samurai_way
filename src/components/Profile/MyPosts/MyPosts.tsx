@@ -1,4 +1,4 @@
-import React, from 'react';
+import React from 'react';
 import myPostsStyle from './MyPosts.module.css';
 import Post from './Post/Post';
 import {addPostAC, updateMyPostTextAC} from "../../../redux/profile_page_reducer";
