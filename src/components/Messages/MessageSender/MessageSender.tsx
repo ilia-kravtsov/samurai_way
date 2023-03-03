@@ -1,10 +1,10 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {ChangeEvent, useEffect, useRef, useState} from 'react';
 import s from './MessageSender.module.css'
+import {ActionsTypes, addMyNewMessage, updateMyNewMessage} from "../../../redux/state";
 
 type MessageSenderType = {
     myNewMessageText: string
-    addMyNewMessage: () => void
-    updateMyNewMessage: (myNewMessageText: string) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 const MessageSender = (props: MessageSenderType) => {
@@ -15,20 +15,25 @@ const MessageSender = (props: MessageSenderType) => {
 
     let myNewMessage = React.createRef<HTMLTextAreaElement>()
 
-    let addPost = () => props.addMyNewMessage()
+    let addMyNewMessageUI = () => {
+        props.dispatch(addMyNewMessage())
+    }
 
-    let onMyNewMessageHandler = () => {
-        if (myNewMessage.current) {
-            let myNewMessageText = myNewMessage.current.value
-            props.updateMyNewMessage(myNewMessageText)
-        }
+    let onMyNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let newText = e.currentTarget.value
+        props.dispatch(updateMyNewMessage(newText))
     }
 
     return (
         <div className={s.container}>
             <div className={inpBtnContainer}>
-                <textarea ref={myNewMessage} className={textareaS} onChange={onMyNewMessageHandler} value={props.myNewMessageText}></textarea>
-                <button onClick={addPost} className={btnS}>Send</button>
+                <textarea ref={myNewMessage}
+                          className={textareaS}
+                          onChange={onMyNewMessageChange}
+                          value={props.myNewMessageText}
+                          placeholder='Enter your message'
+                ></textarea>
+                <button onClick={addMyNewMessageUI} className={btnS}>Send</button>
             </div>
         </div>
     );

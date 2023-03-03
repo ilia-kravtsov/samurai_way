@@ -39,14 +39,44 @@ export type StoreType = {
     _state: StateType
     _callSubscriber: () => void
     subscriber: (observer: () => void) => void
-    addPost: () => void
-    updateMyPostText: (newText: string) => void
-    onLikeHandler: (index: number) => void
-    onDisLikeHandler: (index: number) => void
-    addMyNewMessage: () => void
-    updateMyNewMessage: (myNewMessageText: string) => void
     getState: () => StateType
+    dispatch: (action: ActionsTypes) => void
 }
+
+type AddPostActionType = {
+    type: 'ADD-POST'
+}
+
+type UpdateNewMessageType = {
+    type: 'UPDATE-MY-NEW-MESSAGE'
+    newText: string
+}
+
+type AddMyNewMessage = {
+    type: 'ADD-MY-NEW-MESSAGE'
+}
+
+type UpdateMyPostText = {
+    type: 'UPDATE-MY-POST-TEXT'
+    newText: string
+}
+
+type OnLikeHandlerType = {
+    type: 'ON-LIKE-HANDLER-TYPE'
+    index: number
+}
+
+type OnDisLikeHandlerType = {
+    type: 'ON-DISLIKE-HANDLER-TYPE'
+    index: number
+}
+
+export type ActionsTypes = AddPostActionType | UpdateNewMessageType | AddMyNewMessage | UpdateMyPostText | OnLikeHandlerType | OnDisLikeHandlerType
+
+const ADD_POST = 'ADD-POST';
+const UPDATE_MY_POST_TEXT = 'UPDATE-MY-POST-TEXT';
+const UPDATE_MY_NEW_MESSAGE = 'UPDATE-MY-NEW-MESSAGE';
+const ADD_MY_NEW_MESSAGE = 'ADD-MY-NEW-MESSAGE';
 
 export const store: StoreType = {
     _state: {
@@ -77,45 +107,47 @@ export const store: StoreType = {
             "https://avatars.mds.yandex.net/i?id=a69847b56ccbe331769d0552889e756a-5234578-images-thumbs&n=13",
         ],
     },
-    getState() {
-        return this._state
-    },
     _callSubscriber() {
         console.log('State changed')
+    },
+    getState() {
+        return this._state
     },
     subscriber(observer: () => void) {
         this._callSubscriber = observer
     },
-    addPost() {
-        let newPost: PostsData = {id: v1(), message: this._state.profilePage.newPostText, likesCount: 0, disLikesCount: 0}
-        this._state.profilePage.postsData.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber()
+    dispatch(action) { // {type: 'ADD POST'}
+        if (action.type === ADD_POST) {
+            let newPost: PostsData = {id: v1(), message: this._state.profilePage.newPostText, likesCount: 0, disLikesCount: 0}
+            this._state.profilePage.newPostText = ''
+            this._state.profilePage.postsData.push(newPost)
+            this._callSubscriber()
+        } else if (action.type === UPDATE_MY_NEW_MESSAGE) {
+            this._state.messagesPage.myNewMessageText = action.newText
+            this._callSubscriber()
+        } else if (action.type === ADD_MY_NEW_MESSAGE) {
+            let myNewMessage: MessageDataType = {id: v1(), message: this._state.messagesPage.myNewMessageText}
+            this._state.messagesPage.myNewMessageText = ''
+            this._state.messagesPage.messageData.push(myNewMessage)
+            this._callSubscriber()
+        } else if (action.type === UPDATE_MY_POST_TEXT) {
+            this._state.profilePage.newPostText = action.newText
+            this._callSubscriber()
+        } else if (action.type === 'ON-LIKE-HANDLER-TYPE') {
+            let likesCount = this._state.profilePage.postsData[action.index].likesCount + 1
+            this._state.profilePage.postsData[action.index].likesCount = likesCount
+            this._callSubscriber()
+        }  else if (action.type === 'ON-DISLIKE-HANDLER-TYPE') {
+            let disLikesCount = this._state.profilePage.postsData[action.index].disLikesCount + 1
+            this._state.profilePage.postsData[action.index].disLikesCount = disLikesCount
+            this._callSubscriber()
+        }
     },
-    updateMyPostText(newText: string) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber()
-    },
-    onLikeHandler(index: number) {
-        let likesCount = this._state.profilePage.postsData[index].likesCount + 1
-        this._state.profilePage.postsData[index].likesCount = likesCount
-        this._callSubscriber()
-    },
-    onDisLikeHandler(index: number) {
-        let disLikesCount = this._state.profilePage.postsData[index].disLikesCount + 1
-        this._state.profilePage.postsData[index].disLikesCount = disLikesCount
-        this._callSubscriber()
-    },
-    addMyNewMessage() {
-        let myNewMessage: MessageDataType = {id: v1(), message: this._state.messagesPage.myNewMessageText}
-        this._state.messagesPage.messageData.push(myNewMessage)
-        this._state.messagesPage.myNewMessageText = ''
-        this._callSubscriber()
-    },
-    updateMyNewMessage(myNewMessageText: string) {
-        this._state.messagesPage.myNewMessageText = myNewMessageText
-        this._callSubscriber()
-    }
 }
+
+export const addPostAC = (): ActionsTypes  => ({type: ADD_POST})
+export const updateMyPostTextAC = (newText: string): ActionsTypes => ({type: UPDATE_MY_POST_TEXT, newText: newText})
+export const addMyNewMessage = (): ActionsTypes => ({type: ADD_MY_NEW_MESSAGE})
+export const updateMyNewMessage = (newText: string): ActionsTypes => ({type: UPDATE_MY_NEW_MESSAGE, newText: newText})
 
 

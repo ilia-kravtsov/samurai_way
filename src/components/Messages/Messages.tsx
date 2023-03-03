@@ -2,15 +2,13 @@ import React from 'react'
 import messagesStyle from './Messages.module.css'
 import Message from "./Message/Message";
 import MessageItem from "./MessageItem/MessageItem";
-import {MessagesPageType} from '../../redux/state'
+import {ActionsTypes, MessagesPageType} from '../../redux/state'
 import MessageSender from "./MessageSender/MessageSender";
 
 type MessagesType = {
     messagesPage: MessagesPageType
     images: Array<string>
-    addMyNewMessage: () => void
-    updateMyNewMessage: (myNewMessageText: string) => void
-    myNewMessageText: string
+    dispatch: (action: ActionsTypes) => void
 }
 
 const Messages = (props: MessagesType) => {
@@ -25,7 +23,7 @@ const Messages = (props: MessagesType) => {
             </div>
             <div className={messagesStyle.messagesContent}>
                 {messageDataElements}
-                <MessageSender myNewMessageText={props.messagesPage.myNewMessageText} addMyNewMessage={props.addMyNewMessage} updateMyNewMessage={props.updateMyNewMessage}/>
+                <MessageSender myNewMessageText={props.messagesPage.myNewMessageText} dispatch={props.dispatch}/>
             </div>
         </div>
     )

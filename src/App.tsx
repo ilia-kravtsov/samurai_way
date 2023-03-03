@@ -26,16 +26,13 @@ const App: React.FC<AppType> = (props) => {
                 <div className='app_wrapper_content'>
                     <Route path='/profile' render={() => <Profile profilePageState={state.profilePage}
                                                                   images={state.images}
-                                                                  addPost={props.store.addPost.bind(props.store)}
+                                                                  dispatch={props.store.dispatch.bind(props.store)}
                                                                   newPostText={state.profilePage.newPostText}
-                                                                  updateMyPostText={props.store.updateMyPostText.bind(props.store)}
-                                                                  onLikeHandler={props.store.onLikeHandler.bind(props.store)}
-                                                                  onDisLikeHandler={props.store.onDisLikeHandler.bind(props.store)}/>}/>
+                    />}/>
                     <Route path='/messages' render={() => <Messages messagesPage={state.messagesPage}
                                                                     images={state.images}
-                                                                    addMyNewMessage={props.store.addMyNewMessage.bind(props.store)}
-                                                                    updateMyNewMessage={props.store.updateMyNewMessage.bind(props.store)}
-                                                                    myNewMessageText={state.messagesPage.myNewMessageText}/>}/>
+                                                                    dispatch={props.store.dispatch.bind(props.store)}
+                    />}/>
                     <Route path='/news' render={() => <News />}/>
                     <Route path='/music' render={() => <Music />}/>
                     <Route path='/settings' render={() => <Settings />}/>
