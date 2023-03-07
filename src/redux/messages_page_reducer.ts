@@ -11,9 +11,11 @@ export const messagesPageReducer = (state: MessagesPageType, action: any) => {
             state.myNewMessageText = action.newText
             break;
         case ADD_MY_NEW_MESSAGE:
-            let myNewMessage: MessageDataType = {id: v1(), message: state.myNewMessageText}
-            state.myNewMessageText = ''
-            state.messageData.push(myNewMessage)
+            if (state.myNewMessageText) {
+                let myNewMessage: MessageDataType = {id: v1(), message: state.myNewMessageText}
+                state.myNewMessageText = ''
+                state.messageData.push(myNewMessage)
+            }
             break;
         default:
             return state

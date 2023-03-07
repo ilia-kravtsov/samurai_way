@@ -1,16 +1,12 @@
 .container {
     display: flex;
     align-items: flex-end;
-    margin-left: 150px;
-    /*border: 1px solid red;*/
+    margin-left: 430px;
+    margin-bottom: 10px;
 }
 
 .inpBtnContainer {
     display: flex;
-    width: 400px;
-    margin-left: 50px;
-    margin-top: 330px;
-    /*border: 1px solid blue;*/
 }
 
 .textareaS {

@@ -3,7 +3,7 @@ import './App.css';
 import Header from "./components/Headers/Header";
 import Navbar from "./components/Navbars/Navbar";
 import Profile from "./components/Profile/Profile";
-import {Route} from 'react-router-dom';
+import {Redirect, Route} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
@@ -24,6 +24,7 @@ const App: React.FC<AppType> = (props) => {
                 <Header/>
                 <Navbar friendName={state.messagesPage.companionsData} images={state.images}/>
                 <div className='app_wrapper_content'>
+                    <Route path='/' render={() => <Redirect to={'/profile'}/>}/>
                     <Route path='/profile' render={() => <Profile profilePageState={state.profilePage}
                                                                   images={state.images}
                                                                   dispatch={props.store.dispatch.bind(props.store)}

@@ -23,7 +23,7 @@ const Message = (props: MessageType) => {
     }
 
     if (props.index > 1) {
-        txtAndAva= s.txtAndAvaMeNew
+        txtAndAva = s.txtAndAvaMeNew
     }
 
     return (
