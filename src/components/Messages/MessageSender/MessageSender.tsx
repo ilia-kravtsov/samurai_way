@@ -2,6 +2,7 @@ import React, {ChangeEvent} from 'react';
 import s from './MessageSender.module.css'
 import {addMyNewMessage, updateMyNewMessage} from "../../../redux/messages_page_reducer";
 import {ActionsTypes} from "../../../redux/state";
+import {rerenderEntireTree} from "../../../index";
 
 type MessageSenderType = {
     myNewMessageText: string
