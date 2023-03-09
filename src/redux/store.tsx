@@ -35,12 +35,11 @@ export type MessagesPageType = {
 export type StateType = {
     profilePage: ProfilePageType
     messagesPage: MessagesPageType
-    images: Array<string>
 }
 export type StoreType = {
     _state: StateType
     _callSubscriber: () => void
-    subscriber: (observer: () => void) => void
+    subscribe: (observer: () => void) => void
     getState: () => StateType
     dispatch: (action: ActionsTypes) => void
 }
@@ -71,14 +70,10 @@ export const store: StoreType = {
             ],
             myNewMessageText: ''
         },
-        images: [
-            'https://wantshop.ru/media/tmp/6b79c121716e872a9fb16be3ea0f85ea.jpeg',
-            "https://avatars.mds.yandex.net/i?id=a69847b56ccbe331769d0552889e756a-5234578-images-thumbs&n=13",
-        ],
     },
     _callSubscriber() {console.log('State changed')},
     getState() {return this._state},
-    subscriber(observer: () => void) {this._callSubscriber = observer},
+    subscribe(observer: () => void) {this._callSubscriber = observer},
     dispatch(action) { // {type: 'ADD POST'}
         this._state.profilePage = profilePageReducer( this._state.profilePage, action )
         this._state.messagesPage = messagesPageReducer( this._state.messagesPage, action )

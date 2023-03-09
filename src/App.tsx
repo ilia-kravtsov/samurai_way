@@ -8,8 +8,8 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import Video from "./components/Video/Video";
-import Messages from "./components/Messages/Messages";
-import {StoreType} from "./redux/state";
+import {StoreType} from "./redux/redux-store";
+import MessagesContainer from "./components/Messages/MessagesContainer";
 
 type AppType = {
     store: StoreType
@@ -22,18 +22,11 @@ const App: React.FC<AppType> = (props) => {
     return (
             <div className='app_wrapper'>
                 <Header/>
-                <Navbar friendName={state.messagesPage.companionsData} images={state.images}/>
+                <Navbar friendName={state.messagesPage.companionsData}/>
                 <div className='app_wrapper_content'>
                     <Route path='/' render={() => <Redirect to={'/profile'}/>}/>
-                    <Route path='/profile' render={() => <Profile profilePageState={state.profilePage}
-                                                                  images={state.images}
-                                                                  dispatch={props.store.dispatch.bind(props.store)}
-                                                                  newPostText={state.profilePage.newPostText}
-                    />}/>
-                    <Route path='/messages' render={() => <Messages messagesPage={state.messagesPage}
-                                                                    images={state.images}
-                                                                    dispatch={props.store.dispatch.bind(props.store)}
-                    />}/>
+                    <Route path='/profile' render={() => <Profile store={props.store}/>}/>
+                    <Route path='/messages' render={() => <MessagesContainer store={props.store}/>}/>
                     <Route path='/news' render={() => <News />}/>
                     <Route path='/music' render={() => <Music />}/>
                     <Route path='/settings' render={() => <Settings />}/>

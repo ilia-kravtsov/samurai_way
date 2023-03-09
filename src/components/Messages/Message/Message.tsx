@@ -4,7 +4,6 @@ import s from './MessageStyle.module.css'
 type MessageType = {
     message: string
     id: string
-    images: Array<string>
     index: number
 }
 
@@ -31,7 +30,7 @@ const Message = (props: MessageType) => {
             <div className={txt}>{props.message}</div>
             <div className={angle}></div>
             <img
-                src={props.images[1]}
+                src={"https://avatars.mds.yandex.net/i?id=a69847b56ccbe331769d0552889e756a-5234578-images-thumbs&n=13"}
                 alt="Groot" className={ava}/>
         </div>
     )

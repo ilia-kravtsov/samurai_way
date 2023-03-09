@@ -10,7 +10,6 @@ type NavItemType = {
 
 type NavBarType = {
     friendName: Array<{id: string, name: string}>
-    images: Array<string>
 }
 
 const Navbar = (props: NavBarType) => {
@@ -22,7 +21,7 @@ const Navbar = (props: NavBarType) => {
             <NavItem urlName='/music' itemName='Music' />
             <NavItem urlName='/settings' itemName='Settings' />
             <NavItem urlName='/video' itemName='Video' />
-            <Friends friendName={props.friendName} images={props.images}/>
+            <Friends friendName={props.friendName}/>
         </nav>
     );
 }

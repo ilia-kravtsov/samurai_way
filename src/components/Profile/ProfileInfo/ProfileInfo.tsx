@@ -1,20 +1,16 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
 
-type ProfileInfo = {
-    images: Array<string>
-}
-
-const ProfileInfo = (props: ProfileInfo) => {
+const ProfileInfo = () => {
     return (
         <div>
             <div>
                 <img
-                    src={props.images[1]}
+                    src={"https://avatars.mds.yandex.net/i?id=a69847b56ccbe331769d0552889e756a-5234578-images-thumbs&n=13"}
                     alt="Groot" className={s.ava}/>
             </div>
             <div className={s.descriptionBlock}>
-                ava + description
+
             </div>
 
         </div>

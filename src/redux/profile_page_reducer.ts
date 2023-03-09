@@ -1,12 +1,20 @@
 import {v1} from "uuid";
-import {ActionsTypes, PostsData, ProfilePageType} from "./state";
+import {ActionsTypes, PostsData, ProfilePageType} from "./store";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_MY_POST_TEXT = 'UPDATE-MY-POST-TEXT';
 const ON_LIKE_HANDLER_TYPE = 'ON-LIKE-HANDLER-TYPE';
 const ON_DISLIKE_HANDLER_TYPE = 'ON-DISLIKE-HANDLER-TYPE';
 
-export const profilePageReducer = (state: ProfilePageType, action: ActionsTypes) => {
+const initialState = {
+        postsData: [
+            {id: v1(), message: 'Hi, how are you?', likesCount: 11, disLikesCount: 1},
+            {id: v1(), message: 'It is my first post',  likesCount: 7, disLikesCount: 2},
+        ],
+        newPostText: ''
+    };
+
+export const profilePageReducer = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {
     // state = this._state.profilePage
     switch (action.type) {
         case ADD_POST:

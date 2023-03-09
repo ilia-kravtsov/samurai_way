@@ -1,12 +1,10 @@
 import React, {ChangeEvent} from 'react';
 import s from './MessageSender.module.css'
-import {addMyNewMessage, updateMyNewMessage} from "../../../redux/messages_page_reducer";
-import {ActionsTypes} from "../../../redux/state";
-import {rerenderEntireTree} from "../../../index";
 
 type MessageSenderType = {
     myNewMessageText: string
-    dispatch: (action: ActionsTypes) => void
+    updateMyNewMessageUI: (newText: string) => void
+    addMyNewMessageUI: () => void
 }
 
 const MessageSender = (props: MessageSenderType) => {
@@ -18,12 +16,12 @@ const MessageSender = (props: MessageSenderType) => {
     let myNewMessage = React.createRef<HTMLTextAreaElement>()
 
     let addMyNewMessageUI = () => {
-        props.dispatch(addMyNewMessage())
+        props.addMyNewMessageUI()
     }
 
     let onMyNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let newText = e.currentTarget.value
-        props.dispatch(updateMyNewMessage(newText))
+        props.updateMyNewMessageUI(newText)
     }
 
     return (
