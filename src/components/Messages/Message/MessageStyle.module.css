@@ -4,8 +4,7 @@
     display: flex;
     max-height: 80px;
     align-items: flex-end;
-    margin-left: 600px;
-    margin-top: 20px;
+    margin: 10px 10px 10px 550px;
 }
 
 .txtAndAvaHim {
@@ -22,8 +21,9 @@
     display: flex;
     max-height: 80px;
     align-items: flex-end;
-    margin-left: 600px;
-    margin-top: 20px;
+    margin: 10px 10px 10px 550px;
+    width: 200px;
+    word-wrap: break-word;
 }
 
 .txtMe {

@@ -1,29 +1,25 @@
 import React from 'react'
-import {StoreType} from "../../redux/redux-store";
 import Messages from "./Messages";
 import {addMyNewMessage, updateMyNewMessage} from "../../redux/messages_page_reducer";
+import StoreContext from "../../StoreContext";
 
+const MessagesContainer = () => {
 
-type MessagesType = {
-    store: StoreType
-}
+    return <StoreContext.Consumer>
+        {
+        (store) => {
 
-const MessagesContainer = (props: MessagesType) => {
+            let state = store.getState();
+            const updateMyNewMessageUI = (newText: string) => store.dispatch(updateMyNewMessage(newText));
+            const addMyNewMessageUI = () => store.dispatch(addMyNewMessage());
 
-    let state = props.store.getState()
+            return <Messages updateMyNewMessageUI={updateMyNewMessageUI}
+                      addMyNewMessageUI={addMyNewMessageUI}
+                      messagesPage={state.messagesPage}
+            />
+        }
 
-    const updateMyNewMessageUI = (newText: string) => {
-        props.store.dispatch(updateMyNewMessage(newText))
-    }
-
-    const addMyNewMessageUI = () => {
-        props.store.dispatch(addMyNewMessage())
-    }
-
-    return <Messages updateMyNewMessageUI={updateMyNewMessageUI}
-                     addMyNewMessageUI={addMyNewMessageUI}
-                     messagesPage={state.messagesPage}
-    />
+    }</StoreContext.Consumer>
 }
 
 export default MessagesContainer

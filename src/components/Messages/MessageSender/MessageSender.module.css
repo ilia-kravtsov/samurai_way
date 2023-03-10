@@ -10,16 +10,15 @@
 }
 
 .textareaS {
-    max-height: 40%;
-    min-width: 90%;
     padding: 10px 10px 10px 15px;
     box-sizing: border-box;
     border-radius: 10px;
-    border: transparent;
-    outline:none;
+    /*border: transparent;*/
+    /*outline:none;*/
     word-wrap: break-word;
     resize: none;
-    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5)
+    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+    background-color: #278A2E;
 }
 
 .textareaS:hover {
@@ -45,6 +44,8 @@
 
 .btnS:active {
     background-color: green;
+    color: black;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5)
 }
 
 

@@ -21,7 +21,7 @@ export const profilePageReducer = (state: ProfilePageType = initialState, action
             if (state.newPostText) {
                 let newPost: PostsData = {id: v1(), message: state.newPostText, likesCount: 0, disLikesCount: 0}
                 state.newPostText = ''
-                state.postsData.push(newPost)
+                state.postsData = [...state.postsData, newPost]
             }
             break;
         case UPDATE_MY_POST_TEXT:

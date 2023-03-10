@@ -1,6 +1,6 @@
 .divFriends{
     color: white;
-    margin: 70px 0px 0px 0px;
+    margin: 70px 0 0 0;
     font-size: 16px;
     display: flex;
     flex-direction: column;
@@ -20,5 +20,18 @@
 }
 
 .names {
-    margin: 16.5px;
+    margin: 0 17px 17px 17px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.avasBlock {
+    display: flex;
+}
+
+.friendNamesBlock{
+    display: flex;
 }

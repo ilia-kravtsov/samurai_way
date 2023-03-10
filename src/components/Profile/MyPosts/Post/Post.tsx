@@ -2,6 +2,7 @@ import React from "react";
 import s from './Post.module.css';
 import {onDisLikeHandlerAC, onLikeHandlerAC} from "../../../../redux/profile_page_reducer";
 import {ActionsTypes} from "../../../../redux/store";
+import {Button} from "@mui/material";
 
 type PostType = {
     message: string
@@ -26,12 +27,22 @@ const Post = (props: PostType) => {
 
     return (
         <div className={s.item}>
-            <img src={'https://wantshop.ru/media/tmp/6b79c121716e872a9fb16be3ea0f85ea.jpeg'} alt='littleGroot' className={s.box_shadow}/>
+            <img src={'https://wantshop.ru/media/tmp/6b79c121716e872a9fb16be3ea0f85ea.jpeg'} alt='littleGroot'/>
             <span className={s.span}>{props.message}</span>
             <div className={'margin_left'}>
-                <button onClick={onLikeHandler} className={btnLikes}>Likes</button>
+                <Button onClick={onLikeHandler}
+                        className={btnLikes}
+                        variant={'contained'}
+                        size={'small'}
+                        sx={{m: '10px', boxShadow: '5px 5px 10px 0 rgba(0, 0, 0, 0.5)'}}
+                >Likes</Button>
                 <span>{props.likesCount}</span>
-                <button onClick={onDisLikeHandler} className={btnDislikes}>Dislikes</button>
+                <Button onClick={onDisLikeHandler}
+                        className={btnDislikes}
+                        variant={'contained'}
+                        size={'small'}
+                        sx={{m: '10px', boxShadow: '5px 5px 10px 0 rgba(0, 0, 0, 0.5)'}}
+                >Dislikes</Button>
                 <span>{props.disLikesCount}</span>
             </div>
         </div>

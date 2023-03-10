@@ -16,21 +16,22 @@ const Friends = (props: FriendName) => {
 
 const FriendAva = (props: FriendName) => {
 
-    let filteredFriendsNames = props.friendName.filter((friend, index) => index < 3 ? friend : '')
+    let filteredFriendsNames = props.friendName.filter((friend, index) =>
+        index < 3 ? friend : '')
 
     let mapFriendsAvas = filteredFriendsNames.map(friend =>
-            <img src={'https://wantshop.ru/media/tmp/6b79c121716e872a9fb16be3ea0f85ea.jpeg'} alt='littleGroot' key={friend.id}
-                 className={s.friendAva}/>
-    )
+            <img src={'https://wantshop.ru/media/tmp/6b79c121716e872a9fb16be3ea0f85ea.jpeg'}
+                      alt='littleGroot'
+                      key={friend.id}
+                      className={s.friendAva}/>)
 
     let mapFriendsNames = filteredFriendsNames.map(friend =>
-        <span className={s.names} key={friend.id}>{friend.name}</span>
-    )
+        <div className={s.names} key={friend.id}>{friend.name}</div>)
 
     return (
-        <div>
-            {mapFriendsAvas}
-            {mapFriendsNames}
+        <div className={s.container}>
+            <div className={s.avasBlock}>{mapFriendsAvas}</div>
+            <div className={s.friendNamesBlock}>{mapFriendsNames}</div>
         </div>
     )
 }
