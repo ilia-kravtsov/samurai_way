@@ -22,6 +22,7 @@ const App: React.FC<AppType> = (props) => {
                 <Navbar/>
                 <div className='app_wrapper_content'>
                     <Route path='/' render={() => <Redirect to={'/profile'}/>}/>
+                    <Route path='/*' render={() => <Redirect to={'/profile'}/>}/>
                     <Route path='/profile' render={() => <Profile/>}/>
                     <Route path='/messages' render={() => <MessagesContainer/>}/>
                     <Route path='/news' render={() => <News />}/>
