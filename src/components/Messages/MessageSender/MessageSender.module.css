@@ -18,7 +18,6 @@
     word-wrap: break-word;
     resize: none;
     box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
-    background-color: #278A2E;
 }
 
 .textareaS:hover {
@@ -28,17 +27,15 @@
 .btnS {
     width: 70px;
     height: 35px;
-    padding: 5px;
-    border-radius: 10px;
-    border: transparent;
-    background-color: black;
-    color: white;
+    /*padding: 5px;*/
+    /*border: transparent;*/
+    /*background-color: black;*/
+    /*color: white;*/
     margin: 0 50px 0 20px;
     box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5)
 }
 
 .btnS:hover {
-    color: whitesmoke;
     cursor: pointer;
 }
 

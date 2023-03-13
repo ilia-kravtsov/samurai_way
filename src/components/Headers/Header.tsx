@@ -4,7 +4,7 @@ import HeaderStyle from './Header.module.css';
 const Header = () => {
     return (
         <header className={HeaderStyle.headers}>
-            <img src='https://w7.pngwing.com/pngs/307/98/png-transparent-web-development-react-github-angularjs-javascript-science-and-technology-leaf-text-logo.png' alt='logo'/>
+            <img src='https://knackforge.com/wp-content/uploads/2022/11/Benefits-of-ReactJS.jpg' alt='logo'/>
         </header>
     );
 }

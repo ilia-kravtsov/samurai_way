@@ -3,6 +3,10 @@ import s from './Post.module.css';
 import {onDisLikeHandlerAC, onLikeHandlerAC} from "../../../../redux/profile_page_reducer";
 import {ActionsTypes} from "../../../../redux/store";
 import {Button} from "@mui/material";
+import {IconButton} from '@mui/material';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
+import RecommendIcon from '@mui/icons-material/Recommend';
 
 type PostType = {
     message: string
@@ -14,7 +18,7 @@ type PostType = {
 
 const Post = (props: PostType) => {
 
-    const btnLikes = `${s.margin_inline_end} ${s.border_radius}`
+    const btnLikes = s.border_radius
     const btnDislikes = `${s.margin_inline_end} ${s.margin_left} ${s.border_radius}`
 
     const onLikeHandler = () => {
@@ -27,22 +31,26 @@ const Post = (props: PostType) => {
 
     return (
         <div className={s.item}>
-            <img src={'https://wantshop.ru/media/tmp/6b79c121716e872a9fb16be3ea0f85ea.jpeg'} alt='littleGroot'/>
+            <img src={'https://wantshop.ru/media/tmp/6b79c121716e872a9fb16be3ea0f85ea.jpeg'} alt='littleGroot' className={s.itemImg}/>
             <span className={s.span}>{props.message}</span>
-            <div className={'margin_left'}>
-                <Button onClick={onLikeHandler}
-                        className={btnLikes}
-                        variant={'contained'}
-                        size={'small'}
-                        sx={{m: '10px', boxShadow: '5px 5px 10px 0 rgba(0, 0, 0, 0.5)'}}
-                >Likes</Button>
+            <div className={s.container}>
+                <IconButton onClick={onLikeHandler}
+                            className={btnLikes}
+                            color={'primary'}
+                            size={'small'}
+                            sx={{m: '10px', boxShadow: '5px 5px 10px 0 rgba(0, 0, 0, 0.5)'}}
+                >
+                    <ThumbUpAltIcon />
+                </IconButton>
                 <span>{props.likesCount}</span>
-                <Button onClick={onDisLikeHandler}
+                <IconButton onClick={onDisLikeHandler}
                         className={btnDislikes}
-                        variant={'contained'}
                         size={'small'}
+                        color={'primary'}
                         sx={{m: '10px', boxShadow: '5px 5px 10px 0 rgba(0, 0, 0, 0.5)'}}
-                >Dislikes</Button>
+                >
+                    <ThumbDownAltIcon />
+                </IconButton>
                 <span>{props.disLikesCount}</span>
             </div>
         </div>

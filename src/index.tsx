@@ -7,15 +7,14 @@ import {BrowserRouter} from "react-router-dom";
 import {store} from "./redux/redux-store";
 import {Provider} from "./StoreContext";
 import {createTheme, ThemeProvider} from "@mui/material";
-import {green} from "@mui/material/colors";
 
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#278A2E',
+            main: '#1e88e5',
         },
         secondary: {
-            main: '#0D7F19',
+            main: '#FFF',
         },
         mode: 'light'
     },

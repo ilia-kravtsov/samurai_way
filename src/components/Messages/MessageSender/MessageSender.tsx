@@ -1,6 +1,10 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import s from './MessageSender.module.css'
-import {Button, TextField} from "@mui/material";
+import {Button, IconButton, TextField} from "@mui/material";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import SendIcon from '@mui/icons-material/Send';
+import OutboxIcon from '@mui/icons-material/Outbox';
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 
 type MessageSenderType = {
     myNewMessageText: string
@@ -49,12 +53,12 @@ const MessageSender = (props: MessageSenderType) => {
                            variant="outlined"
                            sx={{height: '55px'}}
                 ></TextField>
-                <Button onClick={addMyNewMessageUI}
+                <IconButton onClick={addMyNewMessageUI}
                         className={btnS}
-                        variant={'contained'}
                         size={'medium'}
+                        color={'primary'}
                         sx={{ml: '20px', boxShadow: '5px 5px 10px 0 rgba(0, 0, 0, 0.5)'}}
-                >Send</Button>
+                > <AddCircleRoundedIcon /></IconButton>
             </div>
         </div>
     );

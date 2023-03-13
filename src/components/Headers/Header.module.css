@@ -1,11 +1,9 @@
 .headers {
     grid-area: header;
-    background-color: green;
+    background-color: #1e88e5;
     text-align: left;
 }
 
 .headers img {
-    width: 80px;
-    margin-top: 7px;
-    transform: translate(0px,0);
+    width: 110px;
 }

@@ -2,8 +2,11 @@ import React, {ChangeEvent, KeyboardEvent, useEffect, useRef} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {ActionsTypes} from "../../../redux/store";
-import {Button, TextField} from "@mui/material";
-import DataSaverOnSharpIcon from '@mui/icons-material/DataSaverOnSharp';
+import {Button, IconButton, TextField} from "@mui/material";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import AddIcon from '@mui/icons-material/Add';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 
 type MyPostsType = {
     postsData: Array<{id: string, message: string, likesCount: number, disLikesCount: number}>
@@ -61,13 +64,14 @@ const MyPosts = (props: MyPostsType) => {
                             sx={{width: '300px'}}
                     ></TextField>
                 <div className={s.btn}>
-                    <Button className={s.border_radius}
+                    <IconButton className={s.border_radius}
                             onClick={addPost}
-                            variant={'contained'}
                             size={'medium'}
-                            endIcon={ <DataSaverOnSharpIcon />}
-                            sx={{ml: '15px', mt: '5px', boxShadow: '5px 5px 10px 0 rgba(0, 0, 0, 0.5)'}}
-                    >Add Post</Button>
+                            sx={{ml: '15px', boxShadow: '5px 5px 10px 0 rgba(0, 0, 0, 0.5)'}}
+                            color={'primary'}
+                    >
+                        <AddCircleRoundedIcon />
+                    </IconButton>
                 </div>
             </div>
             <div className={s.posts} ref={ref}>

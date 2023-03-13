@@ -19,8 +19,9 @@ const App: React.FC<AppType> = (props) => {
     return (
             <div className='app_wrapper'>
                 <Header/>
-                <Navbar/>
+
                 <div className='app_wrapper_content'>
+                    <Navbar/>
                     <Route path='/' render={() => <Redirect to={'/profile'}/>}/>
                     <Route path='/*' render={() => <Redirect to={'/profile'}/>}/>
                     <Route path='/profile' render={() => <Profile/>}/>
