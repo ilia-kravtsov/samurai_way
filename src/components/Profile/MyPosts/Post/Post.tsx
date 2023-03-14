@@ -2,11 +2,9 @@ import React from "react";
 import s from './Post.module.css';
 import {onDisLikeHandlerAC, onLikeHandlerAC} from "../../../../redux/profile_page_reducer";
 import {ActionsTypes} from "../../../../redux/store";
-import {Button} from "@mui/material";
 import {IconButton} from '@mui/material';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
-import RecommendIcon from '@mui/icons-material/Recommend';
 
 type PostType = {
     message: string
@@ -18,8 +16,7 @@ type PostType = {
 
 const Post = (props: PostType) => {
 
-    const btnLikes = s.border_radius
-    const btnDislikes = `${s.margin_inline_end} ${s.margin_left} ${s.border_radius}`
+    const btnDislikes = `${s.margin_inline_end} ${s.margin_left}`
 
     const onLikeHandler = () => {
         props.dispatch(onLikeHandlerAC(props.index))
@@ -35,14 +32,13 @@ const Post = (props: PostType) => {
             <span className={s.span}>{props.message}</span>
             <div className={s.container}>
                 <IconButton onClick={onLikeHandler}
-                            className={btnLikes}
                             color={'primary'}
                             size={'small'}
                             sx={{m: '10px', boxShadow: '5px 5px 10px 0 rgba(0, 0, 0, 0.5)'}}
                 >
                     <ThumbUpAltIcon />
                 </IconButton>
-                <span>{props.likesCount}</span>
+                <span className={s.likes}>{props.likesCount}</span>
                 <IconButton onClick={onDisLikeHandler}
                         className={btnDislikes}
                         size={'small'}
@@ -51,7 +47,7 @@ const Post = (props: PostType) => {
                 >
                     <ThumbDownAltIcon />
                 </IconButton>
-                <span>{props.disLikesCount}</span>
+                <span className={s.likes}>{props.disLikesCount}</span>
             </div>
         </div>
     );

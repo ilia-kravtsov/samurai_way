@@ -4,7 +4,7 @@
     display: flex;
     max-height: 80px;
     align-items: flex-end;
-    margin: 10px 10px 10px 550px;
+    margin: 10px 10px 10px 450px;
 }
 
 .txtAndAvaHim {
@@ -19,10 +19,10 @@
 .txtAndAvaMeNew {
     /*border: 1px solid red;*/
     display: flex;
-    max-height: 80px;
+    min-height: 100px;
     align-items: flex-end;
-    margin: 10px 10px 10px 550px;
-    width: 200px;
+    margin: 20px 10px 10px 450px;
+    width: 300px;
     word-wrap: break-word;
 }
 
@@ -30,12 +30,12 @@
     /*border: 1px solid blue;*/
     background-color: #1e88e5;
     border-radius: 5px 5px 0 5px;
-    max-width: 350px;
-    min-width: 100px;
-    min-height: 50px;
+    width: 200px;
+    min-height: 70px;
     padding: 10px;
     box-shadow: -5px 5px 10px 0 rgba(0, 0, 0, 0.5);
     color: whitesmoke;
+    box-sizing:border-box;
 }
 
 .txtHim {
@@ -43,7 +43,7 @@
     background-color: #1e88e5;
     border-radius: 5px 5px 5px 0;
     max-width: 350px;
-    min-width: 100px;
+    min-width: 200px;
     min-height: 50px;
     padding: 10px;
     box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);

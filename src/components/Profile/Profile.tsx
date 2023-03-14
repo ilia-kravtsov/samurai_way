@@ -1,7 +1,7 @@
 import React from 'react';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {StoreType} from "../../redux/redux-store";
+import s from './Profile.module.css'
 
 type ProfileType = {
 
@@ -9,7 +9,7 @@ type ProfileType = {
 
 const Profile = (props: ProfileType) => {
     return (
-        <div>
+        <div className={s.container}>
             <ProfileInfo/>
             <MyPostsContainer/>
         </div>

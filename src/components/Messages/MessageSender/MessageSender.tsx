@@ -1,10 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import s from './MessageSender.module.css'
-import {Button, IconButton, TextField} from "@mui/material";
-import AddBoxIcon from "@mui/icons-material/AddBox";
-import SendIcon from '@mui/icons-material/Send';
-import OutboxIcon from '@mui/icons-material/Outbox';
-import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
+import {IconButton, TextField} from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 
 type MessageSenderType = {
     myNewMessageText: string
@@ -58,7 +55,7 @@ const MessageSender = (props: MessageSenderType) => {
                         size={'medium'}
                         color={'primary'}
                         sx={{ml: '20px', boxShadow: '5px 5px 10px 0 rgba(0, 0, 0, 0.5)'}}
-                > <AddCircleRoundedIcon /></IconButton>
+                > <AddIcon /></IconButton>
             </div>
         </div>
     );

@@ -2,11 +2,8 @@ import React, {ChangeEvent, KeyboardEvent, useEffect, useRef} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {ActionsTypes} from "../../../redux/store";
-import {Button, IconButton, TextField} from "@mui/material";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import {IconButton, TextField} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 
 type MyPostsType = {
     postsData: Array<{id: string, message: string, likesCount: number, disLikesCount: number}>
@@ -70,7 +67,7 @@ const MyPosts = (props: MyPostsType) => {
                             sx={{ml: '15px', boxShadow: '5px 5px 10px 0 rgba(0, 0, 0, 0.5)'}}
                             color={'primary'}
                     >
-                        <AddCircleRoundedIcon />
+                        <AddIcon />
                     </IconButton>
                 </div>
             </div>
