@@ -5,8 +5,8 @@ import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
 import {store} from "./redux/redux-store";
-import {Provider} from "./StoreContext";
 import {createTheme, ThemeProvider} from "@mui/material";
+import {Provider} from "react-redux";
 
 const theme = createTheme({
     palette: {
@@ -23,20 +23,18 @@ const theme = createTheme({
     },
 })
 
-export let rerenderEntireTree = () => {
-    ReactDOM.render(
-        <BrowserRouter>
-            <Provider store={store}>
-                <ThemeProvider theme={theme}>
-                <App/>
-                </ThemeProvider>
-            </Provider>
-        </BrowserRouter>
-        , document.getElementById('root'));
-}
+ReactDOM.render(
+    <BrowserRouter>
+        <Provider store={store}>
+            <ThemeProvider theme={theme}>
+            <App/>
+            </ThemeProvider>
+        </Provider>
+    </BrowserRouter>
+    , document.getElementById('root'));
 
-rerenderEntireTree();
-store.subscribe(() => rerenderEntireTree());
+// export let rerenderEntireTree = () => {
+// store.subscribe(() => rerenderEntireTree());
 
 
 

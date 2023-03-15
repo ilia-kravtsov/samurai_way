@@ -16,9 +16,8 @@
 
 .app_wrapper_content {
     grid-area: content;
-    background-color: white;
     display: flex;
     justify-content: center;
-    background-image: url(https://img.freepik.com/free-vector/creative-geometric-design-space_53876-89786.jpg?w=1800&t=st=1678796598~exp=1678797198~hmac=c8bf78036a71b06d062a5dd5141b1b29cbe08f5226f5da4b50e1e04a8e7c8cdf);
+    background-image: url(https://img.freepik.com/free-vector/creative-geometric-design-space_53876-89786.jpg?w=1380&t=st=1678898480~exp=1678899080~hmac=c2bb31bdf90d9a530e7810eebf42e748faa953645f206ad9647862da3b00edf2);
     font-family: 'Lora', serif;
 }

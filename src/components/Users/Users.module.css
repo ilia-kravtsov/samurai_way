@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container img {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    margin-top: 5px;
+    margin-left: 25px;
+    box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.container_2 {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgrey;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+.imgBtn {
+
+}
+
+.information {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

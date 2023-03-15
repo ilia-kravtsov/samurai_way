@@ -312,7 +312,7 @@ grid-template-columns: 2fr 10fr;
 
 Добавляем к одному из диалогов класс active через конкатенацию
 
-<div className={messagesStyle.dialog + ' ' + messagesStyle.active}></div>
+[//]: # (// <div className={messagesStyle.dialog + ' ' + messagesStyle.active}></div>)
 
 React 22
 
@@ -329,7 +329,7 @@ React 22
 Route следит за своим куском адресной строки и отображает даже если после нужного куска написано что угодно
 чтобы этого не было применяется атрибут exact перед path
 
-<Route exact path='/video' component={Video}/> то есть Route совершенно точно должен совпасть с path
+[//]: # (<Route exact path='/video' component={Video}/> то есть Route совершенно точно должен совпасть с path)
 и в этом случае при переходе по ссылке отображаться контент будет только тогда
 когда в адресной строке 100% совпадение во всех остальных случаях нет
 
@@ -377,8 +377,9 @@ UI - это компоненты, компонентам нужны данные
 Рефакторим код, создаем вместо атрибутов массив с объектами и выдергиваем из массива объекты
 и указываем их в качестве атрибута компоненты
 
-<MessageItem name={messagesData[0].name} id={messagesData[0].id}/>
-<MessageItem name={messagesData[1].name} id={messagesData[1].id}/>
+[//]: # (<MessageItem name={messagesData[0].name} id={messagesData[0].id}/>)
+
+[//]: # (<MessageItem name={messagesData[1].name} id={messagesData[1].id}/>)
 
 технически мы из массива данных из массива объектов должны получить массив компонент
 массив jsx элементов
@@ -413,8 +414,9 @@ const myPostData = [
 {id: 2, message: 'It is my first post', likesCount: 7, disLikesCount: 2},
 ]
 
-<Post message={myPostData[0].message} likesCount={myPostData[0].likesCount} disLikesCount={myPostData[0].disLikesCount}/>
-<Post message={myPostData[1].message} likesCount={myPostData[1].likesCount} disLikesCount={myPostData[1].disLikesCount}/>
+[//]: # (<Post message={myPostData[0].message} likesCount={myPostData[0].likesCount} disLikesCount={myPostData[0].disLikesCount}/>)
+
+[//]: # (<Post message={myPostData[1].message} likesCount={myPostData[1].likesCount} disLikesCount={myPostData[1].disLikesCount}/>)
 
 То есть каждый наш объект характеризует какую-то сущность в базе данных
 
@@ -1182,3 +1184,25 @@ let addPost = () => {
 Проделать ту же самую работу в компоненте Messages для сообщений между пользователями
 
 пока заканчиваю здесь изучаю другой контент
+
+------------------------------------------------------------------------------------------------------------------------
+import React from "react";
+import {StoreType} from "./redux/redux-store";
+
+const StoreContext = React.createContext({} as StoreType)
+
+type ProviderType = {
+store: StoreType
+children: React.ReactNode
+}
+
+export const Provider = (props: ProviderType) => {
+return (
+<StoreContext.Provider value={props.store}>
+{props.children}
+</StoreContext.Provider>
+)
+}
+
+export default StoreContext
+------------------------------------------------------------------------------------------------------------------------

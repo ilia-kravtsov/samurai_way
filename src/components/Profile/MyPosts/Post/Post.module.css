@@ -6,19 +6,21 @@
     width: 300px;
     border-radius: 3px;
     word-wrap: break-word;
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
 }
 
 .item img {
     width: 50px;
     height: 50px;
     border-radius: 30px;
-    margin-top: 5px;
-    margin-left: 10px;
+    margin: 15px;
     box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 .span {
-    margin-left: 10px;
+    margin: 45px 10px 10px 5px;
 }
 
 .margin_inline_end {
@@ -43,5 +45,15 @@
 }
 
 .likes {
-    margin: 0 10px 0 10px ;
+    margin: 10px 10px 10px 10px;
+}
+
+.dislikes {
+    margin: 10px 10px 10px 10px;
+}
+
+.conImgSpan {
+    display: flex;
+    overflow-x:hidden;
+    word-wrap: break-word;
 }

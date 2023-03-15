@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {MessageDataType, MessagesPageType} from "./store";
+import {MessagesPageType} from "../components/Messages/MessagesContainer";
 
 const ADD_MY_NEW_MESSAGE = 'ADD-MY-NEW-MESSAGE';
 const UPDATE_MY_NEW_MESSAGE = 'UPDATE-MY-NEW-MESSAGE';
@@ -20,17 +20,15 @@ const initialState = {
     myNewMessageText: ''
 };
 
-export const messagesPageReducer = (state: MessagesPageType = initialState, action: any) => {
+export const messagesPageReducer = (state: MessagesPageType = initialState, action: any): MessagesPageType => {
     // state = this._state.messagesPage
     switch (action.type) {
         case UPDATE_MY_NEW_MESSAGE:
-                state.myNewMessageText = action.newText
-            break;
+            return {...state, myNewMessageText: action.newText}
         case ADD_MY_NEW_MESSAGE:
             if (state.myNewMessageText) {
-                let myNewMessage: MessageDataType = {id: v1(), message: state.myNewMessageText}
-                state.myNewMessageText = ''
-                state.messageData = [...state.messageData, myNewMessage]
+                let newMessageText = {id: v1(), message: state.myNewMessageText}
+                return {...state, messageData: [...state.messageData, newMessageText], myNewMessageText: ''}
             }
             break;
         default:

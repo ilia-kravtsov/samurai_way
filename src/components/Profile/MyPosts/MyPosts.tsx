@@ -13,11 +13,10 @@ type MyPostsType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-
 const MyPosts = (props: MyPostsType) => {
 
-    const postsDataContent = props.postsData.map( (p,i) =>
-        <Post message={p.message} likesCount={p.likesCount} disLikesCount={p.disLikesCount} key={p.id} index={i} dispatch={props.dispatch}/>
+    const postsDataContent = props.postsData.map( p =>
+        <Post message={p.message} likesCount={p.likesCount} disLikesCount={p.disLikesCount} key={p.id} index={p.id} dispatch={props.dispatch}/>
     );
 
     const newPostElement = React.createRef<HTMLDivElement>()

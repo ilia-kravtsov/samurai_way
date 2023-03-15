@@ -8,7 +8,7 @@ type MessageItemType = {
 }
 
 const MessageItem = (props: MessageItemType) => {
-    let path = '/messages/' + props.id;
+    let path = '/messages/' + props.name;
 
     return (
         <div className={s.messageItemName}>
