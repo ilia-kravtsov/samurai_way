@@ -1,44 +1,50 @@
-.divFriends{
+.friendsContainer{
     color: black;
-    margin: 70px 0 0 0;
+    margin-top: 5vh;
     font-size: 16px;
     display: flex;
+    height: 17vh;
+    width: 97%;
     flex-direction: column;
     font-family: 'Lora', serif;
-    font-weight: 500;
+    align-items: flex-start;
 }
 
-.friendsBlockAva{
+.friendsTitle {
+    font-size: 20px;
+    align-self: flex-start;
+    box-shadow: 1px 0 10px 0 rgba(0, 0, 0, 0.3);
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+.friendBlock {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 5px;
+    padding-top: 20px;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.avaNameBlock {
     display: flex;
     flex-direction: column;
+    width: 30%;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .friendAva {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 30px;
-    margin: 15px 14px 10px 0;
-    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5)
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3)
 }
 
-.names {
-    margin: 0 17px 17px 17px;
+.friendName {
+
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-}
-
-.avasBlock {
-    display: flex;
-}
-
-.friendNamesBlock{
-    display: flex;
-}
-
-.spanFriends {
-    margin-left: 10px;
-    font-size: 20px;
-}

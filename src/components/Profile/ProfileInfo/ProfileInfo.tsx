@@ -4,15 +4,21 @@ import s from './ProfileInfo.module.css';
 const ProfileInfo = () => {
     return (
         <div>
-            <div>
-                <img
-                    src={"https://avatars.mds.yandex.net/i?id=a69847b56ccbe331769d0552889e756a-5234578-images-thumbs&n=13"}
-                    alt="Groot" className={s.ava}/>
+            <div className={s.avaContainer}>
+                <div className={s.avaDescrBlock}>
+                    <div className={s.avaBorderBlock}>
+                        <img
+                            src="https://akcdn.detik.net.id/visual/2019/05/10/7ac541ac-2c34-46b3-a999-70d2251648ea_43.jpeg?w=900&q=90"
+                            alt="ava" className={s.ava}/>
+                    </div>
+                    <div className={s.borderDescriptionBLock}>
+                        <div className={s.descriptionBlock}>
+                            <span>Watch out!</span>
+                            <span>Provide information about yourself!</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className={s.descriptionBlock}>
-
-            </div>
-
         </div>
     );
 }

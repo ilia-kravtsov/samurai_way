@@ -1,5 +1,5 @@
 import React from 'react';
-import navbarStyle from './Navbar.module.css';
+import s from './Navbar.module.css';
 import {NavLink} from 'react-router-dom';
 import Friends from "../Friends/Friends";
 import {RootStateType} from "../../redux/redux-store";
@@ -9,34 +9,32 @@ import {connect} from "react-redux";
 type NavItemType = {
     itemName: string;
     urlName: string;
+    logo: string
 }
 
-const Navbar = () => {
+export const Navbar = () => {
     return (
-        <nav className={navbarStyle.navs}>
-            <NavItem urlName='/profile' itemName='Profile'/>
-            <NavItem urlName='/messages' itemName='Messages'/>
-            <NavItem urlName='/news' itemName='News'/>
-            <NavItem urlName='/music' itemName='Music'/>
-            <NavItem urlName='/settings' itemName='Settings'/>
-            <NavItem urlName='/video' itemName='Video'/>
-            <NavItem urlName='/users' itemName='Users'/>
+        <div className={s.navBarContainer}>
+            <div className={s.navContainer}>
+                <NavItem urlName='/profile' itemName='Profile' logo="https://img.icons8.com/fluency/1x/lifecycle.png"/>
+                <NavItem urlName='/messages' itemName='Messages' logo="https://img.icons8.com/fluency/1x/new-message.png"/>
+                <NavItem urlName='/news' itemName='News' logo="https://img.icons8.com/fluency/1x/news.png"/>
+                <NavItem urlName='/music' itemName='Music' logo="https://img.icons8.com/fluency/1x/music-library.png"/>
+                <NavItem urlName='/settings' itemName='Settings' logo="https://img.icons8.com/fluency/1x/services.png"/>
+                <NavItem urlName='/video' itemName='Video' logo="https://img.icons8.com/fluency/1x/laptop-play-video.png"/>
+                <NavItem urlName='/users' itemName='Users' logo="https://img.icons8.com/fluency/1x/group.png"/>
+            </div>
             <FriendsContainer/>
-        </nav>
-        )
-}
-
-const NavItem = (props: NavItemType) => {
-    return (
-        <div className={navbarStyle.item}>
-            <NavLink to={props.urlName}
-                     activeClassName={navbarStyle.activeLink}
-            >{props.itemName}</NavLink>
         </div>
     )
 }
 
-export default Navbar;
+const NavItem = (props: NavItemType) =>
+    <NavLink to={props.urlName} activeClassName={s.activeLink} className={s.link}>
+        <img src={props.logo} alt="navbar logo" className={s.linkLogo}/>
+        {props.itemName}
+    </NavLink>;
+
 
 type MapStatePropsType = {
     friendName: Array<{ id: string, name: string }>

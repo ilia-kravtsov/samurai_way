@@ -1,10 +1,10 @@
 import React from 'react'
-import SettingsStyle from './Settings.module.css'
+import s from './Settings.module.css'
 
 
 const Settings = ( ) => {
     return (
-        <div className={SettingsStyle.color}>
+        <div className={s.setContainer}>
             Settings
         </div>
     )

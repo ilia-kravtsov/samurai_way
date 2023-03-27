@@ -1,17 +1,19 @@
 import React, {useEffect, useRef} from 'react'
-import messagesStyle from './Messages.module.css'
+import s from './Messages.module.css'
 import Message from "./Message/Message";
 import MessageItem from "./MessageItem/MessageItem";
 import MessageSender from "./MessageSender/MessageSender";
 import {MessagesPropsType} from "./MessagesContainer";
+import {useAutoAnimate} from "@formkit/auto-animate/react";
 
 const Messages = (props: MessagesPropsType) => {
 
+    const [listRef] = useAutoAnimate<HTMLUListElement>()
 
     const messagesItemDataElements = props.messagesPage.companionsData.map(companion => {
         return <MessageItem key={companion.id}
-                     id={companion.id}
-                     name={companion.name}/>
+                            id={companion.id}
+                            name={companion.name}/>
     });
     const messageDataElements = props.messagesPage.messageData.map((messageContent, i) => {
         return <Message key={messageContent.id}
@@ -21,29 +23,33 @@ const Messages = (props: MessagesPropsType) => {
     })
 
 
-    const ref = useRef<any>(null)
+    const ref = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        ref.current.scrollTop = Math.ceil(
-            ref.current.scrollHeight - ref.current.clientHeight,
-        );
+        if (ref.current) {
+            ref.current.scrollTop = Math.ceil(
+                ref.current.scrollHeight - ref.current.clientHeight,
+            );
+        }
     }, [props.messagesPage.messageData])
 
     return (
-        <div className={messagesStyle.messages}>
-            <div className={messagesStyle.messagesItems}>
+        <div className={s.messagesContainer}>
+            <div className={s.messagesItems}>
                 {messagesItemDataElements}
             </div>
-            <div className={messagesStyle.messagesContent}
-                ref={ref}
-            >
-                {messageDataElements}
-            </div>
+            <div className={s.messBodyBlock}>
+             <div className={s.messagesContent} ref={ref}>
+                 <ul ref={listRef} className={s.ulMessagesContent}>
+                     {messageDataElements}
+                 </ul>
+             </div>
             <MessageSender myNewMessageText={props.messagesPage.myNewMessageText}
                            updateMyNewMessageUI={props.updateMyNewMessageUI}
                            addMyNewMessageUI={props.addMyNewMessageUI}
 
             />
+            </div>
         </div>
     )
 }

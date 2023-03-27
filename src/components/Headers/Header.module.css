@@ -1,9 +1,9 @@
-.headers {
-    grid-area: header;
-    background-color: #1e88e5;
-    text-align: left;
+.headerContainer {
+    height: 10vh;
+    background: #1e88e5;
 }
 
-.headers img {
-    width: 110px;
+.logo {
+    height: 80%;
+    margin: 10px;
 }

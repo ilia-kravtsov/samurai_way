@@ -1,7 +1,7 @@
 import {v1} from "uuid";
 import React from "react";
 import {
-    addPostAC,
+    addPostAC, delPostAC,
     onDisLikeHandlerAC,
     onLikeHandlerAC,
     profilePageReducer,
@@ -45,7 +45,7 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateMyPostTextAC> |  ReturnType<typeof addMyNewMessage> | ReturnType<typeof updateMyNewMessage> | ReturnType<typeof onLikeHandlerAC> | ReturnType<typeof onDisLikeHandlerAC> | ReturnType<typeof followAC> | ReturnType<typeof unFollowAC> | ReturnType<typeof setUsersAC>
+export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateMyPostTextAC> |  ReturnType<typeof addMyNewMessage> | ReturnType<typeof updateMyNewMessage> | ReturnType<typeof onLikeHandlerAC> | ReturnType<typeof onDisLikeHandlerAC> | ReturnType<typeof followAC> | ReturnType<typeof unFollowAC> | ReturnType<typeof setUsersAC> | ReturnType<typeof delPostAC>
 
 export const store: StoreType = {
     _state: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {addPostAC, updateMyPostTextAC} from "../../../redux/profile_page_reducer";
+import {addPostAC, delPostAC, updateMyPostTextAC} from "../../../redux/profile_page_reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {RootStateType} from "../../../redux/redux-store";
@@ -12,19 +12,17 @@ export type PostsData = {
     likesCount: number
     disLikesCount: number
 }
-
 export type ProfilePageType = {
     postsData: Array<PostsData>
     newPostText: string
 }
-
 type MapStatePropsType = {
     postsData: Array<PostsData>
     newPostText: string
 }
-
 type MapDispatchToPropsType = {
     updateMyPostText: (text: string) => void
+    delPost: (index: string) => void
     addPost: () => void
     dispatch: (action: ActionsTypes) => void
 }
@@ -40,6 +38,7 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         updateMyPostText: (text: string) => dispatch(updateMyPostTextAC(text)),
         addPost: () => dispatch(addPostAC()),
+        delPost: (index: string) => dispatch(delPostAC(index)),
         dispatch: (action:ActionsTypes) => dispatch(action)
     }
 }

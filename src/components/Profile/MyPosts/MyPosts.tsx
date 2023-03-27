@@ -1,9 +1,10 @@
-import React, {ChangeEvent, KeyboardEvent, useEffect, useRef} from 'react';
+import React, {ChangeEvent, KeyboardEvent} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {ActionsTypes} from "../../../redux/store";
 import {IconButton, TextField} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
+import {useAutoAnimate} from "@formkit/auto-animate/react";
 
 type MyPostsType = {
     postsData: Array<{id: string, message: string, likesCount: number, disLikesCount: number}>
@@ -14,6 +15,8 @@ type MyPostsType = {
 }
 
 const MyPosts = (props: MyPostsType) => {
+
+    const [listRef] = useAutoAnimate<HTMLUListElement>()
 
     const postsDataContent = props.postsData.map( p =>
         <Post message={p.message} likesCount={p.likesCount} disLikesCount={p.disLikesCount} key={p.id} index={p.id} dispatch={props.dispatch}/>
@@ -40,38 +43,33 @@ const MyPosts = (props: MyPostsType) => {
         }
     }
 
-    const ref = useRef<any>(null)
-    useEffect(() => {
-        ref.current.scrollTop = Math.ceil(
-            ref.current.scrollHeight - ref.current.clientHeight,
-        );
-    }, [props.postsData])
-
     return (
-        <div className={s.postsBlock}>
-            <h3 className={s.box_shadow}>My Posts</h3>
-            <div className={s.container}>
+        <div className={s.postsContainer}>
+            <div className={s.postsBlock}>
+                <h3 className={s.title}>My Posts</h3>
+                <div className={s.addPostContainer}>
                     <TextField className={s.textarea}
                               ref={newPostElement}
                               value={props.newPostText}
                               onChange={onPostChange}
                               onKeyDown={onKeyDown}
                               label={'Enter your post'}
-                            sx={{width: '300px'}}
+                              multiline
+                              minRows={4}
+                              maxRows={4}
                     ></TextField>
-                <div className={s.btn}>
-                    <IconButton className={s.border_radius}
-                            onClick={addPost}
-                            size={'medium'}
-                            sx={{ml: '15px', boxShadow: '5px 5px 10px 0 rgba(0, 0, 0, 0.5)'}}
-                            color={'primary'}
-                    >
+                    <IconButton className={s.btnPost} onClick={addPost} size={'medium'} color={'primary'} sx={{ml: '30px'}}>
                         <AddIcon />
                     </IconButton>
                 </div>
+                <div className={s.posts}>
+                    <ul ref={listRef}>
+                        {postsDataContent}
+                    </ul>
+                </div>
             </div>
-            <div className={s.posts} ref={ref}>
-                {postsDataContent}
+            <div className={s.sideBar}>
+                <span>Your advertisement could be here</span>
             </div>
         </div>
     );

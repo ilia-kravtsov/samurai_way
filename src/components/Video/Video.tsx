@@ -1,9 +1,9 @@
 import React from "react";
-import VideoStyle from './Video.module.css'
+import s from './Video.module.css'
 
 const Video = () => {
     return (
-        <div className={VideoStyle.color}>
+        <div className={s.videoContainer}>
             Video
         </div>
     )

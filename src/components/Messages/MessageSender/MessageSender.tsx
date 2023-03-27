@@ -11,10 +11,6 @@ type MessageSenderType = {
 
 const MessageSender = (props: MessageSenderType) => {
 
-    let textareaS = s.textareaS
-    let btnS = s.btnS
-    let inpBtnContainer = s.inpBtnContainer
-
     const myNewMessage = React.createRef<HTMLDivElement>()
 
     const addMyNewMessageUI = () => {
@@ -40,23 +36,23 @@ const MessageSender = (props: MessageSenderType) => {
 
     return (
         <div className={s.container}>
-            <div className={inpBtnContainer}>
                 <TextField ref={myNewMessage}
-                          className={textareaS}
-                          onChange={onMyNewMessageChange}
-                          onKeyDown={onKeyDown}
-                          value={props.myNewMessageText}
-                          label='Enter your message'
+                           className={s.textareaS}
+                           onChange={onMyNewMessageChange}
+                           onKeyDown={onKeyDown}
+                           value={props.myNewMessageText}
+                           label='Enter your message'
                            variant="outlined"
-                           sx={{height: '55px'}}
+                           multiline
+                           maxRows={4}
+                           sx={{w: '70%',}}
+                           InputProps={{sx: {height: '8vh'}}}
                 ></TextField>
-                <IconButton onClick={addMyNewMessageUI}
-                        className={btnS}
+            <IconButton onClick={addMyNewMessageUI}
+                        className={s.btnS}
                         size={'medium'}
                         color={'primary'}
-                        sx={{ml: '20px', boxShadow: '5px 5px 10px 0 rgba(0, 0, 0, 0.5)'}}
-                > <AddIcon /></IconButton>
-            </div>
+            > <AddIcon/></IconButton>
         </div>
     );
 };

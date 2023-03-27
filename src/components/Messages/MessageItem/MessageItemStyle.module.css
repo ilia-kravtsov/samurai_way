@@ -1,36 +1,30 @@
-.messageItemName {
+.itemLinkImg {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-}
-
-.messageItemName a {
     text-decoration: none;
     color: lightslategrey;
-    padding: 3px;
     flex-grow: 1;
-    margin-left: 10px;
 }
 
-.messageItemName a:hover {
-    box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
+.itemLinkImg:hover {
+    background-color: #ffffff;
 }
 
-.messageItemName a:active {
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
-    color: black;
-    background-color: lightgrey;
-}
-
-.messageItemName .active {
-    color: black;
+.active {
+    color: #1e88e5;
+    background-color: #ffffff;
+    opacity: 0.8;
 }
 
 .ava {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     margin: 10px;
-    box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.itemName {
+    height: 30%;
+    color: black;
 }

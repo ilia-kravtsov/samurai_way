@@ -10,13 +10,10 @@ type MessageItemType = {
 const MessageItem = (props: MessageItemType) => {
     let path = '/messages/' + props.name;
 
-    return (
-        <div className={s.messageItemName}>
-            <img
-                src={"https://avatars.mds.yandex.net/i?id=a69847b56ccbe331769d0552889e756a-5234578-images-thumbs&n=13"}
-                alt="Groot" className={s.ava}/>
-            <NavLink to={path} activeClassName={s.active}>{props.name}</NavLink>
-        </div>
-    )
+    return <NavLink to={path} activeClassName={s.active} className={s.itemLinkImg}>
+            <img src={"https://avatars.mds.yandex.net/i?id=a69847b56ccbe331769d0552889e756a-5234578-images-thumbs&n=13"}
+                 alt="Groot" className={s.ava}/>
+            {props.name}
+        </NavLink>
 }
 export default MessageItem

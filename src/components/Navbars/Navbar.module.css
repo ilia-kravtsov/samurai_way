@@ -1,17 +1,21 @@
-.navs {
-    grid-area: nav;
-    padding: 20px;
+.navBarContainer {
+    width: 20%;
+    min-height: 100vh;
+    padding: 20px 0 20px 20px;
     display: flex;
     flex-direction: column;
     align-content: center;
+    background: rgba(200,200,200, 0.7);
 }
 
-.item {
+.navContainer {
+    height: 40vh;
+}
+
+.link {
     display: flex;
-    height: 40px;
-}
-
-.item a {
+    align-items: center;
+    height: 14%;
     color: lightslategrey;
     text-decoration: none;
     outline: none;
@@ -21,18 +25,20 @@
     padding: 10px 5px 5px 10px;
 }
 
-.item a:hover {
-    box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
+.link:hover {
+    background-color: #ffffff;
 }
 
-.item a:active {
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
-    color: black;
-    background-color: lightgrey;
+.link:active {
+
 }
 
-.item a.activeLink {
-    color: black;
+.activeLink {
+    color: #218be1;
+    background-color: #ffffff;
+    opacity: 0.8;
 }
 
+.linkLogo {
+    margin-right: 15px;
+}

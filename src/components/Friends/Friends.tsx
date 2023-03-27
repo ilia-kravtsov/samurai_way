@@ -7,8 +7,8 @@ type FriendName = {
 
 const Friends = (props: FriendName) => {
     return (
-        <div className={s.divFriends}>
-            <span className={s.spanFriends}>Friends</span>
+        <div className={s.friendsContainer}>
+            <span className={s.friendsTitle}>Friends</span>
             <FriendAva friendName={props.friendName}/>
         </div>
     )
@@ -17,23 +17,21 @@ const Friends = (props: FriendName) => {
 const FriendAva = (props: FriendName) => {
 
     let filteredFriendsNames = props.friendName.filter((friend, index) =>
-        index < 3 ? friend : '')
+        index < 3 ? friend : '');
 
-    let mapFriendsAvas = filteredFriendsNames.map(friend =>
-            <img src={'https://wantshop.ru/media/tmp/6b79c121716e872a9fb16be3ea0f85ea.jpeg'}
-                      alt='littleGroot'
-                      key={friend.id}
-                      className={s.friendAva}/>)
+    let buildFriends = filteredFriendsNames.map(friend => {
+        return (
+            <div key={friend.id} className={s.avaNameBlock}>
+                <img src='https://avatars.mds.yandex.net/i?id=a69847b56ccbe331769d0552889e756a-5234578-images-thumbs&n=13'
+                     alt='littleGroot'
+                     key={friend.id}
+                     className={s.friendAva}/>
+                <span className={s.friendName}>{friend.name}</span>
+            </div>
+        )
+    })
 
-    let mapFriendsNames = filteredFriendsNames.map(friend =>
-        <div className={s.names} key={friend.id}>{friend.name}</div>)
-
-    return (
-        <div className={s.container}>
-            <div className={s.avasBlock}>{mapFriendsAvas}</div>
-            <div className={s.friendNamesBlock}>{mapFriendsNames}</div>
-        </div>
-    )
+    return <div className={s.friendBlock}>{buildFriends}</div>
 }
 
 export default Friends
