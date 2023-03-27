@@ -34,7 +34,6 @@ const MyPosts = (props: MyPostsType) => {
             props.updateMyPostText(e.currentTarget.value)
         }
     }
-
     const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
         if (e.key === 'Enter') {
             if (props.newPostText.trim()) {
