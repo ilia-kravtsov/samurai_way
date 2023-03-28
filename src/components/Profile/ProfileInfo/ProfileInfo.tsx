@@ -8,13 +8,13 @@ const ProfileInfo = () => {
                 <div className={s.avaDescrBlock}>
                     <div className={s.avaBorderBlock}>
                         <img
-                            src="https://akcdn.detik.net.id/visual/2019/05/10/7ac541ac-2c34-46b3-a999-70d2251648ea_43.jpeg?w=900&q=90"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKrBK-eMr3u6DP0wzI2zNVrOGDizdwug_pNA&usqp=CAU"
                             alt="ava" className={s.ava}/>
                     </div>
                     <div className={s.borderDescriptionBLock}>
                         <div className={s.descriptionBlock}>
                             <span>Watch out!</span>
-                            <span>Provide information about yourself!</span>
+                            <span>I hope you'll be enjoyed about this network ;)</span>
                         </div>
                     </div>
                 </div>

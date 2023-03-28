@@ -8,10 +8,10 @@ const initialState = {
     companionsData:  [
         {id: v1(), name: 'ilia'},
         {id: v1(), name: 'oleg'},
-        {id: v1(), name: 'ivan'},
-        {id: v1(), name: 'anna'},
+        {id: v1(), name: 'artem'},
+        {id: v1(), name: 'jason'},
         {id: v1(), name: 'maksim'},
-        {id: v1(), name: 'petr'},
+        {id: v1(), name: 'silvester'},
     ],
     messageData: [
         {id: v1(), message: 'push me'},

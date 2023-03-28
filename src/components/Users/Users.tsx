@@ -74,7 +74,7 @@ export const Users = (props: UsersPropsType) => {
                                     {
                                         u.followed ? <Button onClick={onFollowClick}
                                                              variant={'contained'}
-                                                             sx={{m: '10px'}}
+                                                             sx={{m: '10px', width: '110px'}}
                                             >Follow</Button>
                                             : <Button onClick={onUnFollowClick}
                                                       variant={'outlined'}

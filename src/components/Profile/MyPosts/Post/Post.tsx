@@ -32,7 +32,7 @@ const Post = (props: PostType) => {
     return (
         <li className={s.postContainer}>
             <div className={s.imgSpanContainer}>
-                <img src='https://avatars.mds.yandex.net/i?id=a69847b56ccbe331769d0552889e756a-5234578-images-thumbs&n=13' alt='littleGroot' className={s.itemImg}/>
+                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKrBK-eMr3u6DP0wzI2zNVrOGDizdwug_pNA&usqp=CAU' alt='brad pit' className={s.itemImg}/>
                 <span className={s.anglePost}></span>
                 <span className={s.postMessage}>{props.message}</span>
             </div>

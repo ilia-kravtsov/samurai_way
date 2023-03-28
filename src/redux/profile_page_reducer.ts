@@ -30,10 +30,10 @@ export const profilePageReducer = (state: ProfilePageType = initialState, action
             return {...state, newPostText: action.newText}
         case ON_LIKE_HANDLER_TYPE:
             return {...state, postsData: state.postsData.map(p =>
-                    (p.id === action.index) ? {...p, likesCount: p.likesCount < 1 ? p.likesCount+1 : p.likesCount-1} : p)}
+                    (p.id === action.index) ? {...p, likesCount: p.likesCount < 1 && p.disLikesCount < 1? p.likesCount+1 : p.likesCount = 0} : p)}
         case ON_DISLIKE_HANDLER_TYPE:
             return {...state, postsData: state.postsData.map(p =>
-                    (p.id === action.index) ? {...p, disLikesCount: p.disLikesCount < 1 ? p.disLikesCount+1 : p.disLikesCount-1} : p)}
+                    (p.id === action.index) ? {...p, disLikesCount: p.disLikesCount < 1 && p.likesCount < 1 ? p.disLikesCount+1 : p.disLikesCount = 0} : p)}
         default:
             return state
     }

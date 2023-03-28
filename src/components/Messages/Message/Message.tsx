@@ -1,5 +1,7 @@
 import React from 'react'
 import s from './MessageStyle.module.css'
+import {IconButton} from "@mui/material";
+import SpeakerNotesOffRoundedIcon from '@mui/icons-material/SpeakerNotesOffRounded';
 
 type MessageType = {
     message: string
@@ -25,12 +27,23 @@ const Message = (props: MessageType) => {
         txtAndAvaContainer = s.txtAndAvaMeNew
     }
 
+    const onDelClick = () => {
+
+    }
+
     return (
         <li className={txtAndAvaContainer}>
-            <div className={txt}>{props.message}</div>
+            <div className={txt}>
+                <span className={s.exactText}>{props.message}</span>
+                <IconButton onClick={onDelClick}
+                            color={'primary'}
+                            className={s.deleteIcon}
+                >
+                    <SpeakerNotesOffRoundedIcon />
+                </IconButton>
+            </div>
             <div className={angle}></div>
-            <img
-                src={"https://avatars.mds.yandex.net/i?id=a69847b56ccbe331769d0552889e756a-5234578-images-thumbs&n=13"}
+            <img src='https://kartinkin.net/uploads/posts/2021-03/1616119039_2-p-bred-pitt-krasivie-foto-2.jpg'
                 alt="Groot" className={ava}/>
         </li>
     )
