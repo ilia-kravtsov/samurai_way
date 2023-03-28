@@ -7,6 +7,7 @@ type MessageType = {
     message: string
     id: string
     index: number
+    onDelClickCallback: (id: string) => void
 }
 
 const Message = (props: MessageType) => {
@@ -28,7 +29,7 @@ const Message = (props: MessageType) => {
     }
 
     const onDelClick = () => {
-
+        props.onDelClickCallback(props.id)
     }
 
     return (

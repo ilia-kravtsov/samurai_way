@@ -8,6 +8,7 @@
 
 .itemLinkImg:hover {
     background-color: #ffffff;
+    border-radius: 5px;
 }
 
 .active {

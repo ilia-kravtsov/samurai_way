@@ -7,7 +7,12 @@ import {
     profilePageReducer,
     updateMyPostTextAC
 } from "./profile_page_reducer";
-import {addMyNewMessage, messagesPageReducer, updateMyNewMessage} from "./messages_page_reducer";
+import {
+    addMyNewMessageAC,
+    deleteMyNewMessageAC,
+    messagesPageReducer,
+    updateMyNewMessageAC
+} from "./messages_page_reducer";
 import {followAC, setUsersAC, unFollowAC} from "./users_reducer";
 
 export type MessagesItemDataType = {
@@ -45,7 +50,7 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateMyPostTextAC> |  ReturnType<typeof addMyNewMessage> | ReturnType<typeof updateMyNewMessage> | ReturnType<typeof onLikeHandlerAC> | ReturnType<typeof onDisLikeHandlerAC> | ReturnType<typeof followAC> | ReturnType<typeof unFollowAC> | ReturnType<typeof setUsersAC> | ReturnType<typeof delPostAC>
+export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateMyPostTextAC> |  ReturnType<typeof addMyNewMessageAC> | ReturnType<typeof updateMyNewMessageAC> | ReturnType<typeof onLikeHandlerAC> | ReturnType<typeof onDisLikeHandlerAC> | ReturnType<typeof followAC> | ReturnType<typeof unFollowAC> | ReturnType<typeof setUsersAC> | ReturnType<typeof delPostAC> | ReturnType<typeof deleteMyNewMessageAC>
 
 export const store: StoreType = {
     _state: {

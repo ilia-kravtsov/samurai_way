@@ -19,6 +19,7 @@ const Messages = (props: MessagesPropsType) => {
         return <Message key={messageContent.id}
                         id={messageContent.id}
                         message={messageContent.message}
+                        onDelClickCallback={props.onDelClickCallback}
                         index={i}/>
     })
 

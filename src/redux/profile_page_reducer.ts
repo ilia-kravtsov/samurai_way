@@ -10,7 +10,7 @@ const ON_DISLIKE_HANDLER_TYPE = 'ON-DISLIKE-HANDLER-TYPE';
 
 const initialState = {
         postsData: [
-            {id: v1(), message: "Hi, how's it going?", likesCount: 1, disLikesCount: 0},
+            {id: v1(), message: "Hi, how's it going?", likesCount: 0, disLikesCount: 0},
         ],
         newPostText: ''
     };

@@ -1,10 +1,10 @@
 import React from 'react'
 import Messages from "./Messages";
-import {addMyNewMessage, updateMyNewMessage} from "../../redux/messages_page_reducer";
+import {addMyNewMessageAC, deleteMyNewMessageAC, updateMyNewMessageAC} from "../../redux/messages_page_reducer";
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
-import {MessageDataType, MessagesItemDataType} from "../../redux/store";
+import {ActionsTypes, MessageDataType, MessagesItemDataType} from "../../redux/store";
 
 export type MessagesPageType = {
     companionsData: Array<MessagesItemDataType>
@@ -19,6 +19,8 @@ type MapStatePropsType = {
 type MapDispatchToPropsType = {
     updateMyNewMessageUI: (newText: string) => void
     addMyNewMessageUI: () => void
+    onDelClickCallback: (id: string) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 export type MessagesPropsType = MapStatePropsType & MapDispatchToPropsType;
@@ -31,12 +33,10 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
-        updateMyNewMessageUI: (newText: string) => {
-            dispatch(updateMyNewMessage(newText));
-        },
-        addMyNewMessageUI: () => {
-            dispatch(addMyNewMessage());
-        }
+        updateMyNewMessageUI: (newText: string) => dispatch(updateMyNewMessageAC(newText)),
+        addMyNewMessageUI: () => dispatch(addMyNewMessageAC()),
+        onDelClickCallback: (id: string) => dispatch(deleteMyNewMessageAC(id)),
+        dispatch: (action:ActionsTypes) => dispatch(action)
     }
 }
 

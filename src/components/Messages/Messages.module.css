@@ -7,6 +7,8 @@
 .messagesItems{
     padding: 10px;
     width: 20%;
+    height: 100vh;
+    background: rgba(200, 200, 200, 0.7);
 }
 
 .messagesContent {
