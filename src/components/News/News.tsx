@@ -15,7 +15,7 @@ const News = ( ) => {
         'News number_9',
     ]
 
-    let allNews = news.map(n =>  <div className={s.newsItem}><a href='https://mail.ru/' target='_blank'>{n}</a></div>)
+    let allNews = news.map(n =>  <div className={s.newsItem}><a href='https://mail.ru/' target='_blank' rel="noreferrer">{n}</a></div>)
 
     return (
         <div className={s.newsContainer}>

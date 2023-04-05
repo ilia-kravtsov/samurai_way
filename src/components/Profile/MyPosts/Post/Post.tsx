@@ -1,7 +1,5 @@
 import React from "react";
 import s from './Post.module.css';
-import {delPostAC, onDisLikeHandlerAC, onLikeHandlerAC} from "../../../../redux/profile_page_reducer";
-import {ActionsTypes} from "../../../../redux/store";
 import {IconButton} from '@mui/material';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
@@ -11,22 +9,24 @@ type PostType = {
     message: string
     likesCount: number
     disLikesCount: number
-    index: string
-    dispatch: (action: ActionsTypes) => void
+    id: string
+    likeCallback: (id: string) => void
+    disLikeCallback: (id: string) => void
+    delClickCallback: (id: string) => void
 }
 
 const Post = (props: PostType) => {
 
-    const onLikeHandler = () => {
-        props.dispatch(onLikeHandlerAC(props.index))
+    const likeClick = () => {
+        props.likeCallback(props.id)
     }
 
-    const onDisLikeHandler = () => {
-        props.dispatch(onDisLikeHandlerAC(props.index))
+    const disLikeClick = () => {
+        props.disLikeCallback(props.id)
     }
 
-    const onDelClick = () => {
-        props.dispatch(delPostAC(props.index))
+    const delClick = () => {
+        props.delClickCallback(props.id)
     }
 
     return (
@@ -37,21 +37,21 @@ const Post = (props: PostType) => {
                 <span className={s.postMessage}>{props.message}</span>
             </div>
             <div className={s.likeDisContainer}>
-                <IconButton onClick={onLikeHandler}
+                <IconButton onClick={likeClick}
                             color={'primary'}
                             sx={{boxShadow: '0 1px 10px 0 rgba(0, 0, 0, 0.3)'}}
                 >
                     <ThumbUpAltIcon />
                 </IconButton>
                 <span className={s.likes}>{props.likesCount}</span>
-                <IconButton onClick={onDisLikeHandler}
+                <IconButton onClick={disLikeClick}
                             color={'primary'}
                             sx={{boxShadow: '0 1px 10px 0 rgba(0, 0, 0, 0.3)'}}
                 >
                     <ThumbDownAltIcon />
                 </IconButton>
                 <span className={s.likes}>{props.disLikesCount}</span>
-                <IconButton onClick={onDelClick}
+                <IconButton onClick={delClick}
                             color={'primary'}
                             sx={{boxShadow: '0 1px 10px 0 rgba(0, 0, 0, 0.3)'}}
                 >

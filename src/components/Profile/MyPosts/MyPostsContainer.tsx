@@ -1,10 +1,16 @@
 import React from 'react';
-import {addPostAC, delPostAC, updateMyPostTextAC} from "../../../redux/profile_page_reducer";
+import {
+    addPostAC,
+    delPostAC,
+    onDisLikeHandlerAC,
+    onLikeHandlerAC,
+    updateMyPostTextAC
+} from "../../../redux/profile_page_reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {RootStateType} from "../../../redux/redux-store";
-import {ActionsTypes} from "../../../redux/store";
 import {Dispatch} from "redux";
+import {ProfileDataType} from "../ProfileContainer";
 
 export type PostsData = {
     id: string
@@ -15,6 +21,7 @@ export type PostsData = {
 export type ProfilePageType = {
     postsData: Array<PostsData>
     newPostText: string
+    profile: ProfileDataType
 }
 type MapStatePropsType = {
     postsData: Array<PostsData>
@@ -24,7 +31,9 @@ type MapDispatchToPropsType = {
     updateMyPostText: (text: string) => void
     delPost: (index: string) => void
     addPost: () => void
-    dispatch: (action: ActionsTypes) => void
+    likeCallback: (id: string) => void
+    disLikeCallback: (id: string) => void
+    delClickCallback: (id: string) => void
 }
 
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
@@ -38,14 +47,15 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         updateMyPostText: (text: string) => dispatch(updateMyPostTextAC(text)),
         addPost: () => dispatch(addPostAC()),
-        delPost: (index: string) => dispatch(delPostAC(index)),
-        dispatch: (action:ActionsTypes) => dispatch(action)
+        delPost: (id: string) => dispatch(delPostAC(id)),
+        likeCallback: (id: string) => dispatch(onLikeHandlerAC(id)),
+        disLikeCallback: (id: string) => dispatch(onDisLikeHandlerAC(id)),
+        delClickCallback: (id: string) => dispatch(delPostAC(id)),
     }
 }
 
-const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
 
-export default MyPostsContainer
 
 /*
 const MyPostsContainer = (props: MyPostsContainerType) => {

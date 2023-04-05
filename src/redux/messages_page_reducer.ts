@@ -27,7 +27,7 @@ export const messagesPageReducer = (state: MessagesPageType = initialState, acti
         case UPDATE_MY_NEW_MESSAGE:
             return {...state, myNewMessageText: action.newText}
         case DELETE_MY_NEW_MESSAGE:
-            return {...state, messageData: [...state.messageData].filter(m => m.id != action.id)}
+            return {...state, messageData: [...state.messageData].filter(m => m.id !== action.id)}
         case ADD_MY_NEW_MESSAGE:
             if (state.myNewMessageText) {
                 let newMessageText = {id: v1(), message: state.myNewMessageText}

@@ -5,8 +5,8 @@ import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
 import {store} from "./redux/redux-store";
-import {createTheme, ThemeProvider} from "@mui/material";
 import {Provider} from "react-redux";
+import {createTheme, ThemeProvider} from "@mui/material";
 
 const theme = createTheme({
     palette: {
@@ -16,7 +16,6 @@ const theme = createTheme({
         secondary: {
             main: '#FFF',
         },
-        mode: 'light'
     },
     typography: {
         fontSize: 14,

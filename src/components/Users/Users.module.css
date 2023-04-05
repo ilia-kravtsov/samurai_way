@@ -1,6 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .container img {
@@ -29,4 +30,43 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.selectedPage {
+    color: #1e88e5;
+}
+
+.presentContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    background-image: url("https://icons8.com/preloaders/preloaders/828/3D%20Yin-yang.gif");
+    background-size: cover;
+    width: 60px;
+    height: 60px;
+    margin-top: 40vh;
+    border-radius: 50%;
+}
+
+.btnsContainer {
+    width: 20vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnsContainer button {
+    border: 1px solid lightgrey;
+    font-size: 24px;
+    font-family: 'Lora', serif;
+    padding: 10px;
+}
+
+.btnsContainer button:hover {
+    cursor: pointer;
+    font-weight: bold;
 }

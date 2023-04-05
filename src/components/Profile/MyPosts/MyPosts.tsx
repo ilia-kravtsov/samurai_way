@@ -1,7 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {ActionsTypes} from "../../../redux/store";
 import {IconButton, TextField} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import {useAutoAnimate} from "@formkit/auto-animate/react";
@@ -10,8 +9,11 @@ type MyPostsType = {
     postsData: Array<{id: string, message: string, likesCount: number, disLikesCount: number}>
     newPostText: string
     updateMyPostText: (text: string) => void
+    delPost: (index: string) => void
     addPost: () => void
-    dispatch: (action: ActionsTypes) => void
+    likeCallback: (id: string) => void
+    disLikeCallback: (id: string) => void
+    delClickCallback: (id: string) => void
 }
 
 const MyPosts = (props: MyPostsType) => {
@@ -19,7 +21,15 @@ const MyPosts = (props: MyPostsType) => {
     const [listRef] = useAutoAnimate<HTMLUListElement>()
 
     const postsDataContent = props.postsData.map( p =>
-        <Post message={p.message} likesCount={p.likesCount} disLikesCount={p.disLikesCount} key={p.id} index={p.id} dispatch={props.dispatch}/>
+        <Post key={p.id}
+              id={p.id}
+              message={p.message}
+              likesCount={p.likesCount}
+              disLikesCount={p.disLikesCount}
+              likeCallback={props.likeCallback}
+              disLikeCallback={props.disLikeCallback}
+              delClickCallback={props.delClickCallback}
+        />
     );
 
     const newPostElement = React.createRef<HTMLDivElement>()

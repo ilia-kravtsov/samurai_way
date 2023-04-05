@@ -1,78 +1,45 @@
-import {ActionsTypes} from "./store";
+import {ActionsTypes} from "./redux-store";
+import {UsersApiType} from "../components/Users/UsersContainer";
+import {MapStatePropsType} from "../components/Users/UsersContainer";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = "SET_USERS"
-
-export type UserType = {
-    id: string
-    fullName: string
-    status: string
-    location: { city: string, country: string },
-    followed: boolean
-    photoUrl: string
-}
-
-export type UsersType = {
-    users: Array<UserType>
-}
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
+const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT"
+const LOADER_CHANGE = "LOADER_CHANGE"
 
 const initialState = {
     users: [],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1,
+    isLoading: false
 };
 
-export const usersReducer = (state: UsersType = initialState, action: ActionsTypes) => {
+export const usersReducer = (state: MapStatePropsType = initialState, action: ActionsTypes): MapStatePropsType => {
     switch (action.type) {
         case FOLLOW:
             return {...state, users: state.users.map(u => u.id === action.userID ? {...u, followed: true} : u)}
         case UNFOLLOW:
             return {...state, users: state.users.map(u => u.id === action.userID ? {...u, followed: false} : u)}
         case SET_USERS:
-            return {...state, users: [...state.users, ...action.users.users]}
+            return {...state, users: action.users}
+        case SET_CURRENT_PAGE:
+            return {...state, currentPage: action.currentPage}
+        case SET_TOTAL_USERS_COUNT:
+            return {...state, totalUsersCount: action.totalCount}
+        case LOADER_CHANGE:
+            return {...state, isLoading: action.isLoading}
         default:
             return state
     }
 }
 
-export const followAC = (userID: string) => ({type: FOLLOW, userID} as const) // подписывает usera
-export const unFollowAC = (userID: string) => ({type: UNFOLLOW, userID} as const) // отписывает usera
-export const setUsersAC = (users: UsersType) => ({type: SET_USERS, users} as const) // устанавливает users с сервера
+export const follow = (userID: number) => ({type: FOLLOW, userID} as const)
+export const unFollow = (userID: number) => ({type: UNFOLLOW, userID} as const)
+export const setUsers = (users: UsersApiType) => ({type: SET_USERS, users} as const)
+export const onPaginationClick = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
+export const setTotalUsersCount = (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalCount} as const)
+export const loaderChanger = (isLoading: boolean) => ({type: LOADER_CHANGE, isLoading} as const)
 
-/*
-const initialState = {
-    users: [
-        // {
-        //     id: v1(),
-        //     photoUrl: 'https://wantshop.ru/media/tmp/6b79c121716e872a9fb16be3ea0f85ea.jpeg',
-        //     fullName: 'Eddy Murphy',
-        //     status: 'I am the best actor',
-        //     location: {city: 'Minsk', country: 'Belarus'},
-        //     followed: true
-        // },
-        // {
-        //     id: v1(),
-        //     photoUrl: 'https://wantshop.ru/media/tmp/6b79c121716e872a9fb16be3ea0f85ea.jpeg',
-        //     fullName: 'Kris Taker',
-        //     status: 'I am the best actor',
-        //     location: {city: 'Moscow', country: 'RF'},
-        //     followed: false
-        // },
-        // {
-        //     id: v1(),
-        //     photoUrl: 'https://wantshop.ru/media/tmp/6b79c121716e872a9fb16be3ea0f85ea.jpeg',
-        //     fullName: 'Arnold S.',
-        //     status: 'I am the best actor',
-        //     location: {city: 'Melbourne', country: 'Australia'},
-        //     followed: false
-        // },
-        // {
-        //     id: v1(),
-        //     photoUrl: 'https://wantshop.ru/media/tmp/6b79c121716e872a9fb16be3ea0f85ea.jpeg',
-        //     fullName: 'Silvester S.',
-        //     status: 'I am the best actor',
-        //     location: {city: 'Rome', country: 'Italy'},
-        //     followed: false
-        // },
-    ],
-};
- */

@@ -57,7 +57,7 @@
 }
 
 .deleteIcon {
-    align-self: center;
+    align-self: flex-start;
 }
 
 .avaMe {

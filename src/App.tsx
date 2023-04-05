@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './App.module.css';
 import Header from "./components/Headers/Header";
-import Profile from "./components/Profile/Profile";
 import {Redirect, Route} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
@@ -10,6 +9,8 @@ import Video from "./components/Video/Video";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import {Navbar} from "./components/Navbars/Navbar";
+import ProfileContainer from "./components/Profile/ProfileContainer";
+
 
 const App = () => {
     return (
@@ -20,7 +21,7 @@ const App = () => {
                 <div className={s.main}>
                     <Route path='/' render={() => <Redirect to={'/profile'}/>}/>
                     <Route path='/*' render={() => <Redirect to={'/profile'}/>}/>
-                    <Route path='/profile' render={() => <Profile/>}/>
+                    <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                     <Route path='/messages' render={() => <MessagesContainer/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
@@ -34,5 +35,4 @@ const App = () => {
 }
 
 export default App;
-
 

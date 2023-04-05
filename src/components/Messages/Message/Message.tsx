@@ -1,7 +1,7 @@
 import React from 'react'
 import s from './MessageStyle.module.css'
 import {IconButton} from "@mui/material";
-import SpeakerNotesOffRoundedIcon from '@mui/icons-material/SpeakerNotesOffRounded';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 type MessageType = {
     message: string
@@ -40,7 +40,7 @@ const Message = (props: MessageType) => {
                             color={'primary'}
                             className={s.deleteIcon}
                 >
-                    <SpeakerNotesOffRoundedIcon />
+                    <DeleteIcon />
                 </IconButton>
             </div>
             <div className={angle}></div>
