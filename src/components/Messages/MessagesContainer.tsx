@@ -4,7 +4,15 @@ import {addMyNewMessageAC, deleteMyNewMessageAC, updateMyNewMessageAC} from "../
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
-import {MessageDataType, MessagesItemDataType} from "../../redux/store";
+
+export type MessagesItemDataType = {
+    id: string
+    name: string
+}
+export type MessageDataType = {
+    id: string
+    message: string
+}
 
 export type MessagesPageType = {
     companionsData: Array<MessagesItemDataType>

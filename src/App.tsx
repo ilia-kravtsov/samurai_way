@@ -10,12 +10,13 @@ import MessagesContainer from "./components/Messages/MessagesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import {Navbar} from "./components/Navbars/Navbar";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Headers/HeaderContainer";
 
 
 const App = () => {
     return (
         <div className={s.container}>
-            <Header/>
+            <HeaderContainer/>
             <div className={s.body}>
                 <Navbar/>
                 <div className={s.main}>

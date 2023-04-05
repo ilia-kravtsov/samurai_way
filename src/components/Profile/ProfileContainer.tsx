@@ -3,10 +3,13 @@ import Profile from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
 import {PostDataType, setUserProfile} from "../../redux/profile_page_reducer";
-import {withRouter} from "react-router-dom";
-
+import {RouteComponentProps, withRouter} from "react-router-dom";
+import {RootStateType} from "../../redux/redux-store";
+import {compose} from "redux";
+import {PostsData} from "./MyPosts/MyPostsContainer";
+export type PathParamsType = { userId: string }
 export type ProfileDataType = {
-    aboutMe : string,
+    aboutMe: string,
     contacts: {
         facebook: string,
         website: null,
@@ -26,45 +29,37 @@ export type ProfileDataType = {
         large: string
     }
 }
-export type ProfileContainerType = {
-    postsData: Array<PostDataType>
-    newPostText: string
-    profile: ProfileDataType
-    setUserProfile: (profile: ProfileDataType) => void
-}
+export type ProfileContainerType = MapStatePropsType & MapDispatchToPropsType & RouteComponentProps<PathParamsType>
 export type MapStatePropsType = {
+    profile: ProfileDataType
     postsData: Array<PostDataType>
     newPostText: string
-    profile: ProfileDataType
 }
-export type MapDispatchToPropsType = {
-    setUserProfile: (profile: ProfileDataType) => void
-}
+export type MapDispatchToPropsType = { setUserProfile: (profile: ProfileDataType) => void }
+type StateType = {}
 
-class ProfileContainer extends React.Component<any, MapStatePropsType>{
+class ProfileContainer extends React.Component<ProfileContainerType, StateType> {
 
     componentDidMount() {
         let userId = this.props.match.params.userId
-        if (!userId) {
-            userId = 2
-        }
+        if (!userId) userId = '2'
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => {
-            this.props.setUserProfile(response.data)
-        })
+                this.props.setUserProfile(response.data)
+            })
     }
 
     render() {
-        return <Profile {...this.props} profile={this.props.profile}/>
+        return <Profile {...this.props}/>
     }
 }
 
-const mapStateToProps = (state: any): MapStatePropsType => ({
+const mapStateToProps = (state: RootStateType): MapStatePropsType => ({
     postsData: state.profilePage.postsData,
     newPostText: state.profilePage.newPostText,
     profile: state.profilePage.profile
 })
 
-let WithUrlDataContainerComponent = withRouter(ProfileContainer)
-
-export default connect(mapStateToProps, {setUserProfile})(WithUrlDataContainerComponent)
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, {setUserProfile}),
+    withRouter)(ProfileContainer)

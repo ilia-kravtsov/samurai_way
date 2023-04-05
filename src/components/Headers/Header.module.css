@@ -1,11 +1,22 @@
 .headerContainer {
-    height: 8vh;
+    height: 6vh;
     background: #1e88e5;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .logo {
-    height: 80%;
-    margin: 8px;
+    height: 50%;
+    margin: 10px;
+}
+
+.loginBlock {
+    margin: 10px 20px 10px 10px;
+}
+
+.loginBlock a {
+    text-decoration: none;
+    font-family: 'Lora', serif;
+    color: white;
 }
