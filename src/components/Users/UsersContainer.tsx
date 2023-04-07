@@ -7,12 +7,12 @@ import {
     onPaginationClick,
     setUsers,
     setTotalUsersCount,
-    unFollow
+    unFollow, followInProgress
 } from "../../redux/users_reducer";
-import axios from "axios";
 import {UsersPresent} from "./UsersPresent";
 import s from './Users.module.css'
 import {PreLoader} from "../common/PreLoader/PreLoader";
+import {usersAPI} from "../../api/api";
 
 export type MapStatePropsType = {
     users: UsersApiType
@@ -20,6 +20,7 @@ export type MapStatePropsType = {
     totalUsersCount: number
     currentPage: number
     isLoading: boolean
+    followInProgressValue: number[]
 }
 export type MapDispatchToPropsType = {
     follow: (userID: number) => void
@@ -52,6 +53,8 @@ type UsersPropsType = {
     setTotalUsersCount: (totalCount: number) => void
     isLoading: boolean
     loaderChanger: (isLoading: boolean) => void
+    followInProgress: (followInProgress: boolean, userId: number) => void
+    followInProgressValue: number[]
 }
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return {
@@ -59,28 +62,19 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isLoading: state.usersPage.isLoading
+        isLoading: state.usersPage.isLoading,
+        followInProgressValue: state.usersPage.followInProgressValue
     }
 }
-
-// const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
-//     return {
-//         follow: (userID: number) => dispatch(followAC(userID)),
-//         unFollow: (userID: number) => dispatch(unFollowAC(userID)),
-//         setUsers: (users: UsersApiType) => dispatch(setUsersAC(users)),
-//         onPaginationClick: (index: number) => dispatch(setCurrentPageAC(index)),
-//         setTotalUsersCount: (totalCount: number) => dispatch(setUsersTotalCountAC(totalCount)),
-//         loaderChanger: (isLoading: boolean) => dispatch(loaderChangeAC(isLoading))
-//     }
-// }
 
 export class UsersContainer extends React.Component<UsersPropsType, MapStatePropsType>{
 
     componentDidMount() {
         this.props.loaderChanger(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-            this.props.setUsers(response.data.items)
-            this.props.setTotalUsersCount(response.data.totalCount)
+
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+            this.props.setUsers(data.items)
+            this.props.setTotalUsersCount(data.totalCount)
             this.props.loaderChanger(false)
         })
     }
@@ -88,8 +82,9 @@ export class UsersContainer extends React.Component<UsersPropsType, MapStateProp
     onPageCHanged = (pageNumber: number) => {
         this.props.onPaginationClick(pageNumber)
         this.props.loaderChanger(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
-            this.props.setUsers(response.data.items)
+
+        usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
+            this.props.setUsers(data.items)
             this.props.loaderChanger(false)
         })
     }
@@ -98,12 +93,7 @@ export class UsersContainer extends React.Component<UsersPropsType, MapStateProp
         return <div className={s.presentContainer}>
             {this.props.isLoading
                 ? <PreLoader/>
-                : <UsersPresent users={this.props.users}
-                                totalUsersCount={this.props.totalUsersCount}
-                                pageSize={this.props.pageSize}
-                                currentPage={this.props.currentPage}
-                                unFollow={this.props.unFollow}
-                                follow={this.props.follow}
+                : <UsersPresent {...this.props}
                                 onPageChanged={this.onPageCHanged}
                 />
             }
@@ -117,5 +107,18 @@ export default connect(mapStateToProps, {
     setUsers,
     onPaginationClick,
     setTotalUsersCount,
-    loaderChanger
+    loaderChanger,
+    followInProgress
 })(UsersContainer);
+
+// const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+//     return {
+//         follow: (userID: number) => dispatch(followAC(userID)),
+//         unFollow: (userID: number) => dispatch(unFollowAC(userID)),
+//         setUsers: (users: UsersApiType) => dispatch(setUsersAC(users)),
+//         onPaginationClick: (index: number) => dispatch(setCurrentPageAC(index)),
+//         setTotalUsersCount: (totalCount: number) => dispatch(setUsersTotalCountAC(totalCount)),
+//         loaderChanger: (isLoading: boolean) => dispatch(loaderChangeAC(isLoading))
+//         followInProgress: (followInProgress: boolean) => dispatch(followInProgress(followInProgress))
+//     }
+// }

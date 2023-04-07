@@ -1,10 +1,10 @@
 import {combineReducers, createStore} from "redux";
 import {
-    addPostAC, delPostAC,
-    onDisLikeHandlerAC,
-    onLikeHandlerAC,
+    addPost, delPost,
+    onDisLikeHandler,
+    onLikeHandler,
     profilePageReducer, setUserProfile,
-    updateMyPostTextAC
+    updateMyPostText
 } from "./profile_page_reducer";
 import {
     addMyNewMessageAC,
@@ -18,7 +18,7 @@ import {
     setUsers,
     setTotalUsersCount,
     unFollow,
-    usersReducer
+    usersReducer, followInProgress
 } from "./users_reducer";
 import {authReducer, setAuthUserData} from "./auth_reducer";
 
@@ -34,22 +34,23 @@ export const store = createStore(rootReducer);
 export type StoreType = typeof store;
 export type RootStateType = ReturnType<typeof rootReducer>
 export type ActionsTypes =
-    ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateMyPostTextAC>
+    ReturnType<typeof addPost>
+    | ReturnType<typeof updateMyPostText>
     | ReturnType<typeof addMyNewMessageAC>
     | ReturnType<typeof updateMyNewMessageAC>
-    | ReturnType<typeof onLikeHandlerAC>
-    | ReturnType<typeof onDisLikeHandlerAC>
+    | ReturnType<typeof onLikeHandler>
+    | ReturnType<typeof onDisLikeHandler>
     | ReturnType<typeof follow>
     | ReturnType<typeof unFollow>
     | ReturnType<typeof setUsers>
-    | ReturnType<typeof delPostAC>
+    | ReturnType<typeof delPost>
     | ReturnType<typeof deleteMyNewMessageAC>
     | ReturnType<typeof onPaginationClick>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof loaderChanger>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setAuthUserData>
+    | ReturnType<typeof followInProgress>
 
 // @ts-ignore
 window.store = store

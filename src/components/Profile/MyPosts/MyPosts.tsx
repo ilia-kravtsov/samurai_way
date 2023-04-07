@@ -4,16 +4,16 @@ import Post from './Post/Post';
 import {IconButton, TextField} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import {useAutoAnimate} from "@formkit/auto-animate/react";
+import {onDisLikeHandler, onLikeHandler} from "../../../redux/profile_page_reducer";
 
 type MyPostsType = {
     postsData: Array<{id: string, message: string, likesCount: number, disLikesCount: number}>
     newPostText: string
     updateMyPostText: (text: string) => void
-    delPost: (index: string) => void
     addPost: () => void
-    likeCallback: (id: string) => void
-    disLikeCallback: (id: string) => void
-    delClickCallback: (id: string) => void
+    onLikeHandler: (id: string) => void
+    onDisLikeHandler: (id: string) => void
+    delPost: (id: string) => void
 }
 
 const MyPosts = (props: MyPostsType) => {
@@ -26,9 +26,9 @@ const MyPosts = (props: MyPostsType) => {
               message={p.message}
               likesCount={p.likesCount}
               disLikesCount={p.disLikesCount}
-              likeCallback={props.likeCallback}
-              disLikeCallback={props.disLikeCallback}
-              delClickCallback={props.delClickCallback}
+              onLikeHandler={props.onLikeHandler}
+              onDisLikeHandler={props.onDisLikeHandler}
+              delPost={props.delPost}
         />
     );
 

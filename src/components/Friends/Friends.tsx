@@ -22,7 +22,7 @@ const FriendAva = (props: FriendName) => {
     let buildFriends = filteredFriendsNames.map(friend => {
         return (
             <div key={friend.id} className={s.avaNameBlock}>
-                <img src='https://kartinkin.net/uploads/posts/2021-03/1616119039_2-p-bred-pitt-krasivie-foto-2.jpg'
+                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKrBK-eMr3u6DP0wzI2zNVrOGDizdwug_pNA&usqp=CAU'
                      alt='littleGroot'
                      key={friend.id}
                      className={s.friendAva}/>

@@ -10,6 +10,9 @@ const Header = (props: PropsType) => {
             <div className={s.loginBlock}>
                 {props.isAuth ? <div>{props.login}</div> : <NavLink to={'/login'} >Login</NavLink>}
             </div>
+            <div>
+                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKrBK-eMr3u6DP0wzI2zNVrOGDizdwug_pNA&usqp=CAU' alt="miniAva" className={s.miniAva}/>
+            </div>
         </header>
     );
 }

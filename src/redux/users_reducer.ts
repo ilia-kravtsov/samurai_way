@@ -8,13 +8,15 @@ const SET_USERS = "SET_USERS"
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT"
 const LOADER_CHANGE = "LOADER_CHANGE"
+const FOLLOW_IN_PROGRESS = "FOLLOW_IN_PROGRESS"
 
 const initialState = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isLoading: false
+    isLoading: false,
+    followInProgressValue: []
 };
 
 export const usersReducer = (state: MapStatePropsType = initialState, action: ActionsTypes): MapStatePropsType => {
@@ -31,6 +33,10 @@ export const usersReducer = (state: MapStatePropsType = initialState, action: Ac
             return {...state, totalUsersCount: action.totalCount}
         case LOADER_CHANGE:
             return {...state, isLoading: action.isLoading}
+        case FOLLOW_IN_PROGRESS:
+            return {...state, followInProgressValue: action.value
+                    ? [...state.followInProgressValue, action.userId]
+                    : state.followInProgressValue.filter(id => id !== action.userId)}
         default:
             return state
     }
@@ -42,4 +48,5 @@ export const setUsers = (users: UsersApiType) => ({type: SET_USERS, users} as co
 export const onPaginationClick = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
 export const setTotalUsersCount = (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalCount} as const)
 export const loaderChanger = (isLoading: boolean) => ({type: LOADER_CHANGE, isLoading} as const)
+export const followInProgress = (value: boolean, userId: number) => ({type: FOLLOW_IN_PROGRESS, value, userId} as const)
 

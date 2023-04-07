@@ -10,23 +10,23 @@ type PostType = {
     likesCount: number
     disLikesCount: number
     id: string
-    likeCallback: (id: string) => void
-    disLikeCallback: (id: string) => void
-    delClickCallback: (id: string) => void
+    onLikeHandler: (id: string) => void
+    onDisLikeHandler: (id: string) => void
+    delPost: (id: string) => void
 }
 
 const Post = (props: PostType) => {
 
     const likeClick = () => {
-        props.likeCallback(props.id)
+        props.onLikeHandler(props.id)
     }
 
     const disLikeClick = () => {
-        props.disLikeCallback(props.id)
+        props.onDisLikeHandler(props.id)
     }
 
     const delClick = () => {
-        props.delClickCallback(props.id)
+        props.delPost(props.id)
     }
 
     return (

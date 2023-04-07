@@ -1,7 +1,7 @@
 import {v1} from "uuid";
 import {PostsData} from "../components/Profile/MyPosts/MyPostsContainer";
 import {ActionsTypes} from "./redux-store";
-import {MapStatePropsType, ProfileDataType} from "../components/Profile/ProfileContainer";
+import {ProfileDataType} from "../components/Profile/ProfileContainer";
 
 const ADD_POST = 'ADD-POST';
 const DELETE_POST = 'DELETE_POST';
@@ -10,13 +10,13 @@ const ON_LIKE_HANDLER_TYPE = 'ON-LIKE-HANDLER-TYPE';
 const ON_DISLIKE_HANDLER_TYPE = 'ON_DISLIKE_HANDLER_TYPE';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
-export type PostDataType = {
-    id: string
-    message: string
-    likesCount: number
-    disLikesCount: number
+type initialStateType = {
+    postsData: Array<PostsData>
+    newPostText: string
+    profile: ProfileDataType
 }
-const initialState: MapStatePropsType = {
+
+const initialState: initialStateType = {
         postsData: [
             {id: v1(), message: "Hi, how's it going?", likesCount: 0, disLikesCount: 0},
         ],
@@ -24,7 +24,7 @@ const initialState: MapStatePropsType = {
         profile: {} as ProfileDataType
     };
 
-export const profilePageReducer = (state = initialState, action: ActionsTypes): MapStatePropsType => {
+export const profilePageReducer = (state = initialState, action: ActionsTypes): initialStateType => {
 
     switch (action.type) {
         case ADD_POST:
@@ -52,10 +52,10 @@ export const profilePageReducer = (state = initialState, action: ActionsTypes): 
     return state
 }
 
-export const delPostAC = (index: string) => ({type: DELETE_POST, index: index} as const)
-export const addPostAC = () => ({type: ADD_POST} as const)
-export const updateMyPostTextAC = (newText: string) => ({type: UPDATE_MY_POST_TEXT, newText: newText} as const)
-export const onLikeHandlerAC = (index: string) => ({type: ON_LIKE_HANDLER_TYPE, index: index} as const)
-export const onDisLikeHandlerAC = (index: string) => ({type: ON_DISLIKE_HANDLER_TYPE, index: index} as const)
+export const delPost = (index: string) => ({type: DELETE_POST, index: index} as const)
+export const addPost = () => ({type: ADD_POST} as const)
+export const updateMyPostText = (newText: string) => ({type: UPDATE_MY_POST_TEXT, newText: newText} as const)
+export const onLikeHandler = (index: string) => ({type: ON_LIKE_HANDLER_TYPE, index: index} as const)
+export const onDisLikeHandler = (index: string) => ({type: ON_DISLIKE_HANDLER_TYPE, index: index} as const)
 export const setUserProfile = (profile: ProfileDataType) => ({type: SET_USER_PROFILE, profile} as const)
 
