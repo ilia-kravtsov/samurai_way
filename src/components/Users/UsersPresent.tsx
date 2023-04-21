@@ -3,7 +3,6 @@ import s from "./Users.module.css";
 import {Button} from "@mui/material";
 import {UsersApiType} from "./UsersContainer";
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../api/api";
 
 
 type UsersPresentType = {
@@ -11,9 +10,8 @@ type UsersPresentType = {
     pageSize: number
     onPageChanged: (page: number) => void
     currentPage: number
-    follow: (userID: number) => void
-    unFollow:(userID: number) => void
-    followInProgress: (followInProgress: boolean, userId: number) => void
+    followTC: (userID: number) => void
+    unFollowTC: (userID: number) => void
     followInProgressValue: number[]
     users: UsersApiType
 }
@@ -51,30 +49,12 @@ export const UsersPresent: FC<UsersPresentType> = ({...props}) => {
                                 <div>
                                     {
                                         u.followed
-                                            ? <Button onClick={() => {
-                                                props.followInProgress(true, u.id)
-                                                usersAPI.unFollow(u.id)
-                                                    .then(data => {
-                                                        if (data.resultCode === 0) {
-                                                            props.unFollow(u.id)
-                                                        }
-                                                        props.followInProgress(false, u.id)
-                                                    })
-                                            }}
+                                            ? <Button onClick={() => props.unFollowTC(u.id)}
                                                       variant={'outlined'}
                                                       sx={{m: '10px', width: '110px'}}
                                                       disabled={props.followInProgressValue.some(id => id === u.id)}
                                             >Unfollow</Button>
-                                            : <Button onClick={() => {
-                                                props.followInProgress(true, u.id)
-                                                usersAPI.follow(u.id)
-                                                    .then(data => {
-                                                        if (data.resultCode === 0) {
-                                                            props.follow(u.id)
-                                                        }
-                                                        props.followInProgress(false, u.id)
-                                                    })
-                                            }}
+                                            : <Button onClick={() => props.followTC(u.id)}
                                                       variant={'contained'}
                                                       sx={{m: '10px'}}
                                                       disabled={props.followInProgressValue.some(id => id === u.id)}

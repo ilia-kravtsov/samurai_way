@@ -1,6 +1,8 @@
-import {ActionsTypes} from "./redux-store";
+import {ActionsTypes, AppThunk} from "./redux-store";
 import {UsersApiType} from "../components/Users/UsersContainer";
 import {MapStatePropsType} from "../components/Users/UsersContainer";
+import {usersAPI} from "../api/api";
+
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -34,9 +36,11 @@ export const usersReducer = (state: MapStatePropsType = initialState, action: Ac
         case LOADER_CHANGE:
             return {...state, isLoading: action.isLoading}
         case FOLLOW_IN_PROGRESS:
-            return {...state, followInProgressValue: action.value
+            return {
+                ...state, followInProgressValue: action.value
                     ? [...state.followInProgressValue, action.userId]
-                    : state.followInProgressValue.filter(id => id !== action.userId)}
+                    : state.followInProgressValue.filter(id => id !== action.userId)
+            }
         default:
             return state
     }
@@ -49,4 +53,38 @@ export const onPaginationClick = (currentPage: number) => ({type: SET_CURRENT_PA
 export const setTotalUsersCount = (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalCount} as const)
 export const loaderChanger = (isLoading: boolean) => ({type: LOADER_CHANGE, isLoading} as const)
 export const followInProgress = (value: boolean, userId: number) => ({type: FOLLOW_IN_PROGRESS, value, userId} as const)
+
+export const getUsersTC = (currentPage: number, pageSize: number): AppThunk => async dispatch => {
+    dispatch(loaderChanger(true))
+    try {
+        const data = await usersAPI.getUsers(currentPage, pageSize)
+        dispatch(setUsers(data.items))
+        dispatch(setTotalUsersCount(data.totalCount))
+        dispatch(loaderChanger(false))
+    } catch(error) {
+        console.log(error)
+    }
+}
+
+export const followTC = (userId: number): AppThunk => async dispatch => {
+    dispatch(followInProgress(true, userId))
+    usersAPI.follow(userId)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(follow(userId))
+            }
+            dispatch(followInProgress(false, userId))
+        })
+}
+
+export const unFollowTC = (userId: number): AppThunk => async dispatch => {
+    dispatch(followInProgress(true, userId))
+    usersAPI.unFollow(userId)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(unFollow(userId))
+            }
+            dispatch(followInProgress(false, userId))
+        })
+}
 

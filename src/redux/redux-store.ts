@@ -1,4 +1,4 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import {
     addPost, delPost,
     onDisLikeHandler,
@@ -21,6 +21,7 @@ import {
     usersReducer, followInProgress
 } from "./users_reducer";
 import {authReducer, setAuthUserData} from "./auth_reducer";
+import thunkMiddleware, {ThunkAction} from "redux-thunk"
 
 const rootReducer = combineReducers({
     profilePage: profilePageReducer,
@@ -29,7 +30,7 @@ const rootReducer = combineReducers({
     auth: authReducer,
 });
 
-export const store = createStore(rootReducer);
+export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 export type StoreType = typeof store;
 export type RootStateType = ReturnType<typeof rootReducer>
@@ -52,5 +53,6 @@ export type ActionsTypes =
     | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof followInProgress>
 
+export type AppThunk<ReturnType = void> = ThunkAction<void, RootStateType, unknown, ActionsTypes>
 // @ts-ignore
 window.store = store

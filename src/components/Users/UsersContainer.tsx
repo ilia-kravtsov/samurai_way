@@ -7,7 +7,7 @@ import {
     onPaginationClick,
     setUsers,
     setTotalUsersCount,
-    unFollow, followInProgress
+    unFollow, followInProgress, getUsersTC, followTC, unFollowTC,
 } from "../../redux/users_reducer";
 import {UsersPresent} from "./UsersPresent";
 import s from './Users.module.css'
@@ -23,12 +23,10 @@ export type MapStatePropsType = {
     followInProgressValue: number[]
 }
 export type MapDispatchToPropsType = {
-    follow: (userID: number) => void
-    unFollow:(userID: number) => void
-    setUsers: (users: UsersApiType) => void
+    followTC: (userID: number) => void
+    unFollowTC: (userID: number) => void
     onPaginationClick: (index: number) => void
-    setTotalUsersCount: (totalCount: number) => void
-    loaderChanger: (isLoading: boolean) => void
+    getUsersTC: (currentPage: number, pageSize: number) => void
 }
 export type UserApiType = {
     "name": string,
@@ -41,21 +39,7 @@ export type UserApiType = {
     "followed": boolean,
 }
 export type UsersApiType = Array<UserApiType>;
-type UsersPropsType = {
-    users: UsersApiType
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    follow: (userID: number) => void
-    unFollow: (userID: number) => void
-    setUsers: (users: UsersApiType) => void
-    onPaginationClick: (index: number) => void
-    setTotalUsersCount: (totalCount: number) => void
-    isLoading: boolean
-    loaderChanger: (isLoading: boolean) => void
-    followInProgress: (followInProgress: boolean, userId: number) => void
-    followInProgressValue: number[]
-}
+
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return {
         users: state.usersPage.users,
@@ -67,26 +51,15 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     }
 }
 
-export class UsersContainer extends React.Component<UsersPropsType, MapStatePropsType>{
+export class UsersContainer extends React.Component<MapStatePropsType & MapDispatchToPropsType>{
 
     componentDidMount() {
-        this.props.loaderChanger(true)
-
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.setUsers(data.items)
-            this.props.setTotalUsersCount(data.totalCount)
-            this.props.loaderChanger(false)
-        })
+        this.props.getUsersTC(this.props.currentPage, this.props.pageSize)
     }
 
     onPageCHanged = (pageNumber: number) => {
+        this.props.getUsersTC(pageNumber, this.props.pageSize)
         this.props.onPaginationClick(pageNumber)
-        this.props.loaderChanger(true)
-
-        usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-            this.props.setUsers(data.items)
-            this.props.loaderChanger(false)
-        })
     }
 
     render() {
@@ -102,23 +75,41 @@ export class UsersContainer extends React.Component<UsersPropsType, MapStateProp
 }
 
 export default connect(mapStateToProps, {
-    follow,
-    unFollow,
-    setUsers,
+    followTC,
+    unFollowTC,
     onPaginationClick,
-    setTotalUsersCount,
-    loaderChanger,
-    followInProgress
+    followInProgress,
+    getUsersTC,
 })(UsersContainer);
 
-// const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
-//     return {
-//         follow: (userID: number) => dispatch(followAC(userID)),
-//         unFollow: (userID: number) => dispatch(unFollowAC(userID)),
-//         setUsers: (users: UsersApiType) => dispatch(setUsersAC(users)),
-//         onPaginationClick: (index: number) => dispatch(setCurrentPageAC(index)),
-//         setTotalUsersCount: (totalCount: number) => dispatch(setUsersTotalCountAC(totalCount)),
-//         loaderChanger: (isLoading: boolean) => dispatch(loaderChangeAC(isLoading))
-//         followInProgress: (followInProgress: boolean) => dispatch(followInProgress(followInProgress))
-//     }
-// }
+/*
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+    return {
+        follow: (userID: number) => dispatch(follow(userID)),
+        unFollow: (userID: number) => dispatch(unFollow(userID)),
+        setUsers: (users: UsersApiType) => dispatch(setUsers(users)),
+        onPaginationClick: (index: number) => dispatch(onPaginationClick(index)),
+        setTotalUsersCount: (totalCount: number) => dispatch(setTotalUsersCount(totalCount)),
+        loaderChanger: (isLoading: boolean) => dispatch(loaderChanger(isLoading)),
+        followInProgress: (value: boolean, userId: number) => dispatch(followInProgress(value, userId)),
+        getUsersThunkCreator: (currentPage: any, pageSize: any) => dispatch(getUsersThunkCreator(currentPage, pageSize)),
+    }
+}
+ */
+
+// this.props.loaderChanger(true)
+//
+// usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+//     this.props.setUsers(data.items)
+//     this.props.setTotalUsersCount(data.totalCount)
+//     this.props.loaderChanger(false)
+// })
+
+//
+// this.props.onPaginationClick(pageNumber)
+// this.props.loaderChanger(true)
+//
+// usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
+//     this.props.setUsers(data.items)
+//     this.props.loaderChanger(false)
+// })
