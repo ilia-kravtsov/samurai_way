@@ -11,6 +11,7 @@ import UsersContainer from "./components/Users/UsersContainer";
 import {Navbar} from "./components/Navbars/Navbar";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Headers/HeaderContainer";
+import {Login} from "./components/Login/Login";
 
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
                     <Route path='/settings' render={() => <Settings/>}/>
                     <Route path='/video' render={() => <Video/>}/>
                     <Route path='/users' render={() => <UsersContainer/>}/>
+                    <Route path='/login' render={() => <Login/>}/>
                 </div>
             </div>
         </div>

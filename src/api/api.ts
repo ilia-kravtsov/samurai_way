@@ -32,7 +32,7 @@ export const ProfileAPI = {
     },
 }
 
-export const HeaderAPI = {
+export const authAPI = {
     authorization () {
         return  instance.get(`auth/me`)
             .then(response => response.data)

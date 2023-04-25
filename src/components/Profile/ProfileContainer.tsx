@@ -1,12 +1,10 @@
 import React from 'react';
 import Profile from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
-import {setUserProfile} from "../../redux/profile_page_reducer";
-import {RouteComponentProps, withRouter} from "react-router-dom";
+import {loginTC} from "../../redux/profile_page_reducer";
+import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
 import {RootStateType} from "../../redux/redux-store";
 import {compose} from "redux";
-import {ProfileAPI} from "../../api/api";
 
 type PathParamsType = { userId: string }
 export type ProfileDataType = {
@@ -31,28 +29,30 @@ export type ProfileDataType = {
     }
 }
 type ProfileContainerType = MapStatePropsType & MapDispatchToPropsType & RouteComponentProps<PathParamsType>
-type MapStatePropsType = { profile: ProfileDataType }
-type MapDispatchToPropsType = { setUserProfile: (profile: ProfileDataType) => void }
-type StateType = {}
+type MapStatePropsType = {
+    profile: ProfileDataType
+    isAuth: boolean
+}
+type MapDispatchToPropsType = { loginTC: (userId: string) => void }
 
-class ProfileContainer extends React.Component<ProfileContainerType, StateType> {
+class ProfileContainer extends React.Component<ProfileContainerType> {
 
     componentDidMount() {
-        let userId = this.props.match.params.userId
-        if (!userId) userId = '2'
-        ProfileAPI.login(userId)
-            .then(data => {
-                this.props.setUserProfile(data)
-            })
+        this.props.loginTC(this.props.match.params.userId)
     }
 
     render() {
+
+        if (!this.props.isAuth) return <Redirect to={'/login'}/>
         return <Profile {...this.props}/>
     }
 }
 
-const mapStateToProps = (state: RootStateType): MapStatePropsType => ({profile: state.profilePage.profile})
+const mapStateToProps = (state: RootStateType): MapStatePropsType => ({
+        profile: state.profilePage.profile,
+        isAuth: state.auth.isAuth
+    })
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {setUserProfile}),
+    connect(mapStateToProps, {loginTC}),
     withRouter)(ProfileContainer)

@@ -21,6 +21,7 @@ export type MessagesPageType = {
 }
 type MapStatePropsType = {
     messagesPage: MessagesPageType
+    isAuth: boolean
 }
 type MapDispatchToPropsType = {
     updateMyNewMessageUI: (newText: string) => void
@@ -30,7 +31,10 @@ type MapDispatchToPropsType = {
 export type MessagesPropsType = MapStatePropsType & MapDispatchToPropsType;
 
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
-    return {messagesPage: state.messagesPage}
+    return {
+        messagesPage: state.messagesPage,
+        isAuth: state.auth.isAuth
+    }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {

@@ -1,7 +1,9 @@
 import {v1} from "uuid";
 import {PostsData} from "../components/Profile/MyPosts/MyPostsContainer";
-import {ActionsTypes} from "./redux-store";
+import {ActionsTypes, AppThunk} from "./redux-store";
 import {ProfileDataType} from "../components/Profile/ProfileContainer";
+import {authAPI, ProfileAPI} from "../api/api";
+import {setAuthUserData} from "./auth_reducer";
 
 const ADD_POST = 'ADD-POST';
 const DELETE_POST = 'DELETE_POST';
@@ -17,12 +19,12 @@ type initialStateType = {
 }
 
 const initialState: initialStateType = {
-        postsData: [
-            {id: v1(), message: "Hi, how's it going?", likesCount: 0, disLikesCount: 0},
-        ],
-        newPostText: '',
-        profile: {} as ProfileDataType
-    };
+    postsData: [
+        {id: v1(), message: "Hi, how's it going?", likesCount: 0, disLikesCount: 0},
+    ],
+    newPostText: '',
+    profile: {} as ProfileDataType
+};
 
 export const profilePageReducer = (state = initialState, action: ActionsTypes): initialStateType => {
 
@@ -38,11 +40,21 @@ export const profilePageReducer = (state = initialState, action: ActionsTypes): 
         case UPDATE_MY_POST_TEXT:
             return {...state, newPostText: action.newText}
         case ON_LIKE_HANDLER_TYPE:
-            return {...state, postsData: state.postsData.map(p =>
-                    (p.id === action.index) ? {...p, likesCount: p.likesCount < 1 && p.disLikesCount < 1? p.likesCount+1 : p.likesCount = 0} : p)}
+            return {
+                ...state, postsData: state.postsData.map(p =>
+                    (p.id === action.index) ? {
+                        ...p,
+                        likesCount: p.likesCount < 1 && p.disLikesCount < 1 ? p.likesCount + 1 : p.likesCount = 0
+                    } : p)
+            }
         case ON_DISLIKE_HANDLER_TYPE:
-            return {...state, postsData: state.postsData.map(p =>
-                    (p.id === action.index) ? {...p, disLikesCount: p.disLikesCount < 1 && p.likesCount < 1 ? p.disLikesCount+1 : p.disLikesCount = 0} : p)}
+            return {
+                ...state, postsData: state.postsData.map(p =>
+                    (p.id === action.index) ? {
+                        ...p,
+                        disLikesCount: p.disLikesCount < 1 && p.likesCount < 1 ? p.disLikesCount + 1 : p.disLikesCount = 0
+                    } : p)
+            }
         case SET_USER_PROFILE:
             return {...state, profile: action.profile}
         default:
@@ -59,3 +71,8 @@ export const onLikeHandler = (index: string) => ({type: ON_LIKE_HANDLER_TYPE, in
 export const onDisLikeHandler = (index: string) => ({type: ON_DISLIKE_HANDLER_TYPE, index: index} as const)
 export const setUserProfile = (profile: ProfileDataType) => ({type: SET_USER_PROFILE, profile} as const)
 
+export const loginTC = (userId: string): AppThunk => async dispatch => {
+    if (!userId) userId = '2'
+    const data = await ProfileAPI.login(userId)
+    dispatch(setUserProfile(data))
+}

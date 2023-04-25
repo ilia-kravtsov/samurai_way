@@ -1,5 +1,6 @@
-import {ActionsTypes} from "./redux-store";
-import {ReactNode} from "react";
+import {ActionsTypes, AppThunk} from "./redux-store";
+import {authAPI} from "../api/api";
+
 
 export type ServerUserDataType = {
     id: number
@@ -33,6 +34,13 @@ export const authReducer = (state = initialState, action: ActionsTypes): UserDat
 }
 
 export const setAuthUserData = (userData: ServerUserDataType) => ({type: SET_USER_DATA, userData} as const)
+
+export const getAuthUsersDataTC = (): AppThunk => async dispatch => {
+    const data = await authAPI.authorization()
+            if (data.resultCode === 0) {
+                dispatch(setAuthUserData(data.data))
+            }
+}
 
 
 

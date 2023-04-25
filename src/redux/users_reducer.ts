@@ -66,7 +66,7 @@ export const getUsersTC = (currentPage: number, pageSize: number): AppThunk => a
     }
 }
 
-export const followTC = (userId: number): AppThunk => async dispatch => {
+export const followTC = (userId: number): AppThunk => dispatch => {
     dispatch(followInProgress(true, userId))
     usersAPI.follow(userId)
         .then(data => {
@@ -77,7 +77,7 @@ export const followTC = (userId: number): AppThunk => async dispatch => {
         })
 }
 
-export const unFollowTC = (userId: number): AppThunk => async dispatch => {
+export const unFollowTC = (userId: number): AppThunk => dispatch => {
     dispatch(followInProgress(true, userId))
     usersAPI.unFollow(userId)
         .then(data => {
