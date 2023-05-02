@@ -1,14 +1,17 @@
 .messagesContainer {
     display: flex;
     width: 100%;
-    height: 85vh;
+    height: 94vh;
 }
 
 .messagesItems{
     padding: 10px;
-    width: 20%;
-    height: 100vh;
-    background: rgba(200, 200, 200, 0.7);
+    width: 30%;
+    height: 92vh;
+    background: lightgrey;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 .messagesContent {
@@ -37,6 +40,11 @@
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    border-radius: 10px;
+    background-color: lightgrey;
+    height: 92vh;
 }
 
 

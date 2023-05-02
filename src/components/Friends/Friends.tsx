@@ -8,8 +8,8 @@ type FriendName = {
 const Friends = (props: FriendName) => {
     return (
         <div className={s.friendsContainer}>
-            <span className={s.friendsTitle}>Friends</span>
-            <FriendAva friendName={props.friendName}/>
+            <div className={s.friendsTitle}>Friends</div>
+                <FriendAva friendName={props.friendName}/>
         </div>
     )
 }

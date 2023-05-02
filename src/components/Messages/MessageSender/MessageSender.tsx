@@ -52,6 +52,7 @@ const MessageSender = (props: MessageSenderType) => {
                         className={s.btnS}
                         size={'medium'}
                         color={'primary'}
+                        sx={{borderRadius: '10px'}}
             > <AddIcon/></IconButton>
         </div>
     );

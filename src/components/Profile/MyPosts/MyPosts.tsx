@@ -67,7 +67,7 @@ const MyPosts = (props: MyPostsType) => {
                               minRows={4}
                               maxRows={4}
                     ></TextField>
-                    <IconButton className={s.btnPost} onClick={addPost} size={'medium'} color={'primary'} sx={{ml: '30px'}}>
+                    <IconButton className={s.btnPost} onClick={addPost} size={'medium'} color={'primary'} sx={{ml: '30px', borderRadius: '10px'}}>
                         <AddIcon />
                     </IconButton>
                 </div>
@@ -78,7 +78,6 @@ const MyPosts = (props: MyPostsType) => {
                 </div>
             </div>
             <div className={s.sideBar}>
-                <span>Your advertisement could be here</span>
             </div>
         </div>
     );

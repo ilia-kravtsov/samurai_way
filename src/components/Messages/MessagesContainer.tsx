@@ -4,6 +4,8 @@ import {addMyNewMessageAC, deleteMyNewMessageAC, updateMyNewMessageAC} from "../
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
+import {Redirect} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 export type MessagesItemDataType = {
     id: string
@@ -21,7 +23,6 @@ export type MessagesPageType = {
 }
 type MapStatePropsType = {
     messagesPage: MessagesPageType
-    isAuth: boolean
 }
 type MapDispatchToPropsType = {
     updateMyNewMessageUI: (newText: string) => void
@@ -33,7 +34,6 @@ export type MessagesPropsType = MapStatePropsType & MapDispatchToPropsType;
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return {
         messagesPage: state.messagesPage,
-        isAuth: state.auth.isAuth
     }
 }
 
@@ -45,6 +45,8 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     }
 }
 
-const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages);
+const AuthRedirectComponent = withAuthRedirect(Messages)
+
+const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
 
 export default MessagesContainer

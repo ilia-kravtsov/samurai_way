@@ -13,6 +13,7 @@ import {UsersPresent} from "./UsersPresent";
 import s from './Users.module.css'
 import {PreLoader} from "../common/PreLoader/PreLoader";
 import {usersAPI} from "../../api/api";
+import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 export type MapStatePropsType = {
     users: UsersApiType
@@ -74,13 +75,13 @@ export class UsersContainer extends React.Component<MapStatePropsType & MapDispa
     }
 }
 
-export default connect(mapStateToProps, {
+export default withAuthRedirect(connect(mapStateToProps, {
     followTC,
     unFollowTC,
     onPaginationClick,
     followInProgress,
     getUsersTC,
-})(UsersContainer);
+})(UsersContainer))
 
 /*
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {

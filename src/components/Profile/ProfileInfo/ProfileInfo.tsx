@@ -29,11 +29,6 @@ const ProfileInfo = (props: ProfileInfo) => {
                     </div>
                 </div>
             </div>
-            <div className={s.descriptionContainer}>
-                <div className={s.aboutMe}>About me: {props.profile.aboutMe}</div>
-                <div className={s.aboutMe}>Contacts: {props.profile.contacts.vk}</div>
-                <div className={s.aboutMe}>FullName: {props.profile.fullName}</div>
-            </div>
         </div>
     );
 }
