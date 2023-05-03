@@ -35,18 +35,12 @@
     width: 100%;
     height: 10vh;
     display: flex;
-    align-items: center;
-}
-
-.descriptionBlock {
-    padding: 10px;
-    height: 5vh;
-    width: 55%;
-    margin-left: 20px;
-    margin-bottom: 30px;
-    font-family: 'Lora', serif;
-    display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    padding: 10px;
+    font-family: 'Lora', serif;
+
 }
 
 .descriptionContainer {
@@ -64,4 +58,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.editInput {
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: 'Lora', serif;
+    height: 40px;
+    outline: none;
+}
+
+.status {
+    box-shadow: 1px 0 10px 0 rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0 10px 0;
+    font-weight: bold;
+}
+
+.statusBlock {
+    box-shadow: 1px 0 10px 0 rgba(0, 0, 0, 0.3);
+    padding: 13px;
+    border-radius: 5px;
 }

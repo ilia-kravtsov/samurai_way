@@ -14,6 +14,7 @@ import s from './Users.module.css'
 import {PreLoader} from "../common/PreLoader/PreLoader";
 import {usersAPI} from "../../api/api";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 export type MapStatePropsType = {
     users: UsersApiType
@@ -75,13 +76,24 @@ export class UsersContainer extends React.Component<MapStatePropsType & MapDispa
     }
 }
 
-export default withAuthRedirect(connect(mapStateToProps, {
-    followTC,
-    unFollowTC,
-    onPaginationClick,
-    followInProgress,
-    getUsersTC,
-})(UsersContainer))
+// export default withAuthRedirect(connect(mapStateToProps, {
+//     followTC,
+//     unFollowTC,
+//     onPaginationClick,
+//     followInProgress,
+//     getUsersTC,
+// })(UsersContainer))
+
+export default compose<React.ComponentType>(
+    withAuthRedirect,
+    connect(mapStateToProps, {
+        followTC,
+        unFollowTC,
+        onPaginationClick,
+        followInProgress,
+        getUsersTC,
+    })
+)(UsersContainer)
 
 /*
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {

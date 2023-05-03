@@ -67,7 +67,7 @@ const MyPosts = (props: MyPostsType) => {
                               minRows={4}
                               maxRows={4}
                     ></TextField>
-                    <IconButton className={s.btnPost} onClick={addPost} size={'medium'} color={'primary'} sx={{ml: '30px', borderRadius: '10px'}}>
+                    <IconButton className={s.btnPost} onClick={addPost} size={'medium'} color={'primary'} sx={{ml: '20px'}}>
                         <AddIcon />
                     </IconButton>
                 </div>

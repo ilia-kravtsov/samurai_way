@@ -2,6 +2,7 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import {ProfileDataType} from "../ProfileContainer";
 import {PreLoader} from "../../common/PreLoader/PreLoader";
+import {ProfileStatus} from "./ProfileStatus";
 
 type ProfileInfo = {
     profile: ProfileDataType
@@ -21,12 +22,7 @@ const ProfileInfo = (props: ProfileInfo) => {
                         <img src={props.profile.photos.large}
                              alt="ava" className={s.ava}/>
                     </div>
-                    <div className={s.borderDescriptionBLock}>
-                        <div className={s.descriptionBlock}>
-                            <span>Watch out!</span>
-                            <span>I hope you'll be enjoyed about this network ;)</span>
-                        </div>
-                    </div>
+                    <ProfileStatus status={'Enjoy yourself!'}/>
                 </div>
             </div>
         </div>

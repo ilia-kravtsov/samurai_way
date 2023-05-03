@@ -56,6 +56,12 @@ const withR = withRouter(ProfileContainer)
 const ProfileContainerWithProps = connect(mapStateToProps, {loginTC})(withR)
 let AuthRedirectComponen = withAuthRedirect(ProfileContainerWithProps)
 
+compose<React.ComponentType>(
+    connect(mapStateToProps, {loginTC}),
+    withRouter,
+    withAuthRedirect
+)(ProfileContainer)
+
 // export default compose<React.ComponentType>(
 //     connect(mapStateToProps, {loginTC}),
 //     withAuthRedirect(AuthRedirectComponen))(withRouter(ProfileContainer))
