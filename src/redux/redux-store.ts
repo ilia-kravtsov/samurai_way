@@ -22,12 +22,14 @@ import {
 } from "./users_reducer";
 import {authReducer, setAuthUserData} from "./auth_reducer";
 import thunkMiddleware, {ThunkAction} from "redux-thunk"
+import {reducer as formReducer} from 'redux-form'
 
 const rootReducer = combineReducers({
     profilePage: profilePageReducer,
     messagesPage: messagesPageReducer,
     usersPage: usersReducer,
     auth: authReducer,
+    form: formReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
