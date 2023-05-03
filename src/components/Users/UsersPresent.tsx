@@ -28,7 +28,7 @@ export const UsersPresent: FC<UsersPresentType> = ({...props}) => {
         <div className={s.container}>
             <div className={s.btnsContainer}>
                 {usersPages.map((page, i) => {
-                    if (i < 10) {
+                    if ( i > 1000 &&  i < 1010) {
                         return <button onClick={() => props.onPageChanged(page)}
                                        className={props.currentPage === page ? s.selectedPage : ''}
                                        key={page}

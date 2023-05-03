@@ -14,7 +14,7 @@ export const usersAPI = {
     },
 
     unFollow (userId: number) {
-    return instance.delete(`follow/${userId}` )
+        return instance.delete(`follow/${userId}` )
             .then(response => response.data)
     },
 
@@ -28,8 +28,14 @@ export const usersAPI = {
 export const ProfileAPI = {
     login (userId: string) {
         return  instance.get(`profile/${userId}`)
-            .then(response => response.data)
+                        .then(response => response.data)
     },
+    getStatus (userId: string) {
+        return instance.get(`profile/status/${userId}`)
+    },
+    updateStatus(status: string) {
+        return instance.put(`/profile/status/`, {status})
+    }
 }
 
 export const authAPI = {

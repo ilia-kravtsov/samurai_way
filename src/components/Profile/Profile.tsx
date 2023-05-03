@@ -6,12 +6,14 @@ import {ProfileDataType} from "./ProfileContainer";
 
 type ProfileType = {
     profile: ProfileDataType
+    status: string
+    updateStatusTC: (status: string) => void
 }
 
 const Profile = (props: ProfileType) => {
     return (
         <div className={s.container}>
-            <ProfileInfo profile={props.profile}/>
+            <ProfileInfo profile={props.profile} updateStatusTC={props.updateStatusTC} status={props.status}/>
             <MyPostsContainer />
         </div>
     );

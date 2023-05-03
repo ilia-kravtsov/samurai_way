@@ -76,14 +76,6 @@ export class UsersContainer extends React.Component<MapStatePropsType & MapDispa
     }
 }
 
-// export default withAuthRedirect(connect(mapStateToProps, {
-//     followTC,
-//     unFollowTC,
-//     onPaginationClick,
-//     followInProgress,
-//     getUsersTC,
-// })(UsersContainer))
-
 export default compose<React.ComponentType>(
     withAuthRedirect,
     connect(mapStateToProps, {
@@ -94,6 +86,22 @@ export default compose<React.ComponentType>(
         getUsersTC,
     })
 )(UsersContainer)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
@@ -126,3 +134,11 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
 //     this.props.setUsers(data.items)
 //     this.props.loaderChanger(false)
 // })
+
+// export default withAuthRedirect(connect(mapStateToProps, {
+//     followTC,
+//     unFollowTC,
+//     onPaginationClick,
+//     followInProgress,
+//     getUsersTC,
+// })(UsersContainer))

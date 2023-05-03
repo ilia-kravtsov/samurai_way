@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {loginTC} from "../../redux/profile_page_reducer";
+import {getStatusTC, loginTC, updateStatusTC} from "../../redux/profile_page_reducer";
 import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
 import {RootStateType} from "../../redux/redux-store";
 import {compose} from "redux";
@@ -32,32 +32,43 @@ export type ProfileDataType = {
 type ProfileContainerType = MapStatePropsType & MapDispatchToPropsType & RouteComponentProps<PathParamsType>
 type MapStatePropsType = {
     profile: ProfileDataType
+    status: string
 }
-type MapDispatchToPropsType = { loginTC: (userId: string) => void }
+type MapDispatchToPropsType = {
+    loginTC: (userId: string) => void
+    getStatusTC: (userId: string) => void
+    updateStatusTC: (status: string) => void
+}
 
 class ProfileContainer extends React.Component<ProfileContainerType> {
 
     componentDidMount() {
-        this.props.loginTC(this.props.match.params.userId)
+        let userId = this.props.match.params.userId
+        if (!userId) {
+            userId = '28327'
+        }
+        this.props.loginTC(userId)
+        this.props.getStatusTC(userId)
     }
 
     render() {
-        return <Profile {...this.props}/>
+        return <Profile {...this.props}
+                        status={this.props.status}
+                        profile={this.props.profile}
+                        updateStatusTC={this.props.updateStatusTC}
+        />
     }
 }
 
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
-
 const mapStateToProps = (state: RootStateType): MapStatePropsType => ({
         profile: state.profilePage.profile,
+        status: state.profilePage.status
     })
 
-const withR = withRouter(ProfileContainer)
-const ProfileContainerWithProps = connect(mapStateToProps, {loginTC})(withR)
-let AuthRedirectComponen = withAuthRedirect(ProfileContainerWithProps)
 
-compose<React.ComponentType>(
-    connect(mapStateToProps, {loginTC}),
+
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, {loginTC, getStatusTC, updateStatusTC}),
     withRouter,
     withAuthRedirect
 )(ProfileContainer)
@@ -66,5 +77,9 @@ compose<React.ComponentType>(
 //     connect(mapStateToProps, {loginTC}),
 //     withAuthRedirect(AuthRedirectComponen))(withRouter(ProfileContainer))
 
-export default AuthRedirectComponen
+// let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
+// const withR = withRouter(ProfileContainer)
+// const ProfileContainerWithProps = connect(mapStateToProps, {loginTC})(withR)
+// let AuthRedirectComponen = withAuthRedirect(ProfileContainerWithProps)
+
 

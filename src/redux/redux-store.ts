@@ -3,7 +3,7 @@ import {
     addPost, delPost,
     onDisLikeHandler,
     onLikeHandler,
-    profilePageReducer, setUserProfile,
+    profilePageReducer, setStatusAC, setUserProfile,
     updateMyPostText
 } from "./profile_page_reducer";
 import {
@@ -52,6 +52,7 @@ export type ActionsTypes =
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof followInProgress>
+    | ReturnType<typeof setStatusAC>
 
 export type AppThunk<ReturnType = void> = ThunkAction<void, RootStateType, unknown, ActionsTypes>
 // @ts-ignore

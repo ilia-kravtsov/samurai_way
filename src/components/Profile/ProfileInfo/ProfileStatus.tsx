@@ -1,10 +1,11 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, LegacyRef} from 'react';
 import s from "./ProfileInfo.module.css";
 import {Button, IconButton} from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 
 type ProfileStatusType = {
     status: string
+    updateStatusTC: (status: string) => void
 }
 
 export class ProfileStatus extends React.Component<ProfileStatusType> {
@@ -14,23 +15,33 @@ export class ProfileStatus extends React.Component<ProfileStatusType> {
         status: this.props.status
     }
 
-    activateStatus() {
+    activateStatus = () => {
         this.setState({
-            editMode: true
+            editMode: true,
+            status: this.props.status
         })
     }
 
-    deActivateStatus() {
+    deActivateStatus = () => {
         this.setState({
             editMode: false,
             status: this.state.status
         })
+        this.props.updateStatusTC(this.state.status)
     }
 
-    changeStatus(e: ChangeEvent<HTMLInputElement>) {
+    changeStatus = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({
             status: e.currentTarget.value
         })
+    }
+
+    componentDidUpdate(prevProps: Readonly<ProfileStatusType>, prevState: Readonly<{}>) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
     }
 
     render() {
@@ -38,12 +49,18 @@ export class ProfileStatus extends React.Component<ProfileStatusType> {
             <div className={s.borderDescriptionBLock}>
                 <div className={s.status}>Status: </div>
                 {this.state.editMode ? <div className={s.statusBlock}>
-                                            <input value={this.state.status} onChange={this.changeStatus.bind(this)} className={s.editInput} autoFocus/>
-                                            <Button sx={{ml: '10px'}} variant={'contained'} onClick={this.deActivateStatus.bind(this)}>Save</Button>
+                                            <input value={this.state.status}
+                                                   onChange={this.changeStatus}
+                                                   className={s.editInput}
+                                                   autoFocus
+                                            />
+                                            <Button sx={{ml: '10px'}} variant={'contained'} onClick={this.deActivateStatus}>
+                                                Save
+                                            </Button>
                                        </div>
                                      : <div className={s.statusBlock}>
-                                            {this.props.status}
-                                            <IconButton onClick={this.activateStatus.bind(this)} style={{marginLeft: '20px', boxShadow: '1px 0 10px 0 rgba(0, 0, 0, 0.3)'}} color={'primary'}>
+                                            {this.props.status || "I haven't added my status yet"}
+                                            <IconButton onClick={this.activateStatus} style={{marginLeft: '20px', boxShadow: '1px 0 10px 0 rgba(0, 0, 0, 0.3)'}} color={'primary'}>
                                                 <EditIcon/>
                                             </IconButton>
                                        </div>

@@ -6,6 +6,8 @@ import {ProfileStatus} from "./ProfileStatus";
 
 type ProfileInfo = {
     profile: ProfileDataType
+    updateStatusTC: (status: string) => void
+    status: string
 }
 
 const ProfileInfo = (props: ProfileInfo) => {
@@ -19,10 +21,10 @@ const ProfileInfo = (props: ProfileInfo) => {
             <div className={s.avaContainer}>
                 <div className={s.avaDescrBlock}>
                     <div className={s.avaBorderBlock}>
-                        <img src={props.profile.photos.large}
+                        <img src={props.profile.photos.large || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKrBK-eMr3u6DP0wzI2zNVrOGDizdwug_pNA&usqp=CAU'}
                              alt="ava" className={s.ava}/>
                     </div>
-                    <ProfileStatus status={'Enjoy yourself!'}/>
+                    <ProfileStatus status={props.status} updateStatusTC={props.updateStatusTC}/>
                 </div>
             </div>
         </div>
