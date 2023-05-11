@@ -1,7 +1,7 @@
 .avaContainer {
     width: 100%;
     height: 35vh;
-    border: 20px solid lightgrey;
+    border: 20px solid #dadada;;
     display: flex;
     align-items: flex-end;
     background-image: url("../../../backgrounds/2208_w048_n005_279a_p1_279.jpg");
@@ -18,7 +18,7 @@
 }
 
 .avaBorderBlock {
-    background-color: lightgrey;
+    background: #dadada;
     border-radius: 200px 200px 0 0;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .borderDescriptionBLock {
-    background-color: lightgrey;
+    background: #dadada;
     width: 100%;
     height: 10vh;
     display: flex;

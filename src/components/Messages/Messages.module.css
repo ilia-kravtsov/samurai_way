@@ -8,7 +8,7 @@
     padding: 10px;
     width: 30%;
     height: 92vh;
-    background: lightgrey;
+    background: #dadada;
     border-radius: 10px;
     margin: 10px;
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
@@ -24,6 +24,12 @@
     justify-content: flex-start;
     overflow-y: auto;
     box-sizing: border-box;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
+    background: lightgrey;
+    border-radius: 10px;
+    background-image: url("../../backgrounds/pattern-28.svg");
+    border: 20px solid lightgrey;
+
 }
 
 .ulMessagesContent {
@@ -40,10 +46,8 @@
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
     margin: 10px;
     border-radius: 10px;
-    background-color: lightgrey;
     height: 92vh;
 }
 

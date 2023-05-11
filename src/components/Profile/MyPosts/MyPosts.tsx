@@ -62,7 +62,7 @@ const MyPosts = (props: MyPostsType) => {
                               value={props.newPostText}
                               onChange={onPostChange}
                               onKeyDown={onKeyDown}
-                              label={'Enter your post'}
+                              label={'Add your new post'}
                               multiline
                               minRows={4}
                               maxRows={4}

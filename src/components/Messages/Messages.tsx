@@ -44,16 +44,16 @@ const Messages = (props: MessagesPropsType) => {
                 {messagesItemDataElements}
             </div>
             <div className={s.messBodyBlock}>
-             <div className={s.messagesContent} ref={ref}>
-                 <ul ref={listRef} className={s.ulMessagesContent}>
-                     {messageDataElements}
-                 </ul>
-             </div>
-            <MessageSender myNewMessageText={props.messagesPage.myNewMessageText}
-                           updateMyNewMessageUI={props.updateMyNewMessageUI}
-                           addMyNewMessageUI={props.addMyNewMessageUI}
+                <div className={s.messagesContent} ref={ref}>
+                    <ul ref={listRef} className={s.ulMessagesContent}>
+                        {messageDataElements}
+                    </ul>
+                </div>
+                <MessageSender myNewMessageText={props.messagesPage.myNewMessageText}
+                               updateMyNewMessageUI={props.updateMyNewMessageUI}
+                               addMyNewMessageUI={props.addMyNewMessageUI}
 
-            />
+                />
             </div>
         </div>
     )
