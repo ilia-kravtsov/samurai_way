@@ -28,21 +28,26 @@ const LoginForm: FC<InjectedFormProps<LoginFormType>> = (props) => {
         <form onSubmit={props.handleSubmit}
               className={s.form}
         >
-            <Field placeholder={'Login'}
+            <Field placeholder={'login'}
                    component={'input'}
                    name={'login'}
+                   className={s.login}
             />
-            <Field placeholder={'Password'}
+            <Field placeholder={'password'}
                    component={'input'}
                    name={'password'}
+                   className={s.login}
             />
-            <label htmlFor="checkboxId">Remember me</label>
-            <Field type={"checkbox"}
-                   id={'checkboxId'}
-                   component={'input'}
-                   name={'rememberMe'}
-            />
-            <button>Login</button>
+            <div className={s.rememberBox}>
+                <label htmlFor="checkboxId">Remember me</label>
+                <Field type={"checkbox"}
+                       id={'checkboxId'}
+                       component={'input'}
+                       name={'rememberMe'}
+                       className={s.remember}
+                />
+            </div>
+            <button className={s.loginKey}>Login</button>
         </form>
     )
 }
