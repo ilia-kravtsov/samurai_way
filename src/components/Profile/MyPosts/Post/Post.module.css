@@ -1,8 +1,8 @@
 .postContainer {
     color: black;
     margin-top: 15px;
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
-    width: 22vw;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    width: 100%;
     min-height: 200px;
     border-radius: 5px;
     word-wrap: break-word;

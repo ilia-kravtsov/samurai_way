@@ -17,7 +17,7 @@ const Friends = (props: FriendName) => {
 const FriendAva = (props: FriendName) => {
 
     let filteredFriendsNames = props.friendName.filter((friend, index) =>
-        index < 3 ? friend : '');
+        index < 2 ? friend : '');
 
     let buildFriends = filteredFriendsNames.map(friend => {
         return (

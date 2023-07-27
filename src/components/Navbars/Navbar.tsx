@@ -29,11 +29,15 @@ export const Navbar = () => {
     )
 }
 
-const NavItem = (props: NavItemType) =>
-    <NavLink to={props.urlName} activeClassName={s.activeLink} className={s.link}>
-        <img src={props.logo} alt="navbar logo" className={s.linkLogo}/>
-        {props.itemName}
-    </NavLink>;
+const NavItem = (props: NavItemType) => {
+    return (
+        <NavLink to={props.urlName} activeClassName={s.activeLink} className={s.link}>
+            <img src={props.logo} alt="navbar logo" className={s.linkLogo}/>
+            {props.itemName}
+        </NavLink>
+    )
+}
+
 
 
 type MapStatePropsType = {

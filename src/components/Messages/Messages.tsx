@@ -5,6 +5,7 @@ import MessageItem from "./MessageItem/MessageItem";
 import MessageSender from "./MessageSender/MessageSender";
 import {MessagesPropsType} from "./MessagesContainer";
 import {useAutoAnimate} from "@formkit/auto-animate/react";
+import {reduxForm} from "redux-form";
 import {Redirect} from "react-router-dom";
 
 const Messages = (props: MessagesPropsType) => {
@@ -35,8 +36,7 @@ const Messages = (props: MessagesPropsType) => {
         }
     }, [props.messagesPage.messageData])
 
-
-    // if (!props.isAuth) return <Redirect to={'/login'}/>
+    if (props.isAuth === false) return <Redirect to={'/login'}/>
 
     return (
         <div className={s.messagesContainer}>
@@ -60,3 +60,6 @@ const Messages = (props: MessagesPropsType) => {
 }
 
 export default Messages
+
+
+

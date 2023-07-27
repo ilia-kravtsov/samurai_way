@@ -34,7 +34,8 @@
 .avaNameBlock {
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 35%;
+    height: 15vh;
     align-items: center;
     justify-content: space-evenly;
     border-radius: 10px;

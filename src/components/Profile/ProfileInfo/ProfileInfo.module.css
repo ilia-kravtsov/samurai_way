@@ -75,6 +75,7 @@
     border-radius: 5px;
     margin: 5px 0 10px 0;
     font-weight: bold;
+    background-color: lightgrey;
 }
 
 .statusBlock {

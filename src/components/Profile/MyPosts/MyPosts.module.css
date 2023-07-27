@@ -11,7 +11,7 @@
 }
 
 .postsBlock {
-    width: 58%;
+    width: 100%;
 }
 
 .sideBar {
@@ -46,18 +46,18 @@
     border-radius: 5px;
     padding: 15px;
     text-align: center;
-    width: 22vw;
+    width: 100%;
     font-family: 'Lora', serif;
     margin-bottom: 20px;
 }
 
 .textarea {
     border-radius: 7px;
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
-    width: 22vw;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    width: 90%;
     outline: none;
     resize: none;
+    border: none;
     background-color: transparent;
-    border: 1px solid lightgrey;
     padding: 20px;
 }

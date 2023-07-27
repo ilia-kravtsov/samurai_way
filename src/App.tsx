@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './App.module.css';
-import Header from "./components/Headers/Header";
 import {Redirect, Route} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
@@ -23,7 +22,8 @@ const App = () => {
                 <div className={s.main}>
                     <Route path='/' render={() => <Redirect to={'/profile'}/>}/>
                     <Route path='/*' render={() => <Redirect to={'/profile'}/>}/>
-                    <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                    {/*<Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>*/}
+                    <Route path='/profile' render={() => <ProfileContainer/>}/>
                     <Route path='/messages' render={() => <MessagesContainer/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
