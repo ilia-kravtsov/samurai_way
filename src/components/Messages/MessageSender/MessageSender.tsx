@@ -1,12 +1,6 @@
-import React, {ChangeEvent, KeyboardEvent, ReactNode} from 'react';
+import React from 'react';
 import s from './MessageSender.module.css'
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
-
-type MessageSenderType = {
-    myNewMessageText: string
-    updateMyNewMessageUI: (newText: string) => void
-    addMyNewMessageUI: () => void
-}
+import {Field, reduxForm} from "redux-form";
 
 // type NewMessage = {
 //     newMessageBody: string
@@ -17,29 +11,6 @@ type MessageSenderType = {
 // const MessageSender: React.FC<CombinedProps> = (props) => {
 
 const MessageSender: React.FC<any> = (props) => {
-
-    const myNewMessage = React.createRef<HTMLDivElement>()
-
-    const addMyNewMessageUI = () => {
-        if (props.myNewMessageText.trim()) {
-            props.addMyNewMessageUI()
-        }
-    }
-
-    const onMyNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let newText = e.currentTarget.value
-        if (newText) {
-            props.updateMyNewMessageUI(newText)
-        }
-    }
-
-    const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-        if (e.key === 'Enter') {
-            if (props.myNewMessageText.trim() !== '') {
-                props.addMyNewMessageUI()
-            }
-        }
-    }
 
     const addNewMessage = (values: {newMessageBody?: string}  ) => {
         //console.log(values) - текст из поля которое ему сообщил redux form

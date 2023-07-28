@@ -4,7 +4,6 @@ import {
     delPost,
     onDisLikeHandler,
     onLikeHandler,
-    updateMyPostText
 } from "../../../redux/profile_page_reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
@@ -22,18 +21,15 @@ export type ProfilePageType = {
 }
 type MapStatePropsTypePosts = {
     postsData: Array<PostsData>
-    newPostText: string
 }
 
 const mapStateToProps = (state: RootStateType): MapStatePropsTypePosts => {
     return {
         postsData: state.profilePage.postsData,
-        newPostText: state.profilePage.newPostText
     }
 }
 
 export const MyPostsContainer = connect(mapStateToProps, {
-    updateMyPostText,
     addPost,
     onLikeHandler,
     onDisLikeHandler,

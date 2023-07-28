@@ -30,9 +30,18 @@
 }
 
 .btnPost {
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     height: 50px;
     width: 50px;
+    border-radius: 20px;
+    border: none;
+    margin-left: 10px;
+    background-color: rgba(218,218,218,0.93);
+}
+
+.btnPost:active {
+    transform: scale(0.95);
+    transition: 0.3s;
 }
 
 .addPostContainer {
@@ -42,7 +51,7 @@
 }
 
 .title {
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     padding: 15px;
     text-align: center;

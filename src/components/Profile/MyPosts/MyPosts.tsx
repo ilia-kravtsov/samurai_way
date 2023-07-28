@@ -1,16 +1,12 @@
-import React, {ChangeEvent, KeyboardEvent} from 'react';
+import React, {FC} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {IconButton, TextField} from "@mui/material";
-import AddIcon from '@mui/icons-material/Add';
 import {useAutoAnimate} from "@formkit/auto-animate/react";
-import {onDisLikeHandler, onLikeHandler} from "../../../redux/profile_page_reducer";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 
 type MyPostsType = {
-    postsData: Array<{id: string, message: string, likesCount: number, disLikesCount: number}>
-    newPostText: string
-    updateMyPostText: (text: string) => void
-    addPost: () => void
+    postsData: Array<{ id: string, message: string, likesCount: number, disLikesCount: number }>
+    addPost: (postText: string) => void
     onLikeHandler: (id: string) => void
     onDisLikeHandler: (id: string) => void
     delPost: (id: string) => void
@@ -20,7 +16,7 @@ const MyPosts = (props: MyPostsType) => {
 
     const [listRef] = useAutoAnimate<HTMLUListElement>()
 
-    const postsDataContent = props.postsData.map( p =>
+    const postsDataContent = props.postsData.map(p =>
         <Post key={p.id}
               id={p.id}
               message={p.message}
@@ -32,19 +28,53 @@ const MyPosts = (props: MyPostsType) => {
         />
     );
 
-    const newPostElement = React.createRef<HTMLDivElement>()
+    const addPost = (value: AddNewPostFormType) => {
+        console.log(value)
+        props.addPost(value.profileTextarea)
+    }
 
-    const addPost = () => {
-        if (props.newPostText.trim()) {
-            props.addPost()
-        }
-    }
-    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        if (e.currentTarget.value) {
-            props.updateMyPostText(e.currentTarget.value)
-        }
-    }
-    const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    return (
+        <div className={s.postsContainer}>
+            <div className={s.postsBlock}>
+                <h3 className={s.title}>My Posts</h3>
+                <AddNewPostReduxForm onSubmit={addPost}/>
+                <div className={s.posts}>
+                    <ul ref={listRef}>
+                        {postsDataContent}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default MyPosts;
+
+type AddNewPostFormType = {
+    profileTextarea: string
+}
+
+const AddNewPostForm: FC<InjectedFormProps<AddNewPostFormType>> = (props) => {
+
+    return (
+        <form className={s.addPostContainer} onSubmit={props.handleSubmit}>
+            <Field name="profileTextarea"
+                   className={s.textarea}
+                   placeholder={'Add your post'}
+                   component={'textarea'}
+            ></Field>
+            <button className={s.btnPost}>+</button>
+        </form>
+    );
+}
+
+const AddNewPostReduxForm = reduxForm<AddNewPostFormType>({form: 'ProfileAddNewPostForm'})(AddNewPostForm)
+
+/*
+
+const newPostElement = React.createRef<HTMLDivElement>()
+
+const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
         if (e.key === 'Enter') {
             if (props.newPostText.trim()) {
                 props.addPost()
@@ -52,11 +82,11 @@ const MyPosts = (props: MyPostsType) => {
         }
     }
 
-    return (
+return (
         <div className={s.postsContainer}>
             <div className={s.postsBlock}>
                 <h3 className={s.title}>My Posts</h3>
-                <div className={s.addPostContainer}>
+                <form className={s.addPostContainer}>
                     <TextField className={s.textarea}
                               ref={newPostElement}
                               value={props.newPostText}
@@ -70,7 +100,7 @@ const MyPosts = (props: MyPostsType) => {
                     <IconButton className={s.btnPost} onClick={addPost} size={'medium'} color={'primary'} sx={{ml: '2vw'}}>
                         <AddIcon />
                     </IconButton>
-                </div>
+                </form>
                 <div className={s.posts}>
                     <ul ref={listRef}>
                         {postsDataContent}
@@ -79,6 +109,4 @@ const MyPosts = (props: MyPostsType) => {
             </div>
         </div>
     );
-}
-
-export default MyPosts;
+ */

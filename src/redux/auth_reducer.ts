@@ -1,6 +1,6 @@
 import {ActionsTypes, AppThunk} from "./redux-store";
 import {authAPI} from "../api/api";
-
+import {LoginFormType} from "components/Login/Login";
 
 export type ServerUserDataType = {
     id: number
@@ -40,6 +40,17 @@ export const getAuthUsersDataTC = (): AppThunk => async dispatch => {
             if (data.resultCode === 0) {
                 dispatch(setAuthUserData(data.data))
             }
+}
+
+export const getLoginUsersDataTC = (loginData: LoginFormType): AppThunk => async dispatch => {
+    try {
+        const data = await authAPI.login(loginData);
+        if (data.resultCode === 0) {
+            dispatch(setAuthUserData(data.data));
+        }
+    } catch (error) {
+        console.error('Error in getLoginUsersDataTC:', error);
+    }
 }
 
 

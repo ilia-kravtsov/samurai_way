@@ -1,9 +1,9 @@
 import React from 'react'
 import Messages from "./Messages";
-import {addMyNewMessageAC, deleteMyNewMessageAC, updateMyNewMessageAC} from "../../redux/messages_page_reducer";
+import {addMyNewMessageAC, deleteMyNewMessageAC} from "../../redux/messages_page_reducer";
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
-import {compose, Dispatch} from "redux";
+import {Dispatch} from "redux";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 
@@ -26,7 +26,6 @@ type MapStatePropsType = {
     isAuth: boolean
 }
 type MapDispatchToPropsType = {
-    updateMyNewMessageUI: (newText: string) => void
     addMyNewMessageUI: (newMessageBody: string) => void
     onDelClickCallback: (id: string) => void
 }
@@ -41,7 +40,6 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
-        updateMyNewMessageUI: (newText: string) => dispatch(updateMyNewMessageAC(newText)),
         addMyNewMessageUI: (newMessageBody) => dispatch(addMyNewMessageAC(newMessageBody)),
         onDelClickCallback: (id: string) => dispatch(deleteMyNewMessageAC(id)),
     }

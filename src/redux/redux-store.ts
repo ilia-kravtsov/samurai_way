@@ -4,13 +4,11 @@ import {
     onDisLikeHandler,
     onLikeHandler,
     profilePageReducer, setStatusAC, setUserProfile,
-    updateMyPostText
 } from "./profile_page_reducer";
 import {
     addMyNewMessageAC,
     deleteMyNewMessageAC,
     messagesPageReducer,
-    updateMyNewMessageAC
 } from "./messages_page_reducer";
 import {
     follow, loaderChanger,
@@ -38,9 +36,7 @@ export type StoreType = typeof store;
 export type RootStateType = ReturnType<typeof rootReducer>
 export type ActionsTypes =
     ReturnType<typeof addPost>
-    | ReturnType<typeof updateMyPostText>
     | ReturnType<typeof addMyNewMessageAC>
-    | ReturnType<typeof updateMyNewMessageAC>
     | ReturnType<typeof onLikeHandler>
     | ReturnType<typeof onDisLikeHandler>
     | ReturnType<typeof follow>

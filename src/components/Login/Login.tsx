@@ -1,12 +1,20 @@
 import React, {FC} from 'react';
 import s from './Login.module.css'
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {Redirect} from "react-router-dom";
 
-export const Login = () => {
+type LoginType = {
+    isAuth: boolean
+    getLoginUsersDataTC: (loginData: LoginFormType) => void
+}
 
-    const onSubmit = (formData: LoginFormType) => {
-        console.log(formData)
+export const Login = (props: LoginType) => {
+
+    const onSubmit = (loginData: LoginFormType) => {
+        props.getLoginUsersDataTC(loginData)
     }
+
+    if (props.isAuth) return <Redirect to={'/profile'}/>
 
     return (
         <div className={s.container}>
@@ -16,10 +24,11 @@ export const Login = () => {
     );
 };
 
-type LoginFormType = {
-    login: string
+export type LoginFormType = {
+    email: string
     password: string
     rememberMe: boolean
+    captcha: boolean
 }
 
 const LoginForm: FC<InjectedFormProps<LoginFormType>> = (props) => {
@@ -28,9 +37,9 @@ const LoginForm: FC<InjectedFormProps<LoginFormType>> = (props) => {
         <form onSubmit={props.handleSubmit}
               className={s.form}
         >
-            <Field placeholder={'login'}
+            <Field placeholder={'email'}
                    component={'input'}
-                   name={'login'}
+                   name={'email'}
                    className={s.login}
             />
             <Field placeholder={'password'}

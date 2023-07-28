@@ -1,9 +1,8 @@
 import {v1} from "uuid";
-import {MessagesPageType} from "../components/Messages/MessagesContainer";
+import {MessagesPageType} from "components/Messages/MessagesContainer";
 
 const DELETE_MY_NEW_MESSAGE = 'DELETE_MY_NEW_MESSAGE'
 const ADD_MY_NEW_MESSAGE = 'ADD-MY-NEW-MESSAGE';
-const UPDATE_MY_NEW_MESSAGE = 'UPDATE-MY-NEW-MESSAGE';
 
 const initialState = {
     companionsData: [
@@ -24,8 +23,6 @@ const initialState = {
 export const messagesPageReducer = (state: MessagesPageType = initialState, action: any): MessagesPageType => {
     // state = this._state.messagesPage
     switch (action.type) {
-        case UPDATE_MY_NEW_MESSAGE:
-            return {...state, myNewMessageText: action.newText}
         case DELETE_MY_NEW_MESSAGE:
             return {...state, messageData: [...state.messageData].filter(m => m.id !== action.id)}
         case ADD_MY_NEW_MESSAGE:
@@ -38,4 +35,3 @@ export const messagesPageReducer = (state: MessagesPageType = initialState, acti
 
 export const addMyNewMessageAC = (newMessageBody: string) => ({type: ADD_MY_NEW_MESSAGE, newMessageBody} as const)
 export const deleteMyNewMessageAC = (id: string) => ({type: DELETE_MY_NEW_MESSAGE, id: id} as const)
-export const updateMyNewMessageAC = (newText: string) => ({type: UPDATE_MY_NEW_MESSAGE, newText: newText} as const)
