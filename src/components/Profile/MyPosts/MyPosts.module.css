@@ -4,7 +4,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     background: #dadada;
     margin: 20px 10px 10px 10px;
@@ -69,4 +69,10 @@
     border: none;
     background-color: transparent;
     padding: 20px;
+}
+
+.form_control.error input,
+.form_control.erorr textarea
+{
+    border: 1px solid red;
 }

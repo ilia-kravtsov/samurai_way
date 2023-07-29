@@ -60,7 +60,7 @@ export class ProfileStatus extends React.Component<ProfileStatusType> {
                                        </div>
                                      : <div className={s.statusBlock}>
                                             {this.props.status || "I haven't added my status yet"}
-                                            <IconButton onClick={this.activateStatus} style={{marginLeft: '20px', boxShadow: '1px 0 10px 0 rgba(0, 0, 0, 0.3)'}} color={'primary'}>
+                                            <IconButton onClick={this.activateStatus} style={{marginLeft: '20px', boxShadow: '1px 0 5px 0 rgba(0, 0, 0, 0.2)'}} color={'primary'}>
                                                 <EditIcon/>
                                             </IconButton>
                                        </div>

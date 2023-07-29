@@ -1,6 +1,8 @@
 import React from 'react';
 import s from './MessageSender.module.css'
 import {Field, reduxForm} from "redux-form";
+import {Textarea} from "components/common/FormsConntrols/FormControls";
+import {maxLengthCreator, required} from "validators/validators";
 
 // type NewMessage = {
 //     newMessageBody: string
@@ -23,12 +25,17 @@ const MessageSender: React.FC<any> = (props) => {
 
 export default MessageSender;
 
+const maxLengthCreator_50 = maxLengthCreator(50)
 
 const MessageSenderRedux: React.FC<any> = (props) => {
     return (
         <form className={s.container} onSubmit={props.handleSubmit}>
-            <Field component={'textarea'} name={'newMessageBody'} placeholder={'Enter your message'}/>
-            <button>Send</button>
+            <Field component={Textarea}
+                   validate={[required, maxLengthCreator_50]}
+                   name={'newMessageBody'}
+                   placeholder={'Enter your message'}
+                   className={s.textareaS}/>
+            <button className={s.btnS}>Send</button>
         </form>
     )
 }

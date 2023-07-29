@@ -14,12 +14,28 @@
 .textareaS {
     width: 80%;
     word-wrap: break-word;
+    border-radius: 7px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    outline: none;
+    resize: none;
+    border: none;
+    background-color: transparent;
+    padding: 20px;
 }
 
 .btnS {
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
-    width: 50px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    border: none;
+    margin-left: 10px;
+    background-color: rgba(218,218,218,0.93);
+}
+
+.btnS:active {
+    transform: scale(0.90);
+    transition: 0.3s;
 }
 
 

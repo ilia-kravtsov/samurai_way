@@ -3,6 +3,8 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {useAutoAnimate} from "@formkit/auto-animate/react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {maxLengthCreator, required} from "../../../validators/validators";
+import {Textarea} from "components/common/FormsConntrols/FormControls";
 
 type MyPostsType = {
     postsData: Array<{ id: string, message: string, likesCount: number, disLikesCount: number }>
@@ -54,6 +56,8 @@ type AddNewPostFormType = {
     profileTextarea: string
 }
 
+const maxLengthCreator_10 = maxLengthCreator(10)
+
 const AddNewPostForm: FC<InjectedFormProps<AddNewPostFormType>> = (props) => {
 
     return (
@@ -61,7 +65,8 @@ const AddNewPostForm: FC<InjectedFormProps<AddNewPostFormType>> = (props) => {
             <Field name="profileTextarea"
                    className={s.textarea}
                    placeholder={'Add your post'}
-                   component={'textarea'}
+                   component={Textarea}
+                   validate={[required, maxLengthCreator_10]}
             ></Field>
             <button className={s.btnPost}>+</button>
         </form>

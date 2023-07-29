@@ -35,7 +35,7 @@ const Messages = (props: MessagesPropsType) => {
         }
     }, [props.messagesPage.messageData])
 
-    if (!props.isAuth) return <Redirect to={'/login'}/>
+    if (props.isAuth === false) return <Redirect to={'/login'}/>
 
     return (
         <div className={s.messagesContainer}>

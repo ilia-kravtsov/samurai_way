@@ -2,6 +2,8 @@ import React, {FC} from 'react';
 import s from './Login.module.css'
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Redirect} from "react-router-dom";
+import {Input} from "components/common/FormsConntrols/FormControls";
+import {required} from "validators/validators";
 
 type LoginType = {
     isAuth: boolean
@@ -33,17 +35,20 @@ export type LoginFormType = {
 
 const LoginForm: FC<InjectedFormProps<LoginFormType>> = (props) => {
 
+
     return (
         <form onSubmit={props.handleSubmit}
               className={s.form}
         >
             <Field placeholder={'email'}
-                   component={'input'}
+                   component={Input}
+                   validate={[required]}
                    name={'email'}
                    className={s.login}
             />
             <Field placeholder={'password'}
-                   component={'input'}
+                   component={Input}
+                   validate={[required]}
                    name={'password'}
                    className={s.login}
             />

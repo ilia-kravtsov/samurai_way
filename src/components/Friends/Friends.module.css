@@ -13,7 +13,7 @@
 
 .friendsTitle {
     font-size: 20px;
-    box-shadow: 1px 0 10px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 0 5px 0 rgba(0, 0, 0, 0.2);
     width: 95%;
     text-align: center;
     padding: 10px;
@@ -40,14 +40,14 @@
     justify-content: space-evenly;
     border-radius: 10px;
     margin: 10px;
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
 .friendAva {
     width: 60px;
     height: 60px;
     border-radius: 30px;
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3)
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2)
 }
 
 .friendName {

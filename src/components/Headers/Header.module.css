@@ -1,6 +1,6 @@
 .headerContainer {
     height: 6vh;
-    background: #1e88e5;
+    background: rgba(50,115,229,0.93);
     display: flex;
     justify-content: space-between;
     align-items: center;

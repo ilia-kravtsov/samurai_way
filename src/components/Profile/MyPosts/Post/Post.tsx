@@ -39,21 +39,21 @@ const Post = (props: PostType) => {
             <div className={s.likeDisContainer}>
                 <IconButton onClick={likeClick}
                             color={'primary'}
-                            sx={{boxShadow: '0 1px 10px 0 rgba(0, 0, 0, 0.3)'}}
+                            sx={{boxShadow: '0 1px 5px 0 rgba(0, 0, 0, 0.2)'}}
                 >
                     <ThumbUpAltIcon />
                 </IconButton>
                 <span className={s.likes}>{props.likesCount}</span>
                 <IconButton onClick={disLikeClick}
                             color={'primary'}
-                            sx={{boxShadow: '0 1px 10px 0 rgba(0, 0, 0, 0.3)'}}
+                            sx={{boxShadow: '0 1px 5px 0 rgba(0, 0, 0, 0.2)'}}
                 >
                     <ThumbDownAltIcon />
                 </IconButton>
                 <span className={s.likes}>{props.disLikesCount}</span>
                 <IconButton onClick={delClick}
                             color={'primary'}
-                            sx={{boxShadow: '0 1px 10px 0 rgba(0, 0, 0, 0.3)'}}
+                            sx={{boxShadow: '0 1px 5px 0 rgba(0, 0, 0, 0.2)'}}
                 >
                     <DeleteIcon />
                 </IconButton>
