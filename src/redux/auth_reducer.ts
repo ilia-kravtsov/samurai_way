@@ -45,7 +45,15 @@ const initialState: UserDataType = {
 export const authReducer = (state = initialState, action: ActionsTypes): UserDataType => {
     switch (action.type) {
         case SET_USER_DATA:
-            return {...state, ...action.userData, isAuth: action.isAuth}
+            return {
+                ...state, ...action.userData, isAuth: action.isAuth, captchaData: {
+                    data: {},
+                    fieldsErrors: [],
+                    messages: [],
+                    resultCode: 0,
+                    url: ''
+                }
+            }
         case IS_USER_LOGIN_DATA_CORRECT:
             return {...state, captchaData: action.captchaServerData}
         case ADD_CAPTCHA_DATA_IMG_URL:
