@@ -85,6 +85,7 @@ const LoginForm: FC<InjectedFormProps<LoginFormType & CaptchaServerType>> = (pro
                 />
             </div>
             <button className={s.loginKey}>Login</button>
+            {props.error && <div className={s.formError}>{props.error}</div>}
         </form>
     )
 }

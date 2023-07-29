@@ -1,7 +1,7 @@
 .avaContainer {
     width: 100%;
     height: 35vh;
-    border: 20px solid #dadada;;
+    border: 20px solid #e5e5e5;
     display: flex;
     align-items: flex-end;
     background-image: url("../../../backgrounds/2208_w048_n005_279a_p1_279.jpg");
@@ -18,7 +18,7 @@
 }
 
 .avaBorderBlock {
-    background: #dadada;
+    background: #e5e5e5;
     border-radius: 200px 200px 0 0;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .borderDescriptionBLock {
-    background: #dadada;
+    background: #e5e5e5;
     width: 100%;
     height: 10vh;
     display: flex;
@@ -75,7 +75,7 @@
     border-radius: 5px;
     margin: 5px 0 10px 0;
     font-weight: bold;
-    background-color: lightgrey;
+    background: #e5e5e5;
 }
 
 .statusBlock {

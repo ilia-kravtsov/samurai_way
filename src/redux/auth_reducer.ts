@@ -1,6 +1,7 @@
 import {ActionsTypes, AppThunk} from "./redux-store";
 import {authAPI} from "../api/api";
 import {LoginFormType} from "components/Login/Login";
+import {stopSubmit} from "redux-form";
 
 export type ServerUserDataType = {
     id: number | null
@@ -91,6 +92,8 @@ export const loginTC = (loginData: LoginFormType): AppThunk => async dispatch =>
             dispatch(getAuthUsersDataTC());
         } else if (data.resultCode === 1) {
             dispatch(isUserLoginDataCorrect(data))
+            // const action: any = stopSubmit('login', {_error: 'Email or Password are incorrect'})
+            // dispatch(action)
         } else if (data.resultCode === 10) {
             dispatch(isUserLoginDataCorrect(data))
             dispatch(getCaptchaImgTC())
