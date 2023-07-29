@@ -18,7 +18,7 @@ import {
     unFollow,
     usersReducer, followInProgress
 } from "./users_reducer";
-import {authReducer, setAuthUserData} from "./auth_reducer";
+import {addCaptchaImgUrl, authReducer, isUserLoginDataCorrect, setAuthUserData} from "./auth_reducer";
 import thunkMiddleware, {ThunkAction} from "redux-thunk"
 import {reducer as formReducer} from 'redux-form'
 
@@ -51,6 +51,8 @@ export type ActionsTypes =
     | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof followInProgress>
     | ReturnType<typeof setStatusAC>
+    | ReturnType<typeof isUserLoginDataCorrect>
+    | ReturnType<typeof addCaptchaImgUrl>
 
 export type AppThunk<ReturnType = void> = ThunkAction<void, RootStateType, unknown, ActionsTypes>
 // @ts-ignore

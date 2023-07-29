@@ -19,9 +19,7 @@ export function withAuthRedirect<T> (Component: ComponentType<T>)  {
         }
 
         render() {
-            if (!this.props.isAuth) {
-                return <Redirect to={'/login'}/>
-            }
+            if (!this.props.isAuth) return <Redirect to={'/login'}/>
             const {isAuth, ...rest} = this.props
             return <Component {...rest as T&{children: React.ReactNode}}/>
         }

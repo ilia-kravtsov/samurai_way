@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {Login, LoginFormType} from "../Login/Login";
 import {RootStateType} from "redux/redux-store";
-import {getLoginUsersDataTC} from "../../redux/auth_reducer";
+import {CaptchaServerType, loginTC} from "../../redux/auth_reducer";
 
 export type PropsType = MSTP & MDTP
 
@@ -15,19 +15,24 @@ const LoginContainer = (props: PropsType) => {
     // }
 
     return (
-        <Login isAuth={props.isAuth} getLoginUsersDataTC={props.getLoginUsersDataTC}/>
+        <Login isAuth={props.isAuth}
+               loginTC={props.loginTC}
+               captchaData={props.captchaData}
+        />
     )
 }
 
 type MSTP = {
     isAuth: boolean
+    captchaData: CaptchaServerType
 }
 type MDTP = {
-    getLoginUsersDataTC: (loginData: LoginFormType) => void
+    loginTC: (loginData: LoginFormType) => void
 }
 
 const MapStateToProps = (state: RootStateType): MSTP => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    captchaData: state.auth.captchaData
 })
 
-export default connect(MapStateToProps, {getLoginUsersDataTC})(LoginContainer)
+export default connect(MapStateToProps, {loginTC})(LoginContainer)

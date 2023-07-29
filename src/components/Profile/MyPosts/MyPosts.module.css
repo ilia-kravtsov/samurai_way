@@ -37,11 +37,16 @@
     border: none;
     margin-left: 10px;
     background-color: rgba(218,218,218,0.93);
+    color: dimgray;
+    transition: 0.5s;
 }
 
 .btnPost:active {
-    transform: scale(0.95);
-    transition: 0.3s;
+    transform: scale(0.90);
+}
+
+.btnPost:hover {
+    cursor: pointer;
 }
 
 .addPostContainer {
