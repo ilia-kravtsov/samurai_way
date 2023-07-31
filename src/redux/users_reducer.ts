@@ -54,10 +54,11 @@ export const setTotalUsersCount = (totalCount: number) => ({type: SET_TOTAL_USER
 export const loaderChanger = (isLoading: boolean) => ({type: LOADER_CHANGE, isLoading} as const)
 export const followInProgress = (value: boolean, userId: number) => ({type: FOLLOW_IN_PROGRESS, value, userId} as const)
 
-export const getUsersTC = (currentPage: number, pageSize: number): AppThunk => async dispatch => {
+export const getUsersTC = (requestedPage: number, pageSize: number): AppThunk => async dispatch => {
     dispatch(loaderChanger(true))
+    dispatch(onPaginationClick(requestedPage))
     try {
-        const data = await usersAPI.getUsers(currentPage, pageSize)
+        const data = await usersAPI.getUsers(requestedPage, pageSize)
         dispatch(setUsers(data.items))
         dispatch(setTotalUsersCount(data.totalCount))
         dispatch(loaderChanger(false))

@@ -15,6 +15,14 @@ import {PreLoader} from "../common/PreLoader/PreLoader";
 import {usersAPI} from "../../api/api";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFollowInProgressValue,
+    getIsLoading,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers
+} from "redux/users_selectors";
 
 export type MapStatePropsType = {
     users: UsersApiType
@@ -42,14 +50,25 @@ export type UserApiType = {
 }
 export type UsersApiType = Array<UserApiType>;
 
+// const mapStateToProps = (state: RootStateType): MapStatePropsType => {
+//     return {
+//         users: state.usersPage.users,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isLoading: state.usersPage.isLoading,
+//         followInProgressValue: state.usersPage.followInProgressValue
+//     }
+// }
+
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isLoading: state.usersPage.isLoading,
-        followInProgressValue: state.usersPage.followInProgressValue
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isLoading: getIsLoading(state),
+        followInProgressValue: getFollowInProgressValue(state)
     }
 }
 
