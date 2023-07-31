@@ -2,16 +2,13 @@ import React from 'react';
 import Header from "./Header";
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
-import {getAuthUsersDataTC, logoutTC} from "../../redux/auth_reducer";
+import {logoutTC} from "../../redux/auth_reducer";
 
 
 export type PropsType = MSTP & MDTP
 type StateType = {}
 
 class HeaderContainer extends React.Component<PropsType, StateType>{
-    componentDidMount() {
-        this.props.getAuthUsersDataTC()
-    }
 
     render() {
         return <Header {...this.props}/>
@@ -24,7 +21,6 @@ type MSTP = {
     login: string | null
 }
 type MDTP = {
-    getAuthUsersDataTC: () => void
     logoutTC: () => void
 }
 
@@ -33,4 +29,4 @@ const MapStateToProps = (state: RootStateType): MSTP => ({
     login: state.auth.login,
 })
 
-export default connect(MapStateToProps, {getAuthUsersDataTC, logoutTC})(HeaderContainer)
+export default connect(MapStateToProps, {logoutTC})(HeaderContainer)

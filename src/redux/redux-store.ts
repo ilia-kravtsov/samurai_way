@@ -21,12 +21,14 @@ import {
 import {addCaptchaImgUrl, authReducer, isUserLoginDataCorrect, setAuthUserData} from "./auth_reducer";
 import thunkMiddleware, {ThunkAction} from "redux-thunk"
 import {reducer as formReducer} from 'redux-form'
+import {appReducer, initializedSucces} from "redux/app_reducer";
 
 const rootReducer = combineReducers({
     profilePage: profilePageReducer,
     messagesPage: messagesPageReducer,
     usersPage: usersReducer,
     auth: authReducer,
+    app: appReducer,
     form: formReducer,
 });
 
@@ -53,6 +55,7 @@ export type ActionsTypes =
     | ReturnType<typeof setStatusAC>
     | ReturnType<typeof isUserLoginDataCorrect>
     | ReturnType<typeof addCaptchaImgUrl>
+    | ReturnType<typeof initializedSucces>
 
 export type AppThunk<ReturnType = void> = ThunkAction<void, RootStateType, unknown, ActionsTypes>
 // @ts-ignore

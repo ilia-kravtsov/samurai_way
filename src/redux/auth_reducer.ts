@@ -1,7 +1,6 @@
 import {ActionsTypes, AppThunk} from "./redux-store";
 import {authAPI} from "../api/api";
 import {LoginFormType} from "components/Login/Login";
-import {stopSubmit} from "redux-form";
 
 export type ServerUserDataType = {
     id: number | null
@@ -79,10 +78,16 @@ export const addCaptchaImgUrl = (url: string) => ({
 } as const)
 
 export const getAuthUsersDataTC = (): AppThunk => async dispatch => {
-    const data = await authAPI.authorization()
-    if (data.resultCode === 0) {
-        dispatch(setAuthUserData(data.data, true))
-    }
+    // const data = await authAPI.authorization()
+    // if (data.resultCode === 0) {
+    //     dispatch(setAuthUserData(data.data, true))
+    // }
+    return authAPI.authorization()
+        .then(response => {
+            if (response.resultCode === 0) {
+                dispatch(setAuthUserData(response.data, true))
+            }
+        })
 }
 
 export const loginTC = (loginData: LoginFormType): AppThunk => async dispatch => {
