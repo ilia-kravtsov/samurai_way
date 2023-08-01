@@ -16,6 +16,7 @@ import {usersAPI} from "../../api/api";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
 import {
+    _getUsers,
     getCurrentPage,
     getFollowInProgressValue,
     getIsLoading,
@@ -62,13 +63,15 @@ export type UsersApiType = Array<UserApiType>;
 // }
 
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
+    console.log('mapStateToProps USERS')
     return {
+        //users: _getUsers(state),
         users: getUsers(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         isLoading: getIsLoading(state),
-        followInProgressValue: getFollowInProgressValue(state)
+        followInProgressValue: getFollowInProgressValue(state),
     }
 }
 
@@ -84,6 +87,7 @@ export class UsersContainer extends React.Component<MapStatePropsType & MapDispa
     }
 
     render() {
+
         return <div className={s.presentContainer}>
             {this.props.isLoading
                 ? <PreLoader/>

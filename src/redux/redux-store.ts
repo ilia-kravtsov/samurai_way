@@ -56,6 +56,7 @@ export type ActionsTypes =
     | ReturnType<typeof isUserLoginDataCorrect>
     | ReturnType<typeof addCaptchaImgUrl>
     | ReturnType<typeof initializedSucces>
+    | {type: 'FAKE'}
 
 export type AppThunk<ReturnType = void> = ThunkAction<void, RootStateType, unknown, ActionsTypes>
 // @ts-ignore

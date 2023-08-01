@@ -35,6 +35,7 @@ type MapStatePropsType = {
     status: string
     authorizedUserId: number | null
     isAuth: boolean
+    fake: number
 }
 type MapDispatchToPropsType = {
     loginTC: (userId: string) => void
@@ -57,6 +58,7 @@ class ProfileContainer extends React.Component<ProfileContainerType> {
     }
 
     render() {
+
         return <Profile {...this.props}
                         status={this.props.status}
                         profile={this.props.profile}
@@ -65,12 +67,16 @@ class ProfileContainer extends React.Component<ProfileContainerType> {
     }
 }
 
-const mapStateToProps = (state: RootStateType): MapStatePropsType => ({
+const mapStateToProps = (state: RootStateType): MapStatePropsType => {
+
+    return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
         authorizedUserId: state.auth.id,
-        isAuth: state.auth.isAuth
-    })
+        isAuth: state.auth.isAuth,
+        fake: state.profilePage.fake
+    }
+    }
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {loginTC, getStatusTC, updateStatusTC}),

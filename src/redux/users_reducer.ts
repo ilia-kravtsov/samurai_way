@@ -5,6 +5,7 @@ import {usersAPI} from "../api/api";
 
 
 const FOLLOW = 'FOLLOW';
+
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = "SET_USERS"
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
@@ -18,11 +19,13 @@ const initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isLoading: false,
-    followInProgressValue: []
+    followInProgressValue: [],
+
 };
 
 export const usersReducer = (state: MapStatePropsType = initialState, action: ActionsTypes): MapStatePropsType => {
     switch (action.type) {
+
         case FOLLOW:
             return {...state, users: state.users.map(u => u.id === action.userID ? {...u, followed: true} : u)}
         case UNFOLLOW:

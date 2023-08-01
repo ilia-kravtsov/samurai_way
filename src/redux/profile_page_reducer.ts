@@ -10,11 +10,13 @@ const ON_LIKE_HANDLER_TYPE = 'ON-LIKE-HANDLER-TYPE';
 const ON_DISLIKE_HANDLER_TYPE = 'ON_DISLIKE_HANDLER_TYPE';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
+const FAKE = 'FAKE';
 
 type initialStateType = {
     postsData: Array<PostsData>
     profile: ProfileDataType
     status: string
+    fake: number
 }
 
 const initialState: initialStateType = {
@@ -22,12 +24,15 @@ const initialState: initialStateType = {
         {id: v1(), message: "Hey, how's it going?", likesCount: 0, disLikesCount: 0},
     ],
     profile: {} as ProfileDataType,
-    status: ''
+    status: '',
+    fake: 0
 };
 
 export const profilePageReducer = (state = initialState, action: ActionsTypes): initialStateType => {
 
     switch (action.type) {
+        case FAKE:
+            return {...state, fake: state.fake + 1}
         case ADD_POST:
             let newPost: PostsData = {id: v1(), message: action.postText, likesCount: 0, disLikesCount: 0}
             return {...state, postsData: [newPost, ...state.postsData]}

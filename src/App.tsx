@@ -38,9 +38,9 @@ class App extends Component<AppType, any> {
                 <div className={s.body}>
                     <Navbar/>
                     <div className={s.main}>
-                        {/*<Route path='/' render={() => <Redirect to={'/profile'}/>}/>*/}
                         {/*<Route path='/*' render={() => <Redirect to={'/profile'}/>}/>*/}
                         {/*<Route path='/profile' render={() => <ProfileContainer/>}/>*/}
+                        {/*<Route path='/' render={() => <Redirect to={'/profile'}/>}/>*/}
                         <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                         <Route path='/messages' render={() => <MessagesContainer/>}/>
                         <Route path='/news' render={() => <News/>}/>
