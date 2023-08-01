@@ -1,4 +1,4 @@
-import React, {ChangeEvent, LegacyRef, useState} from 'react';
+import React, {ChangeEvent, LegacyRef, useEffect, useState} from 'react';
 import s from "./ProfileInfo.module.css";
 import {Button, IconButton} from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
@@ -12,6 +12,10 @@ export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
 
     const [editMode, setEditMode] = useState<boolean>(false)
     const [status, setStatus] = useState<string>(props.status)
+
+    useEffect(() => {
+        setStatus(props.status)
+    },[props.status])
 
     const changeStatus = (e: ChangeEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value)
