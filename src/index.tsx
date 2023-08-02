@@ -21,7 +21,7 @@ const theme = createTheme({
         fontSize: 14,
     },
 })
-//
+
 // setInterval(() => {
 //     store.dispatch({type: 'FAKE'})
 // }, 1000)

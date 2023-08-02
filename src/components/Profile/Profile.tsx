@@ -11,6 +11,7 @@ type ProfileType = {
 }
 
 const Profile = (props: ProfileType) => {
+
     return (
         <div className={s.container}>
             <ProfileInfo profile={props.profile} updateStatusTC={props.updateStatusTC} status={props.status}/>
