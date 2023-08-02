@@ -22,7 +22,8 @@ export const UsersPresent: FC<UsersPresentType> = ({...props}) => {
                    onPageChanged={props.onPageChanged}
                    pageSize={props.pageSize}
                    totalUsersCount={props.totalUsersCount}/>
-        {props.users.map(u => <User user={u}
+        {props.users.map(u => <User key={u.id}
+                                    user={u}
                                     followInProgressValue={props.followInProgressValue}
                                     followTC={props.followTC}
                                     unFollowTC={props.unFollowTC}/>)}

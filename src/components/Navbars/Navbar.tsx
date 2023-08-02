@@ -18,11 +18,11 @@ export const Navbar = () => {
             <div className={s.navContainer}>
                 <NavItem urlName='/profile' itemName='Profile' logo="https://img.icons8.com/fluency/1x/lifecycle.png"/>
                 <NavItem urlName='/messages' itemName='Messages' logo="https://img.icons8.com/fluency/1x/new-message.png"/>
+                <NavItem urlName='/users' itemName='Users' logo="https://img.icons8.com/fluency/1x/group.png"/>
                 <NavItem urlName='/news' itemName='News' logo="https://img.icons8.com/fluency/1x/news.png"/>
                 <NavItem urlName='/music' itemName='Music' logo="https://img.icons8.com/fluency/1x/music-library.png"/>
                 <NavItem urlName='/settings' itemName='Settings' logo="https://img.icons8.com/fluency/1x/services.png"/>
                 <NavItem urlName='/video' itemName='Video' logo="https://img.icons8.com/fluency/1x/laptop-play-video.png"/>
-                <NavItem urlName='/users' itemName='Users' logo="https://img.icons8.com/fluency/1x/group.png"/>
             </div>
             <FriendsContainer/>
         </div>

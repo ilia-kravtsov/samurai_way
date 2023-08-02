@@ -54,7 +54,7 @@ export type UsersApiType = Array<UserApiType>;
 // }
 
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
-    console.log('mapStateToProps USERS')
+
     return {
         //users: _getUsers(state),
         users: getUsers(state),

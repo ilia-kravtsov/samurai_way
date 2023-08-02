@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import {
     addPost, delPost,
     onDisLikeHandler,
@@ -32,7 +32,10 @@ const rootReducer = combineReducers({
     form: formReducer,
 });
 
-export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))
+// export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 export type StoreType = typeof store;
 export type RootStateType = ReturnType<typeof rootReducer>
