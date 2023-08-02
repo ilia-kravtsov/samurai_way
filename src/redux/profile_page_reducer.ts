@@ -37,7 +37,7 @@ export const profilePageReducer = (state = initialState, action: ActionsTypes): 
             let newPost: PostsData = {id: v1(), message: action.postText, likesCount: 0, disLikesCount: 0}
             return {...state, postsData: [newPost, ...state.postsData]}
         case DELETE_POST:
-            return {...state, postsData: [...state.postsData].filter(p => p.id !== action.index)}
+            return {...state, postsData: state.postsData.filter(p => p.id !== action.index)}
         case ON_LIKE_HANDLER_TYPE:
             return {
                 ...state, postsData: state.postsData.map(p =>
