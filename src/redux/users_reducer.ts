@@ -1,11 +1,10 @@
 import {ActionsTypes, AppThunk} from "./redux-store";
-import {UsersApiType} from "../components/Users/UsersContainer";
-import {MapStatePropsType} from "../components/Users/UsersContainer";
+import {MapStatePropsType, UsersApiType} from "../components/Users/UsersContainer";
 import {usersAPI} from "../api/api";
-
+import {Dispatch} from "redux";
+import {updateStateReduser} from "utils/redux_helper";
 
 const FOLLOW = 'FOLLOW';
-
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = "SET_USERS"
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
@@ -27,9 +26,11 @@ export const usersReducer = (state: MapStatePropsType = initialState, action: Ac
     switch (action.type) {
 
         case FOLLOW:
-            return {...state, users: state.users.map(u => u.id === action.userID ? {...u, followed: true} : u)}
+            return updateStateReduser(state, action.userID, {followed: true})
+            // return {...state, users: state.users.map(u => u.id === action.userID ? {...u, followed: true} : u)}
         case UNFOLLOW:
-            return {...state, users: state.users.map(u => u.id === action.userID ? {...u, followed: false} : u)}
+            return updateStateReduser(state, action.userID, {followed: false})
+            // return {...state, users: state.users.map(u => u.id === action.userID ? {...u, followed: false} : u)}
         case SET_USERS:
             return {...state, users: action.users}
         case SET_CURRENT_PAGE:
@@ -65,30 +66,26 @@ export const getUsersTC = (requestedPage: number, pageSize: number): AppThunk =>
         dispatch(setUsers(data.items))
         dispatch(setTotalUsersCount(data.totalCount))
         dispatch(loaderChanger(false))
-    } catch(error) {
+    } catch (error) {
         console.log(error)
     }
 }
 
-export const followTC = (userId: number): AppThunk => dispatch => {
+const followUnfollowFlow = async (dispatch: Dispatch, userId: number, apiMethod: any, actionCretor: any) => {
     dispatch(followInProgress(true, userId))
-    usersAPI.follow(userId)
-        .then(data => {
-            if (data.resultCode === 0) {
-                dispatch(follow(userId))
-            }
-            dispatch(followInProgress(false, userId))
-        })
+    const data = await apiMethod(userId)
+
+    if (data.resultCode === 0) {
+        dispatch(actionCretor(userId))
+    }
+    dispatch(followInProgress(false, userId))
 }
 
-export const unFollowTC = (userId: number): AppThunk => dispatch => {
-    dispatch(followInProgress(true, userId))
-    usersAPI.unFollow(userId)
-        .then(data => {
-            if (data.resultCode === 0) {
-                dispatch(unFollow(userId))
-            }
-            dispatch(followInProgress(false, userId))
-        })
+export const followTC = (userId: number): AppThunk => async dispatch => {
+    followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), follow)
+}
+
+export const unFollowTC = (userId: number): AppThunk => async dispatch => {
+    followUnfollowFlow(dispatch, userId, usersAPI.unFollow.bind(usersAPI), unFollow)
 }
 

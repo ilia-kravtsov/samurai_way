@@ -18,7 +18,7 @@ type MyPostsType = {
 const MyPosts = React.memo((props: MyPostsType) => {
     // // @ts-ignore
     // window.props.push(props)
-    console.log('MyPosts')
+    // console.log('MyPosts')
     const [listRef] = useAutoAnimate<HTMLUListElement>()
 
     const postsDataContent = props.postsData.map(p =>
@@ -34,7 +34,7 @@ const MyPosts = React.memo((props: MyPostsType) => {
     );
 
     const addPost = (value: AddNewPostFormType) => {
-        console.log(value)
+        // console.log(value)
         props.addPost(value.profileTextarea)
     }
 

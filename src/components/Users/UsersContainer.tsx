@@ -1,22 +1,13 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
-import {
-    follow,
-    loaderChanger,
-    onPaginationClick,
-    setUsers,
-    setTotalUsersCount,
-    unFollow, followInProgress, getUsersTC, followTC, unFollowTC,
-} from "../../redux/users_reducer";
+import {followInProgress, followTC, getUsersTC, onPaginationClick, unFollowTC,} from "../../redux/users_reducer";
 import {UsersPresent} from "./UsersPresent";
 import s from './Users.module.css'
 import {PreLoader} from "../common/PreLoader/PreLoader";
-import {usersAPI} from "../../api/api";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
 import {
-    _getUsers,
     getCurrentPage,
     getFollowInProgressValue,
     getIsLoading,
@@ -78,25 +69,22 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
 export class UsersContainer extends React.Component<MapStatePropsType & MapDispatchToPropsType>{
 
     componentDidMount() {
-        this.props.getUsersTC(this.props.currentPage, this.props.pageSize)
+        const {currentPage, pageSize} = this.props
+        this.props.getUsersTC(currentPage, pageSize)
     }
 
     onPageCHanged = (pageNumber: number) => {
-        this.props.getUsersTC(pageNumber, this.props.pageSize)
+        const {pageSize} = this.props
+        this.props.getUsersTC(pageNumber, pageSize)
         this.props.onPaginationClick(pageNumber)
     }
 
     render() {
 
-        return <div className={s.presentContainer}>
-            {this.props.isLoading
+        return <div className={s.presentContainer}>{this.props.isLoading
                 ? <PreLoader/>
                 : <UsersPresent {...this.props}
-                                onPageChanged={this.onPageCHanged}
-                />
-            }
-        </div>
-    }
+                                onPageChanged={this.onPageCHanged}/>}</div>}
 }
 
 export default compose<React.ComponentType>(

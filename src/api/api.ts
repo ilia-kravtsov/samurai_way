@@ -28,7 +28,7 @@ export const usersAPI = {
 
 export const ProfileAPI = {
     login (userId: string) {
-        return  instance.get(`profile/${userId}`)
+        return instance.get(`profile/${userId}`)
                         .then(response => response.data)
     },
     getStatus (userId: string) {
@@ -41,16 +41,16 @@ export const ProfileAPI = {
 
 export const authAPI = {
     authorization () {
-        return  instance.get(`auth/me`).then(response => response.data)
+        return instance.get(`auth/me`).then(response => response.data)
     },
     login (loginData: LoginFormType) {
-        return  instance.post(`auth/login`, loginData).then(response => response.data)
+        return instance.post(`auth/login`, loginData).then(response => response.data)
     },
     logout () {
-        return  instance.delete(`auth/login`).then(response => response.data)
+        return instance.delete(`auth/login`).then(response => response.data)
     },
     getCaptchaImg () {
-        return  instance.get(`/security/get-captcha-url`).then(response => response.data)
+        return instance.get(`/security/get-captcha-url`).then(response => response.data)
     },
 }
 

@@ -6,7 +6,7 @@ import {CaptchaServerType, loginTC} from "../../redux/auth_reducer";
 
 export type PropsType = MSTP & MDTP
 
-const LoginContainer = (props: PropsType) => {
+const LoginContainer = ({isAuth, loginTC, captchaData}: PropsType) => {
 
     // const dispatch = useDispatch()
     //
@@ -15,9 +15,9 @@ const LoginContainer = (props: PropsType) => {
     // }
 
     return (
-        <Login isAuth={props.isAuth}
-               loginTC={props.loginTC}
-               captchaData={props.captchaData}
+        <Login isAuth={isAuth}
+               loginTC={loginTC}
+               captchaData={captchaData}
         />
     )
 }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import s from './App.module.css';
-import {Redirect, Route, RouteComponentProps, withRouter} from 'react-router-dom';
+import {Route, withRouter} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
@@ -12,7 +12,6 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Headers/HeaderContainer";
 import LoginContainer from "./components/Login/LoginContainer";
 import {connect} from "react-redux";
-import {getAuthUsersDataTC} from "redux/auth_reducer";
 import {compose} from "redux";
 import {initializeApp} from "redux/app_reducer";
 import {RootStateType} from "redux/redux-store";

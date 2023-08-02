@@ -24,9 +24,9 @@ export type CaptchaServerType = {
     url: string
 }
 
-const SET_USER_DATA = 'SET_USER_DATA';
-const IS_USER_LOGIN_DATA_CORRECT = 'IS_USER_LOGIN_DATA_CORRECT';
-const ADD_CAPTCHA_DATA_IMG_URL = 'ADD_CAPTCHA_DATA_IMG_URL';
+const SET_USER_DATA = 'auth/SET_USER_DATA';
+const IS_USER_LOGIN_DATA_CORRECT = 'auth/IS_USER_LOGIN_DATA_CORRECT';
+const ADD_CAPTCHA_DATA_IMG_URL = 'auth/ADD_CAPTCHA_DATA_IMG_URL';
 
 const initialState: UserDataType = {
     id: null,
@@ -78,16 +78,16 @@ export const addCaptchaImgUrl = (url: string) => ({
 } as const)
 
 export const getAuthUsersDataTC = (): AppThunk => async dispatch => {
-    // const data = await authAPI.authorization()
-    // if (data.resultCode === 0) {
-    //     dispatch(setAuthUserData(data.data, true))
-    // }
-    return authAPI.authorization()
-        .then(response => {
-            if (response.resultCode === 0) {
-                dispatch(setAuthUserData(response.data, true))
-            }
-        })
+    const data = await authAPI.authorization()
+    if (data.resultCode === 0) {
+        dispatch(setAuthUserData(data.data, true))
+    }
+    // return authAPI.authorization()
+    //     .then(response => {
+    //         if (response.resultCode === 0) {
+    //             dispatch(setAuthUserData(response.data, true))
+    //         }
+    //     })
 }
 
 export const loginTC = (loginData: LoginFormType): AppThunk => async dispatch => {

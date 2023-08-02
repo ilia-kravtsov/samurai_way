@@ -1,6 +1,8 @@
 import {FC} from "react";
 import React from "react"
 import s from './FormControls.module.css'
+import {required} from "validators/validators";
+import {Field} from "redux-form";
 
 type TextareaType = {
     input: any
@@ -18,8 +20,8 @@ export const Input: FC<TextareaType> = ({input, meta, placeholder, ...props}) =>
     return <FormControl props={props} input={input} meta={meta} tag={'input'} placeholder={placeholder}></FormControl>
 }
 
-const FormControl: FC<TextareaType> = ({input, meta, tag, placeholder, ...props}) => {
-    const hasError = meta.touched && meta.error
+const FormControl: FC<TextareaType> = ({input, meta: {touched, error}, tag, placeholder}) => {
+    const hasError = touched && error
     return (
         <div className={s.container}>
             {React.createElement(tag, {
@@ -27,11 +29,20 @@ const FormControl: FC<TextareaType> = ({input, meta, tag, placeholder, ...props}
                 ...input,
                 className: tag === 'textarea' ? `${s.textarea} ${hasError && s.error}` : `${s.inputs} ${hasError && s.error}`
             })}
-            {hasError && <span className={s.colorRed}>{meta.error}</span>}
+            {hasError && <span className={s.colorRed}>{error}</span>}
         </div>
     )
 }
 
+export const createField = (name: string, type?: {type: string}) => {
+    return <Field placeholder={name}
+           component={Input}
+           validate={[required]}
+           name={name}
+           className={s.login}
+           type={type}
+    />
+}
 /*
 
 const FormControl: FC<TextareaType> = ({input, meta, children, ...props}) => {

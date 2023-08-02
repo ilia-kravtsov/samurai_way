@@ -2,7 +2,7 @@ import React, {ChangeEvent, FC, useState} from 'react';
 import s from './Login.module.css'
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Redirect} from "react-router-dom";
-import {Input} from "components/common/FormsConntrols/FormControls";
+import {createField, Input} from "components/common/FormsConntrols/FormControls";
 import {required} from "validators/validators";
 import {CaptchaServerType} from "redux/auth_reducer";
 
@@ -56,25 +56,27 @@ export type LoginFormType = {
     captcha: string
 }
 
-const LoginForm: FC<InjectedFormProps<LoginFormType & CaptchaServerType>> = (props) => {
+const LoginForm: FC<InjectedFormProps<LoginFormType & CaptchaServerType>> = ({handleSubmit,error }) => {
 
     return (
-        <form onSubmit={props.handleSubmit}
+        <form onSubmit={handleSubmit}
               className={s.form}
         >
-            <Field placeholder={'email'}
-                   component={Input}
-                   validate={[required]}
-                   name={'email'}
-                   className={s.login}
-            />
-            <Field placeholder={'password'}
-                   type={'password'}
-                   component={Input}
-                   validate={[required]}
-                   name={'password'}
-                   className={s.login}
-            />
+            {createField('email')}
+            {createField('password',{type: 'password'})}
+            {/*<Field placeholder={'email'}*/}
+            {/*       component={Input}*/}
+            {/*       validate={[required]}*/}
+            {/*       name={'email'}*/}
+            {/*       className={s.login}*/}
+            {/*/>*/}
+            {/*<Field placeholder={'password'}*/}
+            {/*       type={'password'}*/}
+            {/*       component={Input}*/}
+            {/*       validate={[required]}*/}
+            {/*       name={'password'}*/}
+            {/*       className={s.login}*/}
+            {/*/>*/}
             <div className={s.rememberBox}>
                 <label htmlFor="checkboxId">remember me</label>
                 <Field type={"checkbox"}
@@ -85,7 +87,7 @@ const LoginForm: FC<InjectedFormProps<LoginFormType & CaptchaServerType>> = (pro
                 />
             </div>
             <button className={s.loginKey}>Login</button>
-            {props.error && <div className={s.formError}>{props.error}</div>}
+            {error && <div className={s.formError}>{error}</div>}
         </form>
     )
 }

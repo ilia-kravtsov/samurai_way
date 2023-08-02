@@ -1,0 +1,23 @@
+.btnsContainer {
+    width: 20vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnsContainer button {
+    border: 1px solid lightgrey;
+    font-size: 24px;
+    font-family: 'Lora', serif;
+    padding: 10px;
+}
+
+.btnsContainer button:hover {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.selectedPage {
+    color: #1e88e5;
+}
