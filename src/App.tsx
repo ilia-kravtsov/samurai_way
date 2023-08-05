@@ -5,10 +5,8 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import Video from "./components/Video/Video";
-import MessagesContainer from "./components/Messages/MessagesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import {Navbar} from "./components/Navbars/Navbar";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Headers/HeaderContainer";
 import LoginContainer from "./components/Login/LoginContainer";
 import {connect, Provider} from "react-redux";
@@ -17,6 +15,12 @@ import {initializeApp} from "redux/app_reducer";
 import {RootStateType, store} from "redux/redux-store";
 import {PreLoader} from "components/common/PreLoader/PreLoader";
 import {createTheme, ThemeProvider} from "@mui/material";
+
+// import MessagesContainer from "./components/Messages/MessagesContainer";
+const MessagesContainer = React.lazy(() => import('./components/Messages/MessagesContainer'))
+
+// import ProfileContainer from "./components/Profile/ProfileContainer";
+const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"))
 
 type AppType = MSTP & MDTP
 
@@ -38,17 +42,19 @@ class App extends Component<AppType, any> {
                 <div className={s.body}>
                     <Navbar/>
                     <div className={s.main}>
-                        {/*<Route path='/*' render={() => <Redirect to={'/profile'}/>}/>*/}
-                        {/*<Route path='/profile' render={() => <ProfileContainer/>}/>*/}
-                        <Route path='/' render={() => <Redirect to={'/profile'}/>}/>
-                        <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                        <Route path='/messages' render={() => <MessagesContainer/>}/>
-                        <Route path='/news' render={() => <News/>}/>
-                        <Route path='/music' render={() => <Music/>}/>
-                        <Route path='/settings' render={() => <Settings/>}/>
-                        <Route path='/video' render={() => <Video/>}/>
-                        <Route path='/users' render={() => <UsersContainer/>}/>
-                        <Route path='/login' render={() => <LoginContainer/>}/>
+                        <React.Suspense fallback={<PreLoader/>}>
+                            {/*<Route path='/*' render={() => <Redirect to={'/profile'}/>}/>*/}
+                            {/*<Route path='/profile' render={() => <ProfileContainer/>}/>*/}
+                            <Route path='/' render={() => <Redirect to={'/profile'}/>}/>
+                            <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                            <Route path='/messages' render={() => <MessagesContainer/>}/>
+                            <Route path='/news' render={() => <News/>}/>
+                            <Route path='/music' render={() => <Music/>}/>
+                            <Route path='/settings' render={() => <Settings/>}/>
+                            <Route path='/video' render={() => <Video/>}/>
+                            <Route path='/users' render={() => <UsersContainer/>}/>
+                            <Route path='/login' render={() => <LoginContainer/>}/>
+                        </React.Suspense>
                     </div>
                 </div>
             </div>

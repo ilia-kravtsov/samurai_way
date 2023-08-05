@@ -12,7 +12,7 @@ type UsersPresentType = {
 }
 
 export const Paginator: FC<UsersPresentType> = ({totalItemsCount, pageSize, currentPage, onPageChanged, portionSize}) => {
-debugger
+
     let pagesCount = Math.ceil(totalItemsCount / pageSize)
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
