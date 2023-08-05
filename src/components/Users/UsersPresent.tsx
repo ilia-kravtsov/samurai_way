@@ -21,7 +21,9 @@ export const UsersPresent: FC<UsersPresentType> = ({...props}) => {
         <Paginator currentPage={props.currentPage}
                    onPageChanged={props.onPageChanged}
                    pageSize={props.pageSize}
-                   totalUsersCount={props.totalUsersCount}/>
+                   totalItemsCount={props.totalUsersCount}
+                   portionSize={10}
+        />
         {props.users.map(u => <User key={u.id}
                                     user={u}
                                     followInProgressValue={props.followInProgressValue}
