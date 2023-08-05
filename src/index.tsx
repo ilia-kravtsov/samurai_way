@@ -6,7 +6,7 @@ import {BrowserRouter} from "react-router-dom";
 import {store} from "./redux/redux-store";
 import {Provider} from "react-redux";
 import {createTheme, ThemeProvider} from "@mui/material";
-import App from "App";
+import {SocialApp} from "App";
 
 const theme = createTheme({
     palette: {
@@ -26,15 +26,7 @@ const theme = createTheme({
 //     store.dispatch({type: 'FAKE'})
 // }, 1000)
 
-ReactDOM.render(
-    <BrowserRouter>
-        <Provider store={store}>
-            <ThemeProvider theme={theme}>
-                <App/>
-            </ThemeProvider>
-        </Provider>
-    </BrowserRouter>
-    , document.getElementById('root'));
+ReactDOM.render(<SocialApp/>,document.getElementById('root'));
 
 // export let rerenderEntireTree = () => {
 // store.subscribe(() => rerenderEntireTree());

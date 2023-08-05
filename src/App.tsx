@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import s from './App.module.css';
-import {Route, withRouter} from 'react-router-dom';
+import {BrowserRouter, Redirect, Route, withRouter} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
@@ -11,11 +11,12 @@ import {Navbar} from "./components/Navbars/Navbar";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Headers/HeaderContainer";
 import LoginContainer from "./components/Login/LoginContainer";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "redux/app_reducer";
-import {RootStateType} from "redux/redux-store";
+import {RootStateType, store} from "redux/redux-store";
 import {PreLoader} from "components/common/PreLoader/PreLoader";
+import {createTheme, ThemeProvider} from "@mui/material";
 
 type AppType = MSTP & MDTP
 
@@ -39,7 +40,7 @@ class App extends Component<AppType, any> {
                     <div className={s.main}>
                         {/*<Route path='/*' render={() => <Redirect to={'/profile'}/>}/>*/}
                         {/*<Route path='/profile' render={() => <ProfileContainer/>}/>*/}
-                        {/*<Route path='/' render={() => <Redirect to={'/profile'}/>}/>*/}
+                        <Route path='/' render={() => <Redirect to={'/profile'}/>}/>
                         <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                         <Route path='/messages' render={() => <MessagesContainer/>}/>
                         <Route path='/news' render={() => <News/>}/>
@@ -67,11 +68,35 @@ const MSTP = (state: RootStateType) => ({
     initialized: state.app.initialized
 })
 
-export default compose<React.ComponentType>(
+const AppContainer = compose<React.ComponentType>(
     connect(MSTP, {initializeApp}),
     withRouter)(App)
 
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#1e88e5',
+        },
+        secondary: {
+            main: '#FFF',
+        },
+    },
+    typography: {
+        fontSize: 14,
+    },
+})
 
+export const SocialApp = () => {
+    return (
+        <BrowserRouter>
+            <Provider store={store}>
+                <ThemeProvider theme={theme}>
+                    <AppContainer/>
+                </ThemeProvider>
+            </Provider>
+        </BrowserRouter>
+    )
+}
 
 /*
 type AppWrapperProps = {

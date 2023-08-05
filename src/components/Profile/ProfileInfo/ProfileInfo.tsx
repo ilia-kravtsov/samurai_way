@@ -2,7 +2,7 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import {ProfileDataType} from "../ProfileContainer";
 import {PreLoader} from "../../common/PreLoader/PreLoader";
-import {ProfileStatus} from "./ProfileStatus";
+import ProfileStatus from "./ProfileStatus";
 import {ProfileStatusWithHooks} from "components/Profile/ProfileInfo/ProfileStatusWithHooks";
 
 type ProfileInfo = {
