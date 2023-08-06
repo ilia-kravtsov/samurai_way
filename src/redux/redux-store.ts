@@ -3,7 +3,7 @@ import {
     addPost, delPost,
     onDisLikeHandler,
     onLikeHandler,
-    profilePageReducer, setStatusAC, setUserProfile,
+    profilePageReducer, savePhotoAC, setStatusAC, setUserProfile,
 } from "./profile_page_reducer";
 import {
     addMyNewMessageAC,
@@ -59,7 +59,8 @@ export type ActionsTypes =
     | ReturnType<typeof isUserLoginDataCorrect>
     | ReturnType<typeof addCaptchaImgUrl>
     | ReturnType<typeof initializedSucces>
-    | {type: 'FAKE'}
+    | ReturnType<typeof savePhotoAC>
+    | {type: 'profile/FAKE'}
 
 export type AppThunk<ReturnType = void> = ThunkAction<void, RootStateType, unknown, ActionsTypes>
 // @ts-ignore

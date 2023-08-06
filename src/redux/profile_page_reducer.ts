@@ -4,13 +4,14 @@ import {ActionsTypes, AppThunk} from "./redux-store";
 import {ProfileDataType} from "components/Profile/ProfileContainer";
 import {ProfileAPI} from "../api/api";
 
-const ADD_POST = 'ADD-POST';
-const DELETE_POST = 'DELETE_POST';
-const ON_LIKE_HANDLER_TYPE = 'ON-LIKE-HANDLER-TYPE';
-const ON_DISLIKE_HANDLER_TYPE = 'ON_DISLIKE_HANDLER_TYPE';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_STATUS = 'SET_STATUS';
-const FAKE = 'FAKE';
+const ADD_POST = 'profile/ADD-POST';
+const DELETE_POST = 'profile/DELETE_POST';
+const ON_LIKE_HANDLER_TYPE = 'profile/ON-LIKE-HANDLER-TYPE';
+const ON_DISLIKE_HANDLER_TYPE = 'profile/ON_DISLIKE_HANDLER_TYPE';
+const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
+const SET_STATUS = 'profile/SET_STATUS';
+const FAKE = 'profile/FAKE';
+const SAVE_NEW_PHOTO = 'profile/SET_NEW_PHOTO';
 
 type initialStateType = {
     postsData: Array<PostsData>
@@ -58,6 +59,8 @@ export const profilePageReducer = (state = initialState, action: ActionsTypes): 
             return {...state, profile: action.profile}
         case SET_STATUS:
             return {...state, status: action.status}
+        case SAVE_NEW_PHOTO:
+            return {...state, profile: {...state.profile, photos: action.photos}}
         default:
             return state
     }
@@ -69,6 +72,10 @@ export const onLikeHandler = (index: string) => ({type: ON_LIKE_HANDLER_TYPE, in
 export const onDisLikeHandler = (index: string) => ({type: ON_DISLIKE_HANDLER_TYPE, index: index} as const)
 export const setUserProfile = (profile: ProfileDataType) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatusAC = (status: string) => ({type: SET_STATUS, status} as const)
+export const savePhotoAC = (photos: {
+    small: string,
+    large: string
+}) => ({type: SAVE_NEW_PHOTO, photos} as const)
 
 export const loginTC = (userId: string): AppThunk => async dispatch => {
     const data = await ProfileAPI.login(userId)
@@ -84,5 +91,13 @@ export const updateStatusTC = (status: string): AppThunk => async dispatch => {
     const data = await ProfileAPI.updateStatus(status)
     if (data.data.resultCode === 0) {
         dispatch(setStatusAC(status))
+    }
+}
+
+export const savedPhotoTC = (ava: string | Blob): AppThunk => async dispatch => {
+    const data = await ProfileAPI.savedPhoto(ava)
+
+    if (data.data.resultCode === 0) {
+        dispatch(savePhotoAC(data.data.data.photos))
     }
 }
