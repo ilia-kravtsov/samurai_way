@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import s from './App.module.css';
-import {BrowserRouter, Redirect, Route, withRouter} from 'react-router-dom';
+import {BrowserRouter, HashRouter, Redirect, Route, withRouter} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
@@ -94,13 +94,13 @@ const theme = createTheme({
 
 export const SocialApp = () => {
     return (
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <HashRouter>
             <Provider store={store}>
                 <ThemeProvider theme={theme}>
                     <AppContainer/>
                 </ThemeProvider>
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 
