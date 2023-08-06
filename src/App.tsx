@@ -94,7 +94,7 @@ const theme = createTheme({
 
 export const SocialApp = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Provider store={store}>
                 <ThemeProvider theme={theme}>
                     <AppContainer/>
