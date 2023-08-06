@@ -1,17 +1,27 @@
 {
   "files": {
-    "main.css": "/samurai_way/static/css/main.edd341fb.css",
-    "main.js": "/samurai_way/static/js/main.5b7b805b.js",
+    "main.css": "/samurai_way/static/css/main.c3a4f501.css",
+    "main.js": "/samurai_way/static/js/main.0b886c0d.js",
+    "static/css/60.6c674fbd.chunk.css": "/samurai_way/static/css/60.6c674fbd.chunk.css",
+    "static/js/60.67bfdeb9.chunk.js": "/samurai_way/static/js/60.67bfdeb9.chunk.js",
+    "static/css/445.c78a043f.chunk.css": "/samurai_way/static/css/445.c78a043f.chunk.css",
+    "static/js/445.93f10264.chunk.js": "/samurai_way/static/js/445.93f10264.chunk.js",
+    "static/js/571.2adbaaff.chunk.js": "/samurai_way/static/js/571.2adbaaff.chunk.js",
     "static/media/2208_w048_n005_279a_p1_279.jpg": "/samurai_way/static/media/2208_w048_n005_279a_p1_279.79a241ac55a2bbd1c1fa.jpg",
-    "static/media/29505847793400.jpg": "/samurai_way/static/media/29505847793400.4447a55cdcacfb41ecbb.jpg",
+    "static/media/80911.jpg": "/samurai_way/static/media/80911.65fc5b1a07e0245fdf4d.jpg",
     "static/media/pattern-28.svg": "/samurai_way/static/media/pattern-28.45e36c1de94c26485bad.svg",
     "static/media/404.svg": "/samurai_way/static/media/404.9ec31c0ba8d95b048027.svg",
     "index.html": "/samurai_way/index.html",
-    "main.edd341fb.css.map": "/samurai_way/static/css/main.edd341fb.css.map",
-    "main.5b7b805b.js.map": "/samurai_way/static/js/main.5b7b805b.js.map"
+    "main.c3a4f501.css.map": "/samurai_way/static/css/main.c3a4f501.css.map",
+    "main.0b886c0d.js.map": "/samurai_way/static/js/main.0b886c0d.js.map",
+    "60.6c674fbd.chunk.css.map": "/samurai_way/static/css/60.6c674fbd.chunk.css.map",
+    "60.67bfdeb9.chunk.js.map": "/samurai_way/static/js/60.67bfdeb9.chunk.js.map",
+    "445.c78a043f.chunk.css.map": "/samurai_way/static/css/445.c78a043f.chunk.css.map",
+    "445.93f10264.chunk.js.map": "/samurai_way/static/js/445.93f10264.chunk.js.map",
+    "571.2adbaaff.chunk.js.map": "/samurai_way/static/js/571.2adbaaff.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.edd341fb.css",
-    "static/js/main.5b7b805b.js"
+    "static/css/main.c3a4f501.css",
+    "static/js/main.0b886c0d.js"
   ]
 }
