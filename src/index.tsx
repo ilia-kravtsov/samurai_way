@@ -8,19 +8,19 @@ import {Provider} from "react-redux";
 import {createTheme, ThemeProvider} from "@mui/material";
 import {SocialApp} from "App";
 
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: '#1e88e5',
-        },
-        secondary: {
-            main: '#FFF',
-        },
-    },
-    typography: {
-        fontSize: 14,
-    },
-})
+// const theme = createTheme({
+//     palette: {
+//         primary: {
+//             main: '#1e88e5',
+//         },
+//         secondary: {
+//             main: '#FFF',
+//         },
+//     },
+//     typography: {
+//         fontSize: 14,
+//     },
+// })
 
 // setInterval(() => {
 //     store.dispatch({type: 'FAKE'})

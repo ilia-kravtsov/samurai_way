@@ -14,6 +14,7 @@ type ProfileInfo = {
     saveProfileData: (formData: FormInputsType) => void
     personDataFlag: boolean
     personDataFlagToogle: (personDataFlag: boolean) => void
+    errorStatusFlag: string
 }
 
 const ProfileInfo = (props: ProfileInfo) => {
@@ -44,6 +45,7 @@ const ProfileInfo = (props: ProfileInfo) => {
                                             saveProfileData={props.saveProfileData}
                                             personDataFlag={props.personDataFlag}
                                             personDataFlagToggle={props.personDataFlagToogle}
+                                            errorStatusFlag={props.errorStatusFlag}
                     />
                     {/*<ProfileStatus status={props.status} updateStatusTC={props.updateStatusTC}/>*/}
                 </div>

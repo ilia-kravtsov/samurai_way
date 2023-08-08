@@ -15,6 +15,7 @@ type ProfileStatusType = {
     saveProfileData: (formData: FormInputsType) => void
     personDataFlag: boolean
     personDataFlagToggle: (personDataFlag: boolean) => void
+    errorStatusFlag: string
 }
 
 export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
@@ -67,6 +68,7 @@ export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
                                 color={'primary'}>
                         <EditIcon/>
                     </IconButton>
+                    {props.errorStatusFlag && <div>{props.errorStatusFlag}</div>}
                 </div>
             }
             {props.personDataFlag

@@ -4,11 +4,13 @@ import {getAuthUsersDataTC} from "redux/auth_reducer";
 
 export type AppInitial = {
     initialized: boolean
+    globalError: string | null
 }
 const INITIALIZED_SUCCES = 'INITIALIZED_SUCCES';
 
 const initialState: AppInitial = {
     initialized: false,
+    globalError: null
 };
 
 export const appReducer = (state = initialState, action: ActionsTypes): AppInitial => {

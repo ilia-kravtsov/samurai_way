@@ -15,6 +15,7 @@ const SET_STATUS = 'profile/SET_STATUS';
 const FAKE = 'profile/FAKE';
 const SAVE_NEW_PHOTO = 'profile/SET_NEW_PHOTO';
 const PROFILE_TOGGLE = 'profile/PROFILE_TOGGLE';
+const MAX_COUNT_OF_SYMBOLS = 'profile/MAX_COUNT_OF_SYMBOLS';
 
 type initialStateType = {
     postsData: Array<PostsData>
@@ -22,6 +23,7 @@ type initialStateType = {
     status: string
     fake: number
     personDataFlag: boolean
+    errorStatusFlag: string
 }
 
 const initialState: initialStateType = {
@@ -31,7 +33,8 @@ const initialState: initialStateType = {
     profile: {} as ProfileDataType,
     status: '',
     fake: 0,
-    personDataFlag: false
+    personDataFlag: false,
+    errorStatusFlag: ''
 };
 
 export const profilePageReducer = (state = initialState, action: ActionsTypes): initialStateType => {
@@ -68,6 +71,8 @@ export const profilePageReducer = (state = initialState, action: ActionsTypes): 
             return {...state, profile: {...state.profile, photos: action.photos}}
         case PROFILE_TOGGLE:
             return {...state, personDataFlag: action.personDataFlag}
+        case MAX_COUNT_OF_SYMBOLS:
+            return {...state, errorStatusFlag: action.error}
         default:
             return state
     }
@@ -79,6 +84,7 @@ export const onLikeHandler = (index: string) => ({type: ON_LIKE_HANDLER_TYPE, in
 export const onDisLikeHandler = (index: string) => ({type: ON_DISLIKE_HANDLER_TYPE, index: index} as const)
 export const setUserProfile = (profile: ProfileDataType) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatusAC = (status: string) => ({type: SET_STATUS, status} as const)
+export const maxCountOfSymbolsWhenUpdateStatusAC = (error: string) => ({type: MAX_COUNT_OF_SYMBOLS, error} as const)
 export const savePhotoAC = (photos: { small: string, large: string }) => ({type: SAVE_NEW_PHOTO, photos} as const)
 export const profileToggle = (personDataFlag: boolean) => ({type: PROFILE_TOGGLE, personDataFlag} as const)
 
@@ -92,10 +98,17 @@ export const getStatusTC = (userId: string): AppThunk => async dispatch => {
     dispatch(setStatusAC(data.data))
 }
 export const updateStatusTC = (status: string): AppThunk => async dispatch => {
-    const data = await ProfileAPI.updateStatus(status)
-    if (data.data.resultCode === 0) {
-        dispatch(setStatusAC(status))
+    try {
+        const data = await ProfileAPI.updateStatus(status)
+        if (data.data.resultCode === 0) {
+            dispatch(setStatusAC(status))
+        } else if (data.data.resultCode === 1) {
+            dispatch(maxCountOfSymbolsWhenUpdateStatusAC(data.data.messages[0]))
+        }
+    } catch (error) {
+
     }
+
 }
 export const savedPhotoTC = (ava: string | Blob): AppThunk => async dispatch => {
     const data = await ProfileAPI.savedPhoto(ava)

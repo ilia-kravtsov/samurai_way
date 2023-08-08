@@ -45,6 +45,7 @@ type MapStatePropsType = {
     isAuth: boolean
     fake: number
     personDataFlag: boolean
+    errorStatusFlag: string
 }
 type MapDispatchToPropsType = {
     loginTC: (userId: string) => void
@@ -100,7 +101,8 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
         authorizedUserId: state.auth.id,
         isAuth: state.auth.isAuth,
         fake: state.profilePage.fake,
-        personDataFlag: state.profilePage.personDataFlag
+        personDataFlag: state.profilePage.personDataFlag,
+        errorStatusFlag: state.profilePage.errorStatusFlag
     }
 }
 
@@ -119,4 +121,7 @@ export default compose<React.ComponentType>(
 // const ProfileContainerWithProps = connect(mapStateToProps, {loginTC})(withR)
 // let AuthRedirectComponen = withAuthRedirect(ProfileContainerWithProps)
 
-
+/*
+connect - коннектит нас к стору
+withRouter - коннектит нас к урлу
+ */

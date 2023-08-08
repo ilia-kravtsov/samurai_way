@@ -39,3 +39,6 @@ export const Paginator: FC<UsersPresentType> = ({totalItemsCount, pageSize, curr
             </div>
     );
 };
+
+//  <div className={cn(s.btnsContainer, s.red)}>
+//  <div className={cn(s.btnsContainer, {[s.red]} : true)}> red вместо true можно написать тернарник

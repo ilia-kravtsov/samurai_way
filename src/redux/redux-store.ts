@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import {
-    addPost, delPost,
+    addPost, delPost, maxCountOfSymbolsWhenUpdateStatusAC,
     onDisLikeHandler,
     onLikeHandler, personDataFlagToogle,
     profilePageReducer, profileToggle, savePhotoAC, setStatusAC, setUserProfile,
@@ -61,6 +61,7 @@ export type ActionsTypes =
     | ReturnType<typeof initializedSucces>
     | ReturnType<typeof savePhotoAC>
     | ReturnType<typeof profileToggle>
+    | ReturnType<typeof maxCountOfSymbolsWhenUpdateStatusAC>
     | {type: 'profile/FAKE'}
 
 export type AppThunk<ReturnType = void> = ThunkAction<void, RootStateType, unknown, ActionsTypes>

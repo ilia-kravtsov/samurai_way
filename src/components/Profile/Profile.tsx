@@ -3,7 +3,6 @@ import s from './Profile.module.css'
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import {MyPostsContainer, PostsData} from "./MyPosts/MyPostsContainer";
 import {ProfileDataType} from "./ProfileContainer";
-import {savedPhotoTC} from "redux/profile_page_reducer";
 import {FormInputsType} from "components/Profile/ProfileInfo/ProfileStatusWithHooks";
 
 type ProfileType = {
@@ -15,6 +14,7 @@ type ProfileType = {
     saveProfileData: (formData: FormInputsType) => void
     personDataFlag: boolean
     personDataFlagToogle: (personDataFlag: boolean) => void
+    errorStatusFlag: string
 }
 
 const Profile = (props: ProfileType) => {
@@ -33,6 +33,7 @@ const Profile = (props: ProfileType) => {
                          saveProfileData={saveProfileData}
                          personDataFlag={props.personDataFlag}
                          personDataFlagToogle={props.personDataFlagToogle}
+                         errorStatusFlag={props.errorStatusFlag}
             />
             <MyPostsContainer />
         </div>
