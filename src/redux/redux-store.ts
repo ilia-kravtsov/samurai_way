@@ -2,8 +2,8 @@ import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import {
     addPost, delPost,
     onDisLikeHandler,
-    onLikeHandler,
-    profilePageReducer, savePhotoAC, setStatusAC, setUserProfile,
+    onLikeHandler, personDataFlagToogle,
+    profilePageReducer, profileToggle, savePhotoAC, setStatusAC, setUserProfile,
 } from "./profile_page_reducer";
 import {
     addMyNewMessageAC,
@@ -60,6 +60,7 @@ export type ActionsTypes =
     | ReturnType<typeof addCaptchaImgUrl>
     | ReturnType<typeof initializedSucces>
     | ReturnType<typeof savePhotoAC>
+    | ReturnType<typeof profileToggle>
     | {type: 'profile/FAKE'}
 
 export type AppThunk<ReturnType = void> = ThunkAction<void, RootStateType, unknown, ActionsTypes>

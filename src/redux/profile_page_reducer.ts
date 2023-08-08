@@ -3,6 +3,8 @@ import {PostsData} from "components/Profile/MyPosts/MyPostsContainer";
 import {ActionsTypes, AppThunk} from "./redux-store";
 import {ProfileDataType} from "components/Profile/ProfileContainer";
 import {ProfileAPI} from "../api/api";
+import {FormInputsType} from "components/Profile/ProfileInfo/ProfileStatusWithHooks";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'profile/ADD-POST';
 const DELETE_POST = 'profile/DELETE_POST';
@@ -12,12 +14,14 @@ const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
 const SET_STATUS = 'profile/SET_STATUS';
 const FAKE = 'profile/FAKE';
 const SAVE_NEW_PHOTO = 'profile/SET_NEW_PHOTO';
+const PROFILE_TOGGLE = 'profile/PROFILE_TOGGLE';
 
 type initialStateType = {
     postsData: Array<PostsData>
     profile: ProfileDataType
     status: string
     fake: number
+    personDataFlag: boolean
 }
 
 const initialState: initialStateType = {
@@ -26,7 +30,8 @@ const initialState: initialStateType = {
     ],
     profile: {} as ProfileDataType,
     status: '',
-    fake: 0
+    fake: 0,
+    personDataFlag: false
 };
 
 export const profilePageReducer = (state = initialState, action: ActionsTypes): initialStateType => {
@@ -61,39 +66,37 @@ export const profilePageReducer = (state = initialState, action: ActionsTypes): 
             return {...state, status: action.status}
         case SAVE_NEW_PHOTO:
             return {...state, profile: {...state.profile, photos: action.photos}}
+        case PROFILE_TOGGLE:
+            return {...state, personDataFlag: action.personDataFlag}
         default:
             return state
     }
 }
-
+// actions
 export const delPost = (index: string) => ({type: DELETE_POST, index: index} as const)
 export const addPost = (postText: string) => ({type: ADD_POST, postText} as const)
 export const onLikeHandler = (index: string) => ({type: ON_LIKE_HANDLER_TYPE, index: index} as const)
 export const onDisLikeHandler = (index: string) => ({type: ON_DISLIKE_HANDLER_TYPE, index: index} as const)
 export const setUserProfile = (profile: ProfileDataType) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatusAC = (status: string) => ({type: SET_STATUS, status} as const)
-export const savePhotoAC = (photos: {
-    small: string,
-    large: string
-}) => ({type: SAVE_NEW_PHOTO, photos} as const)
+export const savePhotoAC = (photos: { small: string, large: string }) => ({type: SAVE_NEW_PHOTO, photos} as const)
+export const profileToggle = (personDataFlag: boolean) => ({type: PROFILE_TOGGLE, personDataFlag} as const)
 
+//thunks
 export const loginTC = (userId: string): AppThunk => async dispatch => {
     const data = await ProfileAPI.login(userId)
     dispatch(setUserProfile(data))
 }
-
 export const getStatusTC = (userId: string): AppThunk => async dispatch => {
     const data = await ProfileAPI.getStatus(userId)
     dispatch(setStatusAC(data.data))
 }
-
 export const updateStatusTC = (status: string): AppThunk => async dispatch => {
     const data = await ProfileAPI.updateStatus(status)
     if (data.data.resultCode === 0) {
         dispatch(setStatusAC(status))
     }
 }
-
 export const savedPhotoTC = (ava: string | Blob): AppThunk => async dispatch => {
     const data = await ProfileAPI.savedPhoto(ava)
 
@@ -101,3 +104,31 @@ export const savedPhotoTC = (ava: string | Blob): AppThunk => async dispatch => 
         dispatch(savePhotoAC(data.data.data.photos))
     }
 }
+export const personDataFlagToogle = (personDataFlag: boolean): AppThunk => async dispatch => {
+    dispatch(profileToggle(personDataFlag))
+}
+
+export const saveProfileData = (formData: FormInputsType): AppThunk => async (dispatch, getState) => {
+
+    const userId = getState().auth.id
+
+    const data = await ProfileAPI.saveProfileData(formData)
+    if (data.data.resultCode === 0) {
+        dispatch(personDataFlagToogle(false))
+        dispatch(loginTC(`${userId}`))
+    } else {
+        // "Invalid url format (Contacts->Youtube)"
+        const message = data.data.messages.length > 0 ? data.data.messages[0] : ''
+        const regex = /\(([^->]+)->([^)]+)\)/;
+        const match = message.match(regex);
+        const word_1 = match[2].trim().toLowerCase();
+        const errors_text = {'contacts': {[word_1]: message}}
+        dispatch(stopSubmit('profileData', errors_text))
+        console.log(message)
+    }
+}
+
+
+
+
+

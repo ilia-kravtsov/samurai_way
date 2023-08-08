@@ -33,14 +33,10 @@
 .borderDescriptionBLock {
     background: #e5e5e5;
     width: 100%;
-    height: 10vh;
+    height: 30vh;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-evenly;
     padding: 10px;
     font-family: 'Lora', serif;
-
 }
 
 .descriptionContainer {
@@ -82,4 +78,30 @@
     box-shadow: 1px 0 5px 0 rgba(0, 0, 0, 0.2);
     padding: 13px;
     border-radius: 5px;
+}
+
+.formPersonInfromation {
+    z-index: 10;
+    background-color: lightgrey;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+.formPersonInfromation button {
+    padding: 10px;
+    border: none;
+}
+
+.formPersonInfromation button:hover {
+    cursor: pointer;
+}
+
+.contact {
+
+}
+
+.formError {
+    color: #b8001c;
+    margin-top: 15px;
+    border: 1px solid #b8001c;
 }

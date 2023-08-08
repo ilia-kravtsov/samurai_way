@@ -62,21 +62,19 @@ const LoginForm: FC<InjectedFormProps<LoginFormType & CaptchaServerType>> = ({ha
         <form onSubmit={handleSubmit}
               className={s.form}
         >
-            {createField('email')}
-            {createField('password',{type: 'password'})}
-            {/*<Field placeholder={'email'}*/}
-            {/*       component={Input}*/}
-            {/*       validate={[required]}*/}
-            {/*       name={'email'}*/}
-            {/*       className={s.login}*/}
-            {/*/>*/}
-            {/*<Field placeholder={'password'}*/}
-            {/*       type={'password'}*/}
-            {/*       component={Input}*/}
-            {/*       validate={[required]}*/}
-            {/*       name={'password'}*/}
-            {/*       className={s.login}*/}
-            {/*/>*/}
+            <Field placeholder={'email'}
+                   component={Input}
+                   validate={[required]}
+                   name={'email'}
+                   className={s.login}
+            />
+            <Field placeholder={'password'}
+                   type={'password'}
+                   component={Input}
+                   validate={[required]}
+                   name={'password'}
+                   className={s.login}
+            />
             <div className={s.rememberBox}>
                 <label htmlFor="checkboxId">remember me</label>
                 <Field type={"checkbox"}

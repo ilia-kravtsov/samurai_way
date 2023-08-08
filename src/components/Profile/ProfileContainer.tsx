@@ -1,11 +1,19 @@
 import React from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getStatusTC, loginTC, savedPhotoTC, updateStatusTC} from "../../redux/profile_page_reducer";
+import {
+    getStatusTC,
+    loginTC,
+    personDataFlagToogle,
+    savedPhotoTC,
+    saveProfileData,
+    updateStatusTC
+} from "../../redux/profile_page_reducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {RootStateType} from "../../redux/redux-store";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {FormInputsType} from "components/Profile/ProfileInfo/ProfileStatusWithHooks";
 
 type PathParamsType = { userId: string }
 export type ProfileDataType = {
@@ -36,17 +44,20 @@ type MapStatePropsType = {
     authorizedUserId: number | null
     isAuth: boolean
     fake: number
+    personDataFlag: boolean
 }
 type MapDispatchToPropsType = {
     loginTC: (userId: string) => void
     getStatusTC: (userId: string) => void
     updateStatusTC: (status: string) => void
     savedPhotoTC: (ava: string | Blob) => void
+    saveProfileData: (formData: FormInputsType) => void
+    personDataFlagToogle: (personDataFlag: boolean) => void
 }
 
 class ProfileContainer extends React.Component<ProfileContainerType> {
 
-    refreshProfile () {
+    refreshProfile() {
         let userId = this.props.match.params.userId
         if (!userId) {
             userId = `${this.props.authorizedUserId}`
@@ -75,6 +86,8 @@ class ProfileContainer extends React.Component<ProfileContainerType> {
                         profile={this.props.profile}
                         updateStatusTC={this.props.updateStatusTC}
                         isOwner={!this.props.match.params.userId}
+                        saveProfileData={this.props.saveProfileData}
+                        personDataFlagToogle={this.props.personDataFlagToogle}
         />
     }
 }
@@ -86,12 +99,13 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
         status: state.profilePage.status,
         authorizedUserId: state.auth.id,
         isAuth: state.auth.isAuth,
-        fake: state.profilePage.fake
+        fake: state.profilePage.fake,
+        personDataFlag: state.profilePage.personDataFlag
     }
-    }
+}
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {loginTC, getStatusTC, updateStatusTC, savedPhotoTC}),
+    connect(mapStateToProps, {loginTC, getStatusTC, updateStatusTC, savedPhotoTC, saveProfileData, personDataFlagToogle}),
     withRouter,
     withAuthRedirect
 )(ProfileContainer)

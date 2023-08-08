@@ -9,6 +9,7 @@ type initialStateType = {
     profile: ProfileDataType
     status: string
     fake: number
+    personDataFlag: boolean
 }
 
 const state: initialStateType = {
@@ -18,7 +19,8 @@ const state: initialStateType = {
     ],
     profile: {} as ProfileDataType,
     status: '',
-    fake: 0
+    fake: 0,
+    personDataFlag: false
 };
 
 it('length of post should be increment', () => {

@@ -34,8 +34,8 @@ const FormControl: FC<TextareaType> = ({input, meta: {touched, error}, tag, plac
     )
 }
 
-export const createField = (name: string, type?: {type: string}) => {
-    return <Field placeholder={name}
+export const createField = (name: string, placeholder: string, type?: {type: string}) => {
+    return <Field placeholder={placeholder}
            component={Input}
            validate={[required]}
            name={name}

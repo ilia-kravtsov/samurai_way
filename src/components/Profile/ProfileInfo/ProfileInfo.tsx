@@ -3,7 +3,7 @@ import s from './ProfileInfo.module.css';
 import {ProfileDataType} from "../ProfileContainer";
 import {PreLoader} from "../../common/PreLoader/PreLoader";
 import ProfileStatus from "./ProfileStatus";
-import {ProfileStatusWithHooks} from "components/Profile/ProfileInfo/ProfileStatusWithHooks";
+import {FormInputsType, ProfileStatusWithHooks} from "components/Profile/ProfileInfo/ProfileStatusWithHooks";
 
 type ProfileInfo = {
     profile: ProfileDataType
@@ -11,6 +11,9 @@ type ProfileInfo = {
     status: string
     isOwner: boolean
     savedPhoto: (ava: string | Blob) => void
+    saveProfileData: (formData: FormInputsType) => void
+    personDataFlag: boolean
+    personDataFlagToogle: (personDataFlag: boolean) => void
 }
 
 const ProfileInfo = (props: ProfileInfo) => {
@@ -34,8 +37,15 @@ const ProfileInfo = (props: ProfileInfo) => {
                              alt="ava" className={s.ava}/>
                     </div>
                     {props.isOwner && <input type="file" onChange={onMainPhotoSElect}/>}
+                    <ProfileStatusWithHooks status={props.status}
+                                            updateStatusTC={props.updateStatusTC}
+                                            profile={props.profile}
+                                            isOwner={props.isOwner}
+                                            saveProfileData={props.saveProfileData}
+                                            personDataFlag={props.personDataFlag}
+                                            personDataFlagToggle={props.personDataFlagToogle}
+                    />
                     {/*<ProfileStatus status={props.status} updateStatusTC={props.updateStatusTC}/>*/}
-                    <ProfileStatusWithHooks status={props.status} updateStatusTC={props.updateStatusTC}/>
                 </div>
             </div>
         </div>
