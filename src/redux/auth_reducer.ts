@@ -91,21 +91,19 @@ export const getAuthUsersDataTC = (): AppThunk => async dispatch => {
 }
 
 export const loginTC = (loginData: LoginFormType): AppThunk => async dispatch => {
-    try {
         const data = await authAPI.login(loginData);
         if (data.resultCode === 0) {
             dispatch(getAuthUsersDataTC());
-        } else if (data.resultCode === 1) {
-            dispatch(isUserLoginDataCorrect(data))
-            // const action: any = stopSubmit('login', {_error: 'Email or Password are incorrect'})
-            // dispatch(action)
-        } else if (data.resultCode === 10) {
-            dispatch(isUserLoginDataCorrect(data))
-            dispatch(getCaptchaImgTC())
+        } else {
+            if (data.resultCode === 1) {
+                dispatch(isUserLoginDataCorrect(data))
+                // const action: any = stopSubmit('login', {_error: 'Email or Password are incorrect'})
+                // dispatch(action)
+            } else if (data.resultCode === 10) {
+                dispatch(isUserLoginDataCorrect(data))
+                dispatch(getCaptchaImgTC())
+            }
         }
-    } catch (error) {
-        console.error('Error in getLoginUsersDataTC:', error);
-    }
 }
 
 export const logoutTC = (): AppThunk => async dispatch => {
