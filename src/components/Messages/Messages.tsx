@@ -2,10 +2,11 @@ import React, {useEffect, useRef} from 'react'
 import s from './Messages.module.css'
 import Message from "./Message/Message";
 import MessageItem from "./MessageItem/MessageItem";
-import MessageSender from "./MessageSender/MessageSender";
 import {MessagesPropsType} from "./MessagesContainer";
 import {useAutoAnimate} from "@formkit/auto-animate/react";
 import {Redirect} from "react-router-dom";
+import {addMyNewMessageAC} from "redux/messages_page_reducer";
+import {MessageSender} from "components/Messages/MessageSender/MessageSender";
 
 const Messages = (props: MessagesPropsType) => {
 
@@ -49,8 +50,8 @@ const Messages = (props: MessagesPropsType) => {
                     </ul>
                 </div>
                 <MessageSender myNewMessageText={props.messagesPage.myNewMessageText}
-                               addMyNewMessageUI={props.addMyNewMessageUI}
-
+                               addMyNewMessageAC={props.addMyNewMessageAC}
+                               setMyNewMessageAC={props.setMyNewMessageAC}
                 />
             </div>
         </div>

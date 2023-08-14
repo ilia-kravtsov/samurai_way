@@ -16,6 +16,7 @@ const FAKE = 'profile/FAKE';
 const SAVE_NEW_PHOTO = 'profile/SET_NEW_PHOTO';
 const PROFILE_TOGGLE = 'profile/PROFILE_TOGGLE';
 const MAX_COUNT_OF_SYMBOLS = 'profile/MAX_COUNT_OF_SYMBOLS';
+const NEW_POST_TEXT = 'profile/NEW_POST_TEXT';
 
 type initialStateType = {
     postsData: Array<PostsData>
@@ -24,6 +25,7 @@ type initialStateType = {
     fake: number
     personDataFlag: boolean
     errorStatusFlag: string
+    newPostText: string
 }
 
 const initialState: initialStateType = {
@@ -34,7 +36,8 @@ const initialState: initialStateType = {
     status: '',
     fake: 0,
     personDataFlag: false,
-    errorStatusFlag: ''
+    errorStatusFlag: '',
+    newPostText: ''
 };
 
 export const profilePageReducer = (state = initialState, action: ActionsTypes): initialStateType => {
@@ -44,7 +47,7 @@ export const profilePageReducer = (state = initialState, action: ActionsTypes): 
             return {...state, fake: state.fake + 1}
         case ADD_POST:
             let newPost: PostsData = {id: v1(), message: action.postText, likesCount: 0, disLikesCount: 0}
-            return {...state, postsData: [newPost, ...state.postsData]}
+            return {...state, postsData: [newPost, ...state.postsData], newPostText: ''}
         case DELETE_POST:
             return {...state, postsData: state.postsData.filter(p => p.id !== action.index)}
         case ON_LIKE_HANDLER_TYPE:
@@ -73,6 +76,8 @@ export const profilePageReducer = (state = initialState, action: ActionsTypes): 
             return {...state, personDataFlag: action.personDataFlag}
         case MAX_COUNT_OF_SYMBOLS:
             return {...state, errorStatusFlag: action.error}
+        case NEW_POST_TEXT:
+            return {...state, newPostText: action.newText}
         default:
             return state
     }
@@ -87,6 +92,7 @@ export const setStatusAC = (status: string) => ({type: SET_STATUS, status} as co
 export const maxCountOfSymbolsWhenUpdateStatusAC = (error: string) => ({type: MAX_COUNT_OF_SYMBOLS, error} as const)
 export const savePhotoAC = (photos: { small: string, large: string }) => ({type: SAVE_NEW_PHOTO, photos} as const)
 export const profileToggle = (personDataFlag: boolean) => ({type: PROFILE_TOGGLE, personDataFlag} as const)
+export const setNewPostText = (newText: string) => ({type: NEW_POST_TEXT, newText} as const)
 
 //thunks
 export const loginTC = (userId: string): AppThunk => async dispatch => {

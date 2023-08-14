@@ -1,17 +1,57 @@
-import React from 'react';
+import React, {ChangeEvent, KeyboardEvent} from 'react';
 import s from './MessageSender.module.css'
-import {Field, reduxForm} from "redux-form";
-import {Textarea} from "components/common/FormsConntrols/FormControls";
-import {maxLengthCreator, required} from "validators/validators";
+import {IconButton, TextField} from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 
-// type NewMessage = {
-//     newMessageBody: string
-// }
-//
-// type CombinedProps = MessageSenderType & InjectedFormProps<NewMessage, MessageSenderType>;
-//
-// const MessageSender: React.FC<CombinedProps> = (props) => {
+type MessageSenderType = {
+    myNewMessageText: string
+    addMyNewMessageAC: (newMessageBody: string) => void
+    setMyNewMessageAC: (newMessageText: string) => void
+}
 
+export const MessageSender: React.FC<MessageSenderType> = (props) => {
+
+    const addMyNewMessageUI = () => {
+        props.addMyNewMessageAC(props.myNewMessageText)
+    }
+
+    const onMyNewMessageChange = (e: ChangeEvent<HTMLInputElement>) => {
+        props.setMyNewMessageAC(e.currentTarget.value)
+    }
+
+    const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === 'Enter') {
+            if (props.myNewMessageText.trim()) {
+                props.addMyNewMessageAC(props.myNewMessageText)
+            }
+        }
+    }
+
+    return (
+        <div className={s.container}>
+            <TextField className={s.textareaS}
+                       onChange={onMyNewMessageChange}
+                       onKeyDown={onKeyDown}
+                       value={props.myNewMessageText}
+                       label='Enter your message'
+                       variant="outlined"
+                       multiline
+                       maxRows={4}
+                       sx={{w: '70%',}}
+                       InputProps={{sx: {height: '8vh'}}}
+            ></TextField>
+            <IconButton onClick={addMyNewMessageUI}
+                        className={s.btnS}
+                        size={'medium'}
+                        color={'primary'}>
+                <AddIcon/>
+            </IconButton>
+        </div>
+
+    )
+}
+
+/*
 const MessageSender: React.FC<any> = (props) => {
 
     const addNewMessage = (values: {newMessageBody?: string}  ) => {
@@ -41,8 +81,15 @@ const MessageSenderRedux: React.FC<any> = (props) => {
 }
 
 const AddMessageFormRedux = reduxForm({form: 'dialogAddMessageForm'})(MessageSenderRedux)
+ */
 
-
+// type NewMessage = {
+//     newMessageBody: string
+// }
+//
+// type CombinedProps = MessageSenderType & InjectedFormProps<NewMessage, MessageSenderType>;
+//
+// const MessageSender: React.FC<CombinedProps> = (props) => {
 
 // return (
 //             <form className={s.container} onSubmit={props.handleSubmit}>

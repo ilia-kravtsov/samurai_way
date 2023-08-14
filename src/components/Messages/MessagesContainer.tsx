@@ -1,6 +1,6 @@
 import React from 'react'
 import Messages from "./Messages";
-import {addMyNewMessageAC, deleteMyNewMessageAC} from "../../redux/messages_page_reducer";
+import {addMyNewMessageAC, deleteMyNewMessageAC, setMyNewMessageAC} from "../../redux/messages_page_reducer";
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
@@ -19,15 +19,16 @@ export type MessageDataType = {
 export type MessagesPageType = {
     companionsData: Array<MessagesItemDataType>
     messageData: Array<MessageDataType>
-    myNewMessageText?: string
+    myNewMessageText: string
 }
 type MapStatePropsType = {
     messagesPage: MessagesPageType
     isAuth: boolean
 }
 type MapDispatchToPropsType = {
-    addMyNewMessageUI: (newMessageBody: string) => void
+    addMyNewMessageAC: (newMessageBody: string) => void
     onDelClickCallback: (id: string) => void
+    setMyNewMessageAC: (newMessageText: string) => void
 }
 export type MessagesPropsType = MapStatePropsType & MapDispatchToPropsType;
 
@@ -40,18 +41,19 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
-        addMyNewMessageUI: (newMessageBody) => dispatch(addMyNewMessageAC(newMessageBody)),
+        addMyNewMessageAC: (newMessageBody) => dispatch(addMyNewMessageAC(newMessageBody)),
         onDelClickCallback: (id: string) => dispatch(deleteMyNewMessageAC(id)),
+        setMyNewMessageAC: (newMessageText: string) => dispatch(setMyNewMessageAC(newMessageText)),
     }
 }
-
-// export default compose<React.ComponentType>(
-//     connect(mapStateToProps, mapDispatchToProps),
-//     withAuthRedirect,
-// )(Messages)
 
 const AuthRedirectComponent = withAuthRedirect(Messages)
 
 const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
 
 export default MessagesContainer
+
+// export default compose<React.ComponentType>(
+//     connect(mapStateToProps, mapDispatchToProps),
+//     withAuthRedirect,
+// )(Messages)

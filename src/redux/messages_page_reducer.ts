@@ -1,8 +1,10 @@
 import {v1} from "uuid";
 import {MessagesPageType} from "components/Messages/MessagesContainer";
+import {ActionsTypes} from "redux/redux-store";
 
 const DELETE_MY_NEW_MESSAGE = 'DELETE_MY_NEW_MESSAGE'
 const ADD_MY_NEW_MESSAGE = 'ADD-MY-NEW-MESSAGE';
+const SET_MY_NEW_MESSAGE_TEXT = 'SET_MY_NEW_MESSAGE_TEXT';
 
 const initialState = {
     companionsData: [
@@ -17,10 +19,10 @@ const initialState = {
         {id: v1(), message: 'push me'},
         {id: v1(), message: 'and then just touch me'},
     ],
-    // myNewMessageText: ''
+    myNewMessageText: ''
 };
 
-export const messagesPageReducer = (state: MessagesPageType = initialState, action: any): MessagesPageType => {
+export const messagesPageReducer = (state: MessagesPageType = initialState, action: ActionsTypes): MessagesPageType => {
     // state = this._state.messagesPage
     switch (action.type) {
         case DELETE_MY_NEW_MESSAGE:
@@ -28,6 +30,8 @@ export const messagesPageReducer = (state: MessagesPageType = initialState, acti
         case ADD_MY_NEW_MESSAGE:
             let newMessageText = {id: v1(), message: action.newMessageBody}
             return {...state, messageData: [...state.messageData, newMessageText], myNewMessageText: ''}
+        case SET_MY_NEW_MESSAGE_TEXT:
+            return {...state, myNewMessageText: action.newMessageText}
         default:
             return state
     }
@@ -35,3 +39,4 @@ export const messagesPageReducer = (state: MessagesPageType = initialState, acti
 
 export const addMyNewMessageAC = (newMessageBody: string) => ({type: ADD_MY_NEW_MESSAGE, newMessageBody} as const)
 export const deleteMyNewMessageAC = (id: string) => ({type: DELETE_MY_NEW_MESSAGE, id: id} as const)
+export const setMyNewMessageAC = (newMessageText: string) => ({type: SET_MY_NEW_MESSAGE_TEXT, newMessageText} as const)

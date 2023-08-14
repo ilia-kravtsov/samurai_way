@@ -11,6 +11,7 @@ type initialStateType = {
     fake: number
     personDataFlag: boolean
     errorStatusFlag: string
+    newPostText: string
 }
 
 const state: initialStateType = {
@@ -22,7 +23,8 @@ const state: initialStateType = {
     status: '',
     fake: 0,
     personDataFlag: false,
-    errorStatusFlag: ''
+    errorStatusFlag: '',
+    newPostText: ''
 };
 
 it('length of post should be increment', () => {

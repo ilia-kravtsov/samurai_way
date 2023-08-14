@@ -20,17 +20,16 @@
     resize: none;
     border: none;
     background-color: transparent;
-    padding: 20px;
 }
 
 .btnS {
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     height: 50px;
     width: 50px;
-    border-radius: 10px;
+    border-radius: 25px;
     border: none;
     margin-left: 10px;
-    background-color: rgba(218,218,218,0.93);
+    background-color: #e5e5e5;
 }
 
 .btnS:active {

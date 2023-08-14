@@ -3,12 +3,12 @@ import {
     addPost, delPost, maxCountOfSymbolsWhenUpdateStatusAC,
     onDisLikeHandler,
     onLikeHandler, personDataFlagToogle,
-    profilePageReducer, profileToggle, savePhotoAC, setStatusAC, setUserProfile,
+    profilePageReducer, profileToggle, savePhotoAC, setNewPostText, setStatusAC, setUserProfile,
 } from "./profile_page_reducer";
 import {
     addMyNewMessageAC,
     deleteMyNewMessageAC,
-    messagesPageReducer,
+    messagesPageReducer, setMyNewMessageAC,
 } from "./messages_page_reducer";
 import {
     follow, loaderChanger,
@@ -62,6 +62,8 @@ export type ActionsTypes =
     | ReturnType<typeof savePhotoAC>
     | ReturnType<typeof profileToggle>
     | ReturnType<typeof maxCountOfSymbolsWhenUpdateStatusAC>
+    | ReturnType<typeof setNewPostText>
+    | ReturnType<typeof setMyNewMessageAC>
     | {type: 'profile/FAKE'}
 
 export type AppThunk<ReturnType = void> = ThunkAction<void, RootStateType, unknown, ActionsTypes>
