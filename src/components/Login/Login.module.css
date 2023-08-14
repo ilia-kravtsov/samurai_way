@@ -97,3 +97,18 @@
     color: #b8001c;
     margin-top: 15px;
 }
+
+.freeLoginData {
+    width: 30%;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.freeLoginData div {
+    font-size: 20px;
+    font-family: 'Lora', serif;
+    margin-top: 10px;
+}

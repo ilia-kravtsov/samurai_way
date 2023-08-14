@@ -30,6 +30,13 @@ export const Login = (props: LoginType) => {
     return (
         <div className={s.container}>
             <h1>Login</h1>
+            <p className={s.freeLoginData}>
+                <div>Free Entrance with:
+                    <div>email: free@samuraijs.com
+                        <div>password: free</div>
+                    </div>
+                </div>
+            </p>
             <LoginReduxForm onSubmit={onSubmit}/>
             {props.captchaData.resultCode === 1 &&
                 <span className={s.resultCode_1_error}>{props.captchaData.messages[0]}</span>}
