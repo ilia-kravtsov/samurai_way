@@ -1,22 +1,21 @@
 import React, {useEffect, useRef} from 'react'
-import s from './Messages.module.css'
+import s from './Messages.module.scss'
 import Message from "./Message/Message";
 import MessageItem from "./MessageItem/MessageItem";
 import {MessagesPropsType} from "./MessagesContainer";
 import {useAutoAnimate} from "@formkit/auto-animate/react";
 import {Redirect} from "react-router-dom";
-import {addMyNewMessageAC} from "redux/messages_page_reducer";
 import {MessageSender} from "components/Messages/MessageSender/MessageSender";
 
 const Messages = (props: MessagesPropsType) => {
 
     const [listRef] = useAutoAnimate<HTMLUListElement>()
 
-    const messagesItemDataElements = props.messagesPage.companionsData.map(companion => {
-        return <MessageItem key={companion.id}
-                            id={companion.id}
-                            name={companion.name}/>
-    });
+    // const messagesItemDataElements = props.messagesPage.companionsData.map(companion => {
+    //     return <MessageItem key={companion.id}
+    //                         id={companion.id}
+    //                         name={companion.name}/>
+    // });
     const messageDataElements = props.messagesPage.messageData.map((messageContent, i) => {
         return <Message key={messageContent.id}
                         id={messageContent.id}
@@ -40,9 +39,9 @@ const Messages = (props: MessagesPropsType) => {
 
     return (
         <div className={s.messagesContainer}>
-            <div className={s.messagesItems}>
-                {messagesItemDataElements}
-            </div>
+            {/*<div className={s.messagesItems}>*/}
+            {/*    {messagesItemDataElements}*/}
+            {/*</div>*/}
             <div className={s.messBodyBlock}>
                 <div className={s.messagesContent} ref={ref}>
                     <ul ref={listRef} className={s.ulMessagesContent}>

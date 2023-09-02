@@ -1,5 +1,5 @@
 import React from "react";
-import s from './Post.module.css';
+import s from './Post.module.scss';
 import {IconButton} from '@mui/material';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';

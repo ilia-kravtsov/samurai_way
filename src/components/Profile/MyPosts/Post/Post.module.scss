@@ -1,42 +1,36 @@
+@import '../../../../sass/mixin';
+@import '../../../../sass/variables';
+
 .postContainer {
+    @include flex(column, space-evenly, center);
     color: black;
     margin-top: 15px;
-    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: $boxShadow;
     width: 100%;
     min-height: 200px;
-    border-radius: 5px;
     word-wrap: break-word;
     list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
 }
 
 .imgSpanContainer {
-    display: flex;
+    @include flex(row, normal, flex-end);
     width: 100%;
-    word-wrap: break-word;
-    align-items: flex-end;
 }
 
 .postMessage {
     width: 75%;
-    background-color: #dadada;
+    box-shadow: $boxShadow;
     border-radius: 10px 10px 10px 0;
     padding: 10px;
     word-wrap: break-word;
     margin-top: 10px;
     min-height: 60px;
-    font-family: 'Lora', serif;
-}
-
-.title {
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
+    font-family: $fontFamily_1;
 }
 
 .likeDisContainer {
-    background-color: #dadada;
+    box-shadow: $boxShadow;
+    background-color: $bgcSecond;
     width: 50%;
     display: flex;
     justify-content: space-evenly;
@@ -51,16 +45,11 @@
     height: 50px;
     border-radius: 30px;
     margin-left: 10px;
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
-}
-
-.likes {
-
+    box-shadow: $boxShadow;
 }
 
 .anglePost {
     width: 15px;
     height: 15px;
-    background: radial-gradient(circle at 0 0, rgba(0,0,0,0) 15px, #dadada 0);
 }
 

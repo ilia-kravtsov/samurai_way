@@ -1,5 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
-import s from './MyPosts.module.css';
+import s from './MyPosts.module.scss';
 import Post from './Post/Post';
 import {useAutoAnimate} from "@formkit/auto-animate/react";
 import {IconButton, TextField} from "@mui/material";
@@ -14,12 +14,9 @@ type MyPostsType = {
     delPost: (id: string) => void
     setNewPostText: (newText: string) => void
 }
-// // @ts-ignore
-// window.props = []
+
 export const MyPosts = React.memo((props: MyPostsType) => {
-    // // @ts-ignore
-    // window.props.push(props)
-    // console.log('MyPosts')
+
     const [listRef] = useAutoAnimate<HTMLUListElement>()
 
     const postsDataContent = props.postsData.map(p =>
@@ -68,7 +65,7 @@ export const MyPosts = React.memo((props: MyPostsType) => {
                                maxRows={4}
                     ></TextField>
                     <IconButton className={s.btnPost} onClick={addPost} size={'medium'} color={'primary'}
-                                sx={{ml: '2vw'}}>
+                                sx={{ml: '2vw', borderRadius: '5px'}}>
                         <AddIcon/>
                     </IconButton>
                 </form>

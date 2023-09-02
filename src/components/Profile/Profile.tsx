@@ -1,7 +1,6 @@
 import React from 'react';
-import s from './Profile.module.css'
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import {MyPostsContainer, PostsData} from "./MyPosts/MyPostsContainer";
+import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 import {ProfileDataType} from "./ProfileContainer";
 import {FormInputsType} from "components/Profile/ProfileInfo/ProfileStatusWithHooks";
 
@@ -24,7 +23,7 @@ const Profile = (props: ProfileType) => {
     }
 
     return (
-        <div className={s.container}>
+        <div>
             <ProfileInfo profile={props.profile}
                          updateStatusTC={props.updateStatusTC}
                          status={props.status}
@@ -32,7 +31,7 @@ const Profile = (props: ProfileType) => {
                          savedPhoto={props.savedPhotoTC}
                          saveProfileData={saveProfileData}
                          personDataFlag={props.personDataFlag}
-                         personDataFlagToogle={props.personDataFlagToogle}
+                         personDataFlagToggle={props.personDataFlagToogle}
                          errorStatusFlag={props.errorStatusFlag}
             />
             <MyPostsContainer />

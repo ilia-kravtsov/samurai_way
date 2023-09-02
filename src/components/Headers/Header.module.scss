@@ -1,0 +1,56 @@
+@import '../../sass/variables';
+@import '../../sass/mixin';
+
+.headerContainer {
+    @include flex(row, normal, center);
+    height: 12vh;
+    background: $bgcFirst;
+    border: 1px solid red;
+    padding: 20px;
+}
+
+.loginBlock {
+    margin: 10px 20px 10px auto;
+    color: $fontColor;
+    font-family: $fontFamily_1;
+    font-size: 20px;
+    border: 1px solid green;
+}
+
+.loginBlock a {
+    text-decoration: none;
+    font-family: $fontFamily_1;
+    color: $fontColor;
+}
+
+.miniAva {
+    margin: 10px;
+    border-radius: 50%;
+    width: 70px;
+    border: 1px solid white;
+}
+
+.logout {
+    border: none;
+    box-shadow: $boxShadow;
+    background-color: rgba(63,124,230,0.93);
+    padding: 10px;
+    border-radius: 10px;
+    font-family: $fontFamily_1;
+    margin-right: 20px;
+    transition: 0.8s;
+    color: white;
+    font-size: 16px;
+}
+
+.logout:active {
+    transform: scale(0.9);
+}
+
+.logout:hover {
+    cursor: pointer;
+}
+
+/*
+"https://www.paragyte.com/img/React_Banner.png"
+ */

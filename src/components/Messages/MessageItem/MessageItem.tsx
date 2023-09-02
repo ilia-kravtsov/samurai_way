@@ -1,6 +1,6 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom';
-import s from "./MessageItemStyle.module.css";
+import s from "./MessageItemStyle.module.scss";
 
 type MessageItemType = {
     name: string;

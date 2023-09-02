@@ -1,8 +1,8 @@
 import React, {ChangeEvent, FC, useState} from 'react';
-import s from './Login.module.css'
+import s from './Login.module.scss'
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Redirect} from "react-router-dom";
-import {createField, Input} from "components/common/FormsConntrols/FormControls";
+import {Input} from "components/common/FormsConntrols/FormControls";
 import {required} from "validators/validators";
 import {CaptchaServerType} from "redux/auth_reducer";
 
@@ -25,25 +25,25 @@ export const Login = (props: LoginType) => {
         })
     };
     const onCaptchaTextChange = (e: ChangeEvent<HTMLInputElement>) => setTextCaptcha(e.currentTarget.value);
-    console.log(props.captchaData)
+
     if (props.isAuth) return <Redirect to={'/profile'}/>
     return (
         <div className={s.container}>
             <h1>Login</h1>
             <p className={s.freeLoginData}>
-                <div>Free Entrance with:
-                    <div>email: free@samuraijs.com
+                <div>Free entrance with:</div>
+                    <div>
+                        email: free@samuraijs.com
                         <div>password: free</div>
                     </div>
-                </div>
             </p>
             <LoginReduxForm onSubmit={onSubmit}/>
             {props.captchaData.resultCode === 1 &&
                 <span className={s.resultCode_1_error}>{props.captchaData.messages[0]}</span>}
             {props.captchaData.resultCode === 10 &&
                 <span className={s.resultCode_1_error}>
-                    <div className={s.matginTop}>too much attempts for sign in</div>
-                    <div className={s.matginTop}>{props.captchaData.messages[0]}</div>
+                    <div className={s.marginTop}>too much attempts for sign in</div>
+                    <div className={s.marginTop}>{props.captchaData.messages[0]}</div>
                     <img src={`${props.captchaData.url}`} alt="captcha_url" className={s.captcha}/>
                     <input className={s.login}
                            placeholder={'enter symbols from captcha here'}
@@ -89,7 +89,7 @@ const LoginForm: FC<InjectedFormProps<LoginFormType & CaptchaServerType>> = ({ha
                        className={s.remember}
                 />
             </div>
-            <button className={s.loginKey}>Login</button>
+            <button className={s.loginButton}>Login</button>
             {error && <div className={s.formError}>{error}</div>}
         </form>
     )

@@ -1,5 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
-import s from './MessageSender.module.css'
+import s from './MessageSender.module.scss'
 import {IconButton, TextField} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 
@@ -37,10 +37,11 @@ export const MessageSender: React.FC<MessageSenderType> = (props) => {
                        variant="outlined"
                        multiline
                        maxRows={4}
-                       sx={{w: '70%',}}
+                       sx={{w: '70%'}}
                        InputProps={{sx: {height: '8vh'}}}
             ></TextField>
             <IconButton onClick={addMyNewMessageUI}
+                        sx={{w: '70%', borderRadius: '5px'}}
                         className={s.btnS}
                         size={'medium'}
                         color={'primary'}>

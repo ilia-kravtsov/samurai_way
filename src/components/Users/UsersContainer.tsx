@@ -56,7 +56,6 @@ export type UsersApiType = Array<UserApiType>;
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
 
     return {
-        //users: _getUsers(state),
         users: getUsers(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
@@ -82,9 +81,10 @@ export class UsersContainer extends React.Component<MapStatePropsType & MapDispa
     render() {
 
         return <div className={s.presentContainer}>{this.props.isLoading
-                ? <PreLoader/>
-                : <UsersPresent {...this.props}
-                                onPageChanged={this.onPageCHanged}/>}</div>}
+                    ? <PreLoader/>
+                    : <UsersPresent {...this.props}
+                                    onPageChanged={this.onPageCHanged}/>}
+                </div>}
 }
 
 export default compose<React.ComponentType>(

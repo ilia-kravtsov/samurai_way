@@ -1,0 +1,102 @@
+@import '../../sass/variables';
+@import '../../sass/mixin';
+
+.container {
+    @include flex(column, normal, center);
+    background-color: $bgcSecond;
+    margin-top: 10px;
+    box-shadow: $boxShadow;
+    padding: 20px;
+    transition: 0.5s;
+}
+
+.container h1 {
+    letter-spacing: 2px;
+}
+
+.form {
+    @include flex(column, center, center);
+    width: 80%;
+    position: relative;
+    font-family: $fontFamily_1;
+    border: 1px solid purple;
+}
+
+.personInformationInput {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    font-size: 16px;
+    transition: 0.5s;
+    margin-top: 10px;
+    font-family: $fontFamily_1;
+}
+
+.rememberBox {
+    @include flex(row, flex-start, center);
+    width: 90%;
+    height: 40px;
+    margin-top: 10px;
+    border: 1px solid red;
+}
+
+.remember {
+    margin-left: 20px;
+}
+
+.loginButton {
+    width: 150px;
+    height: 50px;
+    border: none;
+    letter-spacing: 2px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    transition: all 0.8s;
+    font-family: $fontFamily_1;
+    margin-top: 5px;
+}
+
+.loginButton:hover {
+    cursor: pointer;
+}
+
+.loginButton:active {
+    transform: scale(0.90);
+}
+
+.resultCode_1_error {
+    text-align: center;
+    color: #b8001c;
+    font-family: $fontFamily_1;
+    margin-top: 15px;
+}
+
+.captcha {
+    width: 110px;
+    height: 60px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+
+.marginTop {
+    margin-top: 10px;
+}
+
+.formError {
+    color: #b8001c;
+    margin-top: 15px;
+}
+
+.freeLoginData {
+    @include flex(column, space-evenly, center);
+    width: 60%;
+    height: 130px;
+    border: 1px solid red;
+}
+
+.freeLoginData div {
+    font-size: 20px;
+    font-family: $fontFamily_1;
+}

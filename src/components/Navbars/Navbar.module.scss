@@ -1,0 +1,51 @@
+@import '../../sass/variables';
+@import '../../sass/mixin';
+
+.navBarContainer {
+    @include flex(column, normal, normal);
+    width: 12%;
+    height: 88vh;
+    padding: 20px 0 20px 20px;
+    background: $bgcSecond;
+    margin: 10px;
+    box-shadow: $boxShadow;
+}
+
+.navContainer {
+    @include flex(column, space-between, flex-start);
+    height: 46vh;
+    border: 1px solid red;
+}
+
+.link {
+    @include flex(row, flex-start, center);
+    height: 14%;
+    width: 100%;
+    color: $fontColor_2;
+    text-decoration: none;
+    outline: none;
+    font-size: 18px;
+    font-family: $fontFamily_1;
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid red;
+}
+
+.link:hover {
+    cursor: pointer;
+    transition: all 0.5s ease;
+    border: 1px solid $bgcFirst;
+}
+
+.link:active {
+    border: 1px solid $bgcFirst;
+}
+
+.activeLink {
+    border: 1px solid $bgcFirst;
+}
+
+.linkLogo {
+    margin-right: 20px;
+}
+

@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Navbar.module.css';
+import s from './Navbar.module.scss';
 import {NavLink} from 'react-router-dom';
 import Friends from "../Friends/Friends";
 import {RootStateType} from "../../redux/redux-store";
@@ -24,7 +24,7 @@ export const Navbar = () => {
                 <NavItem urlName='/settings' itemName='Settings' logo="https://img.icons8.com/fluency/1x/services.png"/>
                 <NavItem urlName='/video' itemName='Video' logo="https://img.icons8.com/fluency/1x/laptop-play-video.png"/>
             </div>
-            <FriendsContainer/>
+            {/*<FriendsContainer/>*/}
         </div>
     )
 }

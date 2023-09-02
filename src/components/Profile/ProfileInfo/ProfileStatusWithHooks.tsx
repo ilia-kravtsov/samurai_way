@@ -1,47 +1,25 @@
-import React, {ChangeEvent, FC, useEffect, useState} from 'react';
-import s from "./ProfileInfo.module.css";
-import {Button, IconButton} from "@mui/material";
-import EditIcon from '@mui/icons-material/Edit';
+import React, {FC} from 'react';
+import s from "./ProfileInfo.module.scss";
 import {ProfileDataType} from "components/Profile/ProfileContainer";
 import {Input, Textarea} from "components/common/FormsConntrols/FormControls";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {required} from "validators/validators";
+import SaveIcon from '@mui/icons-material/Save';
+import EditIcon from '@mui/icons-material/Edit';
+import {IconButton} from "@mui/material";
 
 type ProfileStatusType = {
-    status: string
-    updateStatusTC: (status: string) => void
     profile: ProfileDataType
     isOwner: boolean
     saveProfileData: (formData: FormInputsType) => void
     personDataFlag: boolean
     personDataFlagToggle: (personDataFlag: boolean) => void
-    errorStatusFlag: string
 }
 
 export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
 
-    const [editMode, setEditMode] = useState<boolean>(false)
-    const [status, setStatus] = useState<string>(props.status)
-
-    useEffect(() => {
-        setStatus(props.status)
-    }, [props.status])
-
     const activateEditMode = () => {
         props.personDataFlagToggle(true)
-    }
-
-    const changeStatus = (e: ChangeEvent<HTMLInputElement>) => {
-        setStatus(e.currentTarget.value)
-    }
-
-    const deActivateStatus = () => {
-        setEditMode(false)
-        props.updateStatusTC(status)
-    }
-
-    const activateStatus = () => {
-        setEditMode(true)
     }
 
     const onSubmit = (formData: FormInputsType) => {
@@ -50,27 +28,6 @@ export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
 
     return (
         <div className={s.borderDescriptionBLock}>
-            <div className={s.status}>Status:</div>
-            {editMode ? <div className={s.statusBlock}>
-                    <input value={status}
-                           onChange={changeStatus}
-                           className={s.editInput}
-                           autoFocus
-                    />
-                    <Button sx={{ml: '10px'}} variant={'contained'} onClick={deActivateStatus}>
-                        Save
-                    </Button>
-                </div>
-                : <div className={s.statusBlock}>
-                    {props.status || "I haven't added my status yet"}
-                    <IconButton onClick={activateStatus}
-                                style={{marginLeft: '20px', boxShadow: '1px 0 5px 0 rgba(0, 0, 0, 0.2)'}}
-                                color={'primary'}>
-                        <EditIcon/>
-                    </IconButton>
-                    {props.errorStatusFlag && <div>{props.errorStatusFlag}</div>}
-                </div>
-            }
             {props.personDataFlag
                 ? <ProfileReduxForm profile={props.profile}
                                     isOwner={props.isOwner}
@@ -93,17 +50,31 @@ type ProfileDataTypes = {
 const ProfileData = (props: ProfileDataTypes) => {
 
     return (
-        <div className={s.formPersonInfromation}>
-            {props.isOwner && <button onClick={props.activateEditMode}>Edit</button>}
-            <div>Full name: {props.profile.fullName || "Simon"}</div>
-            <div>Looking for a job: {props.profile.lookingForAJob ? 'yes' : 'no'}</div>
-            <div>About me: {props.profile.aboutMe || "i'm the best"}</div>
-            <div>Contacts: {Object.keys(props.profile.contacts).map(key => {
-                // @ts-ignore
-                return <Contact contactTitle={key} contactValue={props.profile.contacts[key]} key={key}/>
-            }) || "+7999999999"}</div>
-            <div>My professional skills: {props.profile.lookingForAJobDescription || "i almost know React"}</div>
+        <div className={s.formPersonInformation}>
+            <div className={s.formPersonFirst}>
+                <div>Full name: {props.profile.fullName || "Simon"}</div>
+                <div>Looking for a job: {props.profile.lookingForAJob ? 'yes' : 'no'}</div>
+                <div>About me: {props.profile.aboutMe || "i'm the best"}</div>
+                <div>My professional skills: {props.profile.lookingForAJobDescription || "i almost know React"}</div>
+            </div>
+            <div className={s.formPersonSecond}>
+                <div className={s.formPersonContacts}>
+                    {Object.keys(props.profile.contacts).map((key, i) => {
+                        if (i < 4) {
+                            // @ts-ignore
+                            return <Contact contactTitle={key} contactValue={props.profile.contacts[key]} key={key}/>
+                        }
+                    })}
+                </div>
+                {props.isOwner && <IconButton onClick={props.activateEditMode}
+                                              style={{borderRadius: '5px'}}
+                                              color={'primary'}>
+                    <EditIcon/>
+                </IconButton>}
+            </div>
+
         </div>
+
     )
 }
 
@@ -129,54 +100,70 @@ export type FormInputsType = {
 const ProfileDataForm: FC<InjectedFormProps<FormInputsType, ProfileDataTypes> & ProfileDataTypes> = (props) => {
 
     const {profile, error} = props
-    console.log(error)
+
     return (
-        <form className={s.formPersonInfromation} onSubmit={props.handleSubmit}>
-            <div>
-                Full name: <Field placeholder={'add your full name'}
-                                  component={Input}
-                                  validate={[required]}
-                                  name={'fullName'}
-                                  className={s.login}/>
-            </div>
-            <div>
-                <label htmlFor="checkboxId">Looking for a job:</label>
-                <Field type={"checkbox"}
-                       id={'checkboxId'}
-                       component={'input'}
-                       name={'lookingForAJob'}
-                       className={s.remember}/>
-            </div>
-            <div>
-                About me: <Field placeholder={'tell about yourself'}
-                                 component={Input}
-                                 validate={[required]}
-                                 name={'aboutMe'}
-                                 className={s.login}/>
-            </div>
-            <div>
-                Contacts: {Object.keys(profile.contacts).map(key => {
-                return (
-                    <div className={s.contact} key={key}>
-                        {key}: <Field placeholder={key}
-                                      component={Input}
-                                      validate={[required]}
-                                      name={'contacts.' + key}
-                                      className={s.login}/>
+        <form className={s.formPersonInformation} onSubmit={props.handleSubmit}>
+            <div className={s.formPersonFirst}>
+                <div className={s.editContact}>
+                    Full name:
+                    <div>
+                        <Field placeholder={'add your full name'}
+                               component={Input}
+                               validate={[required]}
+                               name={'fullName'}
+                               className={s.personInformationInput}/>
                     </div>
-                )
-            }) || "+7999999999"}
+                </div>
+                <div className={s.editLookForAJob}>
+                    <label htmlFor="checkboxId">Looking for a job:</label>
+                    <Field type={"checkbox"}
+                           id={'checkboxId'}
+                           component={'input'}
+                           name={'lookingForAJob'}
+                    />
+                </div>
+                <div className={s.editContact}>
+                    About me:
+                    <div>
+                        <Field placeholder={'tell about yourself'}
+                               component={Input}
+                               validate={[required]}
+                               name={'aboutMe'}
+                               className={s.personInformationInput}/>
+                    </div>
+                </div>
+                <div>
+                    My professional skills: <Field placeholder={'your skills'}
+                                                   component={Textarea}
+                                                   validate={[required]}
+                                                   name={'lookingForAJobDescription'}
+                                                   className={s.personInformationInput}/>
+                </div>
             </div>
-            <div>
-                My professional skills: <Field placeholder={'your skills'}
-                                               component={Textarea}
-                                               validate={[required]}
-                                               name={'lookingForAJobDescription'}
-                                               className={s.login}/>
+            <div className={s.formPersonSecond}>
+                <div>
+                    {Object.keys(profile.contacts).map((key, i) => {
+                        if (i < 4) {
+                            return (
+                                <div className={s.editContactRight} key={key}>
+                                    {key}:
+                                    <div>
+                                        <Field placeholder={key}
+                                                      component={Input}
+                                                      validate={[required]}
+                                                      name={'contacts.' + key}
+                                                      className={s.personInformationInput}/>
+                                    </div>
+                                </div>
+                            )
+                        }
+                    })}
+                </div>
+                {error && <div className={s.formError}>{error}</div>}
             </div>
-            {error && <div className={s.formError}>{error}</div>}
             <button>
-                Fix
+                <SaveIcon  style={{boxShadow: '1px 0 5px 0 rgba(0, 0, 0, 0.2)', borderRadius: '5px', cursor: 'pointer'}}
+                           color={'primary'}/>
             </button>
         </form>
     )
@@ -190,7 +177,7 @@ type ContactType = {
 }
 
 const Contact = (props: ContactType) => {
-    return <div>{props.contactTitle}: {props.contactValue}</div>
+    return <div className={s.contact}>{props.contactTitle}: {props.contactValue}</div>
 }
 
 

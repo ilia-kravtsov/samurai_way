@@ -1,0 +1,49 @@
+@import '../../sass/variables';
+@import '../../sass/mixin';
+
+.friendsContainer{
+    @include flex(column, normal, flex-start);
+    height: 88vh;
+    width: 15%;
+    color: $fontColor_2;
+    font-size: 16px;
+    font-family: $fontFamily_1;
+    border: 1px solid red;
+}
+
+.friendsTitle {
+    font-size: 20px;
+    font-weight: 500;
+    box-shadow: $boxShadow;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid blue;
+}
+
+.friendBlock {
+    @include flex(column, space-evenly, center);
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid black;
+}
+
+.avaNameBlock {
+    @include flex(row, space-evenly, center);
+    width: 80%;
+    height: 15vh;
+    margin: 10px;
+    box-shadow: $boxShadow;
+}
+
+.friendAva {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    box-shadow: $boxShadow;
+}
+
+.friendName {
+
+}
+

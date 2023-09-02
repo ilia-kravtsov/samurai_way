@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import s from './App.module.css';
-import {BrowserRouter, HashRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
+import {HashRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import Video from "./components/Video/Video";
 import UsersContainer from "./components/Users/UsersContainer";
-import {Navbar} from "./components/Navbars/Navbar";
+import {Navbar} from "components/Navbars/Navbar";
 import HeaderContainer from "./components/Headers/HeaderContainer";
 import LoginContainer from "./components/Login/LoginContainer";
 import {connect, Provider} from "react-redux";
@@ -15,6 +15,8 @@ import {initializeApp} from "redux/app_reducer";
 import {RootStateType, store} from "redux/redux-store";
 import {PreLoader} from "components/common/PreLoader/PreLoader";
 import {createTheme, ThemeProvider} from "@mui/material";
+import Friends from "components/Friends/Friends";
+import FriendsContainer from "components/Friends/FriendsContainer";
 
 // import MessagesContainer from "./components/Messages/MessagesContainer";
 const MessagesContainer = React.lazy(() => import('./components/Messages/MessagesContainer'))
@@ -51,8 +53,6 @@ class App extends Component<AppType, any> {
                     <div className={s.main}>
                         <Switch>
                             <React.Suspense fallback={<PreLoader/>}>
-                                {/*<Route path='/*' render={() => <Redirect to={'/profile'}/>}/>*/}
-                                {/*<Route path='/profile' render={() => <ProfileContainer/>}/>*/}
                                 <Route exact path='/' render={() => <Redirect to={'/profile'}/>}/>
                                 <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                                 <Route path='/messages' render={() => <MessagesContainer/>}/>
@@ -66,6 +66,7 @@ class App extends Component<AppType, any> {
                             </React.Suspense>
                         </Switch>
                     </div>
+                    <FriendsContainer/>
                 </div>
             </div>
         );

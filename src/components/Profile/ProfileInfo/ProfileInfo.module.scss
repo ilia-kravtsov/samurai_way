@@ -1,0 +1,143 @@
+@import '../../../sass/variables';
+@import '../../../sass/mixin';
+
+.profileInfoContainer {
+    @include flex(row, normal, flex-end);
+    width: 100%;
+    height: 35vh;
+    border: 20px solid $bgcSecond;
+    background-image: url("../../../backgrounds/2208_w048_n005_279a_p1_279.jpg");
+    background-size: cover;
+    box-shadow: $boxShadow;
+    margin-top: 10px;
+}
+
+.avaDescriptionBlock {
+    @include flex(row, normal, flex-end);
+    width: 100%;
+    border: 1px solid blue;
+}
+
+.avaBorderBlock {
+    background: $bgcSecond;
+    border-radius: 200px 200px 0 0;
+    position: relative;
+    border: 1px solid yellow;
+}
+
+.ava {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    box-shadow: $boxShadow;
+    margin: 20px;
+}
+
+.borderDescriptionBLock {
+    @include flex(column, normal, flex-start);
+    background: $bgcSecond;
+    width: 100%;
+    padding: 10px;
+    font-family: $fontFamily_1;
+    border: 1px solid red;
+}
+
+.editInput {
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: $fontFamily_1;
+    height: 40px;
+    outline: none;
+}
+
+.status {
+    height: 10vh;
+    box-shadow: $boxShadow;
+    padding: 10px;
+    font-weight: bold;
+    background: $bgcSecond;
+    width: 100%;
+}
+
+.formPersonInformation {
+    @include flex(row, space-between, flex-start);
+    width: 100%;
+    padding: 10px;
+    overflow-y: scroll;
+    border: 1px solid red;
+}
+
+.formPersonFirst {
+    @include flex(column, space-between, flex-start);
+    width: 50%;
+    border: 1px solid red;
+}
+
+.formPersonFirst div {
+    margin: 5px 0;
+}
+
+.editContact {
+    @include flex(row, space-between, center);
+    border: 1px solid red;
+    width: 70%;
+}
+
+.formPersonSecond {
+    width: 50%;
+    @include flex(row, normal, flex-end);
+    border: 1px solid blue;
+}
+
+.formPersonContacts {
+    @include flex(column, space-between, flex-start);
+    width: 100%;
+    flex-wrap: wrap;
+    border: 1px solid red;
+}
+
+.formPersonContacts div{
+    margin: 5px 0;
+}
+
+.formError {
+    color: #b8001c;
+    margin-top: 15px;
+    border: 1px solid #b8001c;
+}
+
+.changePhoto {
+    @include flex(row, center, center);
+    position: absolute;
+    width: 240px;
+    height: 245px;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.changePhoto:hover {
+    opacity: 1;
+}
+
+.personInformationInput {
+    border: 1px solid red;
+}
+
+.editContactRight {
+    @include flex(row, space-between, center);
+    width: 300px;
+    border: 1px solid red;
+}
+
+.editContactRight div {
+    margin: 5px 0;
+}
+
+.editLookForAJob {
+    @include flex(row, space-between, center);
+    border: 1px solid red;
+    width: 50%;
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import s from './MessageStyle.module.css'
+import s from './MessageStyle.module.scss'
 import {IconButton} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 

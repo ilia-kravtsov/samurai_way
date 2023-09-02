@@ -1,12 +1,12 @@
+@import '../../../sass/mixin';
+@import '../../../sass/variables';
+
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    height: 15vh;
+    @include flex(row, space-evenly, center);
+    height: 14%;
     overflow: auto;
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    background: #e5e5e5;
+    box-shadow: $boxShadow;
+    background: $bgcSecond;
     width: 100%;
     margin-top: 20px;
 }
@@ -14,8 +14,7 @@
 .textareaS {
     width: 80%;
     word-wrap: break-word;
-    border-radius: 7px;
-    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: $boxShadow;
     outline: none;
     resize: none;
     border: none;
@@ -23,13 +22,13 @@
 }
 
 .btnS {
-    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: $boxShadow;
     height: 50px;
     width: 50px;
     border-radius: 25px;
     border: none;
     margin-left: 10px;
-    background-color: #e5e5e5;
+    background-color: $bgcSecond;
 }
 
 .btnS:active {

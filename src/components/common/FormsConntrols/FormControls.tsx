@@ -1,6 +1,6 @@
 import {FC} from "react";
 import React from "react"
-import s from './FormControls.module.css'
+import s from './FormControls.module.scss'
 import {required} from "validators/validators";
 import {Field} from "redux-form";
 
@@ -39,7 +39,6 @@ export const createField = (name: string, placeholder: string, type?: {type: str
            component={Input}
            validate={[required]}
            name={name}
-           className={s.login}
            type={type}
     />
 }
