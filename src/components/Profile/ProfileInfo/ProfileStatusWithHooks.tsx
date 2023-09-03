@@ -52,15 +52,26 @@ const ProfileData = (props: ProfileDataTypes) => {
     return (
         <div className={s.formPersonInformation}>
             <div className={s.formPersonFirst}>
-                <div>Looking for a job: {props.profile.lookingForAJob ? 'yes' : 'no'}</div>
-                <div>About me: {props.profile.aboutMe || "i'm the best"}</div>
-                <div>Skills: {props.profile.lookingForAJobDescription || "i almost know React"}</div>
+                <div className={s.descriptionData}>Looking for a job: {props.profile.lookingForAJob ? 'yes' : 'no'}</div>
+                <div className={s.descriptionData}>About me: {props.profile.aboutMe || "i'm the best"}</div>
+                <div className={s.descriptionData}>Skills: {props.profile.lookingForAJobDescription || "i almost know React"}</div>
             </div>
-            {props.isOwner && <IconButton onClick={props.activateEditMode}
-                                          style={{borderRadius: '5px'}}
-                                          color={'primary'}>
-                <EditIcon/>
-            </IconButton>}
+            <div className={s.formPersonSecond}>
+                <div className={s.formPersonContacts}>
+                    {Object.keys(props.profile.contacts).map((key, i) => {
+                        if (i > 3 && i < 7) {
+                            // @ts-ignore
+                            return <Contact contactTitle={key} contactValue={props.profile.contacts[key] ? props.profile.contacts[key] : `www.${key}.com`} key={key}/>
+                        }
+                    })}
+                </div>
+                {props.isOwner && <IconButton onClick={props.activateEditMode}
+                                              style={{borderRadius: '5px'}}
+                                              color={'primary'}>
+                    <EditIcon/>
+                </IconButton>}
+            </div>
+
         </div>
 
     )
@@ -92,30 +103,55 @@ const ProfileDataForm: FC<InjectedFormProps<FormInputsType, ProfileDataTypes> & 
     return (
         <form className={s.formPersonInformation} onSubmit={props.handleSubmit}>
             <div className={s.formPersonFirst}>
-                <div className={s.editLookForAJob}>
+                <div className={s.lookForAJob}>
                     <label htmlFor="checkboxId">Looking for a job:</label>
                     <Field type={"checkbox"}
                            id={'checkboxId'}
                            component={'input'}
                            name={'lookingForAJob'}
+                           className={s.lookForAJobCheckbox}
                     />
                 </div>
-                <div className={s.editContact}>
+                <div className={s.aboutMe}>
                     About me:
-                    <div>
+                    <div className={s.personInformationInput}>
                         <Field placeholder={'tell about yourself'}
                                component={Input}
                                validate={[required]}
                                name={'aboutMe'}
-                               className={s.personInformationInput}/>
+                               />
                     </div>
                 </div>
-                <div>
-                    My professional skills: <Field placeholder={'your skills'}
+                <div className={s.textareaSkill}>
+                    Skills:
+                    <div>
+                    <Field placeholder={'your skills'}
                                                    component={Textarea}
                                                    validate={[required]}
                                                    name={'lookingForAJobDescription'}
-                                                   className={s.personInformationInput}/>
+                                                   className={s.personInformationInput}
+                    />
+                    </div>
+                </div>
+            </div>
+            <div className={s.formPersonSecond}>
+                <div>
+                    {Object.keys(profile.contacts).map((key, i) => {
+                        if (i > 3 && i < 7) {
+                            return (
+                                <div className={s.editContactRight} key={key}>
+                                    {key}:
+                                    <div>
+                                        <Field placeholder={key}
+                                               component={Input}
+                                               validate={[required]}
+                                               name={'contacts.' + key}
+                                               className={s.personInformationInput}/>
+                                    </div>
+                                </div>
+                            )
+                        }
+                    })}
                 </div>
                 {error && <div className={s.formError}>{error}</div>}
             </div>

@@ -4,6 +4,10 @@ import Post from './Post/Post';
 import {useAutoAnimate} from "@formkit/auto-animate/react";
 import {IconButton, TextField} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import VideocamIcon from '@mui/icons-material/Videocam';
+import ImageIcon from '@mui/icons-material/Image';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
 
 type MyPostsType = {
     postsData: Array<{ id: string, message: string, likesCount: number, disLikesCount: number }>
@@ -52,22 +56,27 @@ export const MyPosts = React.memo((props: MyPostsType) => {
     return (
         <div className={s.postsContainer}>
             <div className={s.postsBlock}>
-                {/*<h3 className={s.title}>My Posts</h3>*/}
                 <form className={s.addPostContainer}>
                     <TextField className={s.textarea}
                                ref={newPostElement}
                                value={props.newPostText}
                                onChange={onPostChange}
                                onKeyDown={onKeyDown}
-                               label={'Add your new post'}
+                               label={'write something'}
                                multiline
                                minRows={4}
                                maxRows={4}
                     ></TextField>
-                    <IconButton className={s.btnPost} onClick={addPost} size={'medium'} color={'primary'}
-                                sx={{ml: '2vw', borderRadius: '5px'}}>
-                        <AddIcon/>
-                    </IconButton>
+                    <div className={s.postIcons}>
+                        <ImageIcon color={'primary'}/>
+                        <MusicNoteIcon color={'primary'}/>
+                        <VideocamIcon color={'primary'}/>
+                        <AddAPhotoIcon color={'primary'}/>
+                        <IconButton className={s.btnPost} onClick={addPost} size={'medium'} color={'primary'}
+                                    sx={{borderRadius: '5px'}}>
+                            <AddIcon/>
+                        </IconButton>
+                    </div>
                 </form>
                 <div className={s.posts}>
                     <ul ref={listRef}>

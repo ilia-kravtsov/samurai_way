@@ -18,12 +18,24 @@
     margin-top: 10px;
 }
 
+.postIcons {
+    @include flex(row, space-between, center);
+    border: 1px solid blue;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 11vw;
+}
+
+.postIcons svg:hover {
+    cursor: pointer;
+}
+
 .btnPost {
     box-shadow: $boxShadow;
     height: 50px;
     width: 50px;
     border: none;
-    margin-right: 1.5vw;
     color: $accentColor;
     transition: 0.5s;
 }
@@ -39,6 +51,8 @@
 .addPostContainer {
     @include flex(row, space-between, center);
     width: 100%;
+    position: relative;
+    border: 1px solid red;
 }
 
 //.title {
@@ -52,7 +66,7 @@
 
 .textarea {
     box-shadow: $boxShadow;
-    width: 90%;
+    width: 100%;
     outline: none;
     resize: none;
     border: none;
