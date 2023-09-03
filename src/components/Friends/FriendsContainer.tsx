@@ -1,26 +1,25 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {RootStateType} from "redux/redux-store";
-import {getCurrentPage, getPageSize, getUsers} from "redux/users_selectors";
+import {getUsers} from "redux/users_selectors";
 import {UsersApiType} from "components/Users/UsersContainer";
 import Friends from "components/Friends/Friends";
 import {getUsersTC} from "redux/users_reducer";
 
-export type PropsType = MSTP & MDTP
+export type FriendsContainerType = MSTP & MDTP
 
-const FriendsContainer = (props: PropsType) => {
+const FriendsContainer = (props: FriendsContainerType) => {
 
     useEffect(() => {
-        props.getUsersTC(18, props.pageSize)
+        props.getUsersTC(49, 10)
     },[])
 
-    return <Friends users={props.users}/>
+    return <Friends users={props.users} isAuth={props.isAuth}/>
 }
 
 type MSTP = {
     users: UsersApiType
-    pageSize: number
-    currentPage: number
+    isAuth: boolean
 }
 type MDTP = {
     getUsersTC: (currentPage: number, pageSize: number) => void
@@ -28,8 +27,7 @@ type MDTP = {
 
 const MSTP = (state: RootStateType): MSTP => ({
     users: getUsers(state),
-    pageSize: getPageSize(state),
-    currentPage: getCurrentPage(state),
+    isAuth: state.auth.isAuth
 })
 
 export default connect(MSTP, {getUsersTC})(FriendsContainer)

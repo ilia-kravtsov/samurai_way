@@ -19,7 +19,6 @@ const initialState = {
     currentPage: 1,
     isLoading: false,
     followInProgressValue: [],
-
 };
 
 export const usersReducer = (state: MapStatePropsType = initialState, action: ActionsTypes): MapStatePropsType => {

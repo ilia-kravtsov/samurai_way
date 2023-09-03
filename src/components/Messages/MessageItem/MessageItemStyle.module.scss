@@ -6,17 +6,27 @@
     text-decoration: none;
     color: lightslategrey;
     flex-grow: 1;
-    box-shadow: $boxShadow;
     margin: 5px 0;
     border: 1px solid $bgcSecond;
+    box-shadow: $boxShadow;
+    transition: all;
+    transition-duration: 0.5s;
 }
 
 .itemLinkImg:hover {
     border: 1px solid $bgcFirst;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    color: #1e88e5;
+    transform: scale(1.08);
+}
+
+.itemLinkImg:active {
+    border: 1px solid $bgcFirst;
 }
 
 .active {
-    color: $accentColor;
+    color:$accentColor;
     border: 1px solid $bgcFirst;
 }
 
@@ -27,3 +37,4 @@
     margin: 10px 20px;
     box-shadow: $boxShadow;
 }
+

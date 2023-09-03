@@ -52,12 +52,18 @@
 }
 
 .status {
+    @include flex(row, flex-start, center);
     height: 10vh;
-    box-shadow: $boxShadow;
     padding: 10px;
-    font-weight: bold;
     background: $bgcSecond;
     width: 100%;
+    border: 1px solid red;
+}
+
+.statusBlock {
+    @include flex(row, center, center);
+    border: 1px solid red;
+    margin-left: 5px;
 }
 
 .formPersonInformation {

@@ -19,14 +19,12 @@
 }
 
 .btnPost {
-    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: $boxShadow;
     height: 50px;
     width: 50px;
-    border-radius: 20px;
     border: none;
-    margin-left: 10px;
-    background: #e5e5e5;
-    color: dimgray;
+    margin-right: 1.5vw;
+    color: $accentColor;
     transition: 0.5s;
 }
 
@@ -39,7 +37,7 @@
 }
 
 .addPostContainer {
-    @include flex(row, normal, center);
+    @include flex(row, space-between, center);
     width: 100%;
 }
 
@@ -59,7 +57,6 @@
     resize: none;
     border: none;
     background-color: transparent;
-    padding: 20px;
 }
 
 .form_control.error input,

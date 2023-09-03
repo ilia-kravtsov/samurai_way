@@ -12,7 +12,9 @@ type MessageSenderType = {
 export const MessageSender: React.FC<MessageSenderType> = (props) => {
 
     const addMyNewMessageUI = () => {
-        props.addMyNewMessageAC(props.myNewMessageText)
+        if (props.myNewMessageText.trim()) {
+            props.addMyNewMessageAC(props.myNewMessageText)
+        }
     }
 
     const onMyNewMessageChange = (e: ChangeEvent<HTMLInputElement>) => {

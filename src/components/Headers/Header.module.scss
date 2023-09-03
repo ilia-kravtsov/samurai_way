@@ -3,7 +3,7 @@
 
 .headerContainer {
     @include flex(row, normal, center);
-    height: 12vh;
+    height: 10vh;
     background: $bgcFirst;
     border: 1px solid red;
     padding: 20px;
@@ -33,7 +33,7 @@
 .logout {
     border: none;
     box-shadow: $boxShadow;
-    background-color: rgba(63,124,230,0.93);
+    background-color: transparent;
     padding: 10px;
     border-radius: 10px;
     font-family: $fontFamily_1;
@@ -48,6 +48,19 @@
 }
 
 .logout:hover {
+    cursor: pointer;
+}
+
+.login {
+    padding: 10px;
+    box-shadow: $boxShadow;
+}
+
+.login:active {
+    transform: scale(0.9);
+}
+
+.login:hover {
     cursor: pointer;
 }
 

@@ -15,7 +15,6 @@ import {initializeApp} from "redux/app_reducer";
 import {RootStateType, store} from "redux/redux-store";
 import {PreLoader} from "components/common/PreLoader/PreLoader";
 import {createTheme, ThemeProvider} from "@mui/material";
-import Friends from "components/Friends/Friends";
 import FriendsContainer from "components/Friends/FriendsContainer";
 
 // import MessagesContainer from "./components/Messages/MessagesContainer";

@@ -30,8 +30,8 @@ type initialStateType = {
 
 const initialState: initialStateType = {
     postsData: [
-        {id: v1(), message: "Hey, how's it going?", likesCount: 0, disLikesCount: 0},
-        {id: v1(), message: "it's nice to see you here, what's up?", likesCount: 1, disLikesCount: 0},
+        {id: v1(), message: "Hey, how's it going?", likesCount: 139, disLikesCount: 11},
+        {id: v1(), message: "it's nice to see you here, what's up?", likesCount: 168, disLikesCount: 7},
     ],
     profile: {} as ProfileDataType,
     status: '',

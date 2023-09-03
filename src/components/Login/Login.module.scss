@@ -15,7 +15,7 @@
 }
 
 .form {
-    @include flex(column, center, center);
+    @include flex(column, center, flex-start);
     width: 80%;
     position: relative;
     font-family: $fontFamily_1;
@@ -45,6 +45,7 @@
 }
 
 .loginButton {
+    align-self: center;
     width: 150px;
     height: 50px;
     border: none;

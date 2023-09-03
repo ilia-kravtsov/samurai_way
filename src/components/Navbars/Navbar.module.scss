@@ -11,7 +11,7 @@
     box-shadow: $boxShadow;
 }
 
-.navContainer {
+.navLinksContainer {
     @include flex(column, space-between, flex-start);
     height: 46vh;
     border: 1px solid red;
@@ -29,12 +29,16 @@
     flex-grow: 1;
     padding: 10px;
     border: 1px solid red;
+    transition: all;
+    transition-duration: 0.5s;
 }
 
 .link:hover {
     cursor: pointer;
-    transition: all 0.5s ease;
+    transition: all 0.4s ease;
     border: 1px solid $bgcFirst;
+    color: #1e88e5;
+    transform: scale(1.08);
 }
 
 .link:active {
@@ -43,9 +47,14 @@
 
 .activeLink {
     border: 1px solid $bgcFirst;
+    color: $accentColor;
 }
 
 .linkLogo {
     margin-right: 20px;
+    width: 25px;
 }
 
+.linkIcon {
+    margin-right: 20px;
+}

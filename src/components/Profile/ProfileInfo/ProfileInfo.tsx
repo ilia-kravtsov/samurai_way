@@ -77,28 +77,29 @@ const ProfileInfo = (props: ProfileInfo) => {
                     </div>
                     <section className={s.status}>
                         <span className={s.statusHeader}>Status: </span>
-                        {editMode ? <span className={s.statusBlock}>
-                        <input value={status}
-                               onChange={changeStatus}
-                               className={s.editInput}
-                               autoFocus
-                        />
-                        <Button sx={{ml: '10px'}} variant={'contained'} onClick={deActivateStatus}>
-                            Save
-                        </Button>
-                    </span>
-                            : <span className={s.statusBlock}>
-                        {props.status || "I haven't added my status yet"}
+                        {editMode
+                            ? <span className={s.statusBlock}>
+                                    <input value={status}
+                                           onChange={changeStatus}
+                                           className={s.editInput}
+                                           autoFocus
+                                    />
+                                    <Button sx={{ml: '10px'}} variant={'contained'} onClick={deActivateStatus}>
+                                        Save
+                                    </Button>
+                                </span>
+                            :
+                            <span className={s.statusBlock}>
+                            {props.status || "I haven't added my status yet"}
                                 <IconButton onClick={activateStatus}
                                             style={{marginLeft: '20px', borderRadius: '5px'}}
                                             color={'primary'}>
-                            <EditIcon/>
-                        </IconButton>
+                                    <EditIcon/>
+                                </IconButton>
                                 {props.errorStatusFlag && <div>{props.errorStatusFlag}</div>}
-                    </span>
+                            </span>
                         }
                     </section>
-                    {/*<ProfileStatus status={props.status} updateStatusTC={props.updateStatusTC}/>*/}
                 </div>
             </div>
 
@@ -116,6 +117,4 @@ export default ProfileInfo;
 /*
 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKrBK-eMr3u6DP0wzI2zNVrOGDizdwug_pNA&usqp=CAU"
 
-import SaveIcon from '@mui/icons-material/Save';
-import EditIcon from '@mui/icons-material/Edit';
  */

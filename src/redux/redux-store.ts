@@ -1,22 +1,33 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import {
-    addPost, delPost, maxCountOfSymbolsWhenUpdateStatusAC,
+    addPost,
+    delPost,
+    maxCountOfSymbolsWhenUpdateStatusAC,
     onDisLikeHandler,
-    onLikeHandler, personDataFlagToogle,
-    profilePageReducer, profileToggle, savePhotoAC, setNewPostText, setStatusAC, setUserProfile,
+    onLikeHandler,
+    profilePageReducer,
+    profileToggle,
+    savePhotoAC,
+    setNewPostText,
+    setStatusAC,
+    setUserProfile,
 } from "./profile_page_reducer";
 import {
     addMyNewMessageAC,
+    changeMyMessageAC,
     deleteMyNewMessageAC,
-    messagesPageReducer, setMyNewMessageAC,
+    messagesPageReducer,
+    setMyNewMessageAC,
 } from "./messages_page_reducer";
 import {
-    follow, loaderChanger,
+    follow,
+    followInProgress,
+    loaderChanger,
     onPaginationClick,
-    setUsers,
     setTotalUsersCount,
+    setUsers,
     unFollow,
-    usersReducer, followInProgress
+    usersReducer
 } from "./users_reducer";
 import {addCaptchaImgUrl, authReducer, isUserLoginDataCorrect, setAuthUserData} from "./auth_reducer";
 import thunkMiddleware, {ThunkAction} from "redux-thunk"
@@ -64,6 +75,7 @@ export type ActionsTypes =
     | ReturnType<typeof maxCountOfSymbolsWhenUpdateStatusAC>
     | ReturnType<typeof setNewPostText>
     | ReturnType<typeof setMyNewMessageAC>
+    | ReturnType<typeof changeMyMessageAC>
     | {type: 'profile/FAKE'}
 
 export type AppThunk<ReturnType = void> = ThunkAction<void, RootStateType, unknown, ActionsTypes>
