@@ -41,34 +41,6 @@ export const Navbar = () => {
                     <OndemandVideoIcon className={s.linkIcon} color={'primary'}/>
                     {'Video'}
                 </NavLink>
-                {/*<NavLink to={'/profile'} activeClassName={s.activeLink} className={s.link}>*/}
-                {/*    <img src={"https://img.icons8.com/fluency/1x/lifecycle.png"} alt="navbar logo" className={s.linkLogo}/>*/}
-                {/*    {'Profile'}*/}
-                {/*</NavLink>*/}
-                {/*<NavLink to={'/messages'} activeClassName={s.activeLink} className={s.link}>*/}
-                {/*    <img src={"https://img.icons8.com/fluency/1x/new-message.png"} alt="navbar logo" className={s.linkLogo}/>*/}
-                {/*    {'Messages'}*/}
-                {/*</NavLink>*/}
-                {/*<NavLink to={'/users'} activeClassName={s.activeLink} className={s.link}>*/}
-                {/*    <img src={"https://img.icons8.com/fluency/1x/group.png"} alt="navbar logo" className={s.linkLogo}/>*/}
-                {/*    {'Friends'}*/}
-                {/*</NavLink>*/}
-                {/*<NavLink to={'/news'} activeClassName={s.activeLink} className={s.link}>*/}
-                {/*    <img src={"https://img.icons8.com/fluency/1x/news.png"} alt="navbar logo" className={s.linkLogo}/>*/}
-                {/*    {'News'}*/}
-                {/*</NavLink>*/}
-                {/*<NavLink to={'/music'} activeClassName={s.activeLink} className={s.link}>*/}
-                {/*    <img src={"https://img.icons8.com/fluency/1x/music-library.png"} alt="navbar logo" className={s.linkLogo}/>*/}
-                {/*    {'Music'}*/}
-                {/*</NavLink>*/}
-                {/*<NavLink to={'/settings'} activeClassName={s.activeLink} className={s.link}>*/}
-                {/*    <img src={"https://img.icons8.com/fluency/1x/services.png"} alt="navbar logo" className={s.linkLogo}/>*/}
-                {/*    {'Settings'}*/}
-                {/*</NavLink>*/}
-                {/*<NavLink to={'/video'} activeClassName={s.activeLink} className={s.link}>*/}
-                {/*    <img src={"https://img.icons8.com/fluency/1x/laptop-play-video.png"} alt="navbar logo" className={s.linkLogo}/>*/}
-                {/*    {'Video'}*/}
-                {/*</NavLink>*/}
             </div>
         </div>
     )

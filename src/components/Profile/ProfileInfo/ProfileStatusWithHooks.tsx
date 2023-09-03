@@ -52,27 +52,15 @@ const ProfileData = (props: ProfileDataTypes) => {
     return (
         <div className={s.formPersonInformation}>
             <div className={s.formPersonFirst}>
-                <div>Full name: {props.profile.fullName || "Simon"}</div>
                 <div>Looking for a job: {props.profile.lookingForAJob ? 'yes' : 'no'}</div>
                 <div>About me: {props.profile.aboutMe || "i'm the best"}</div>
-                <div>My professional skills: {props.profile.lookingForAJobDescription || "i almost know React"}</div>
+                <div>Skills: {props.profile.lookingForAJobDescription || "i almost know React"}</div>
             </div>
-            <div className={s.formPersonSecond}>
-                <div className={s.formPersonContacts}>
-                    {Object.keys(props.profile.contacts).map((key, i) => {
-                        if (i < 4) {
-                            // @ts-ignore
-                            return <Contact contactTitle={key} contactValue={props.profile.contacts[key]} key={key}/>
-                        }
-                    })}
-                </div>
-                {props.isOwner && <IconButton onClick={props.activateEditMode}
-                                              style={{borderRadius: '5px'}}
-                                              color={'primary'}>
-                    <EditIcon/>
-                </IconButton>}
-            </div>
-
+            {props.isOwner && <IconButton onClick={props.activateEditMode}
+                                          style={{borderRadius: '5px'}}
+                                          color={'primary'}>
+                <EditIcon/>
+            </IconButton>}
         </div>
 
     )
@@ -104,16 +92,6 @@ const ProfileDataForm: FC<InjectedFormProps<FormInputsType, ProfileDataTypes> & 
     return (
         <form className={s.formPersonInformation} onSubmit={props.handleSubmit}>
             <div className={s.formPersonFirst}>
-                <div className={s.editContact}>
-                    Full name:
-                    <div>
-                        <Field placeholder={'add your full name'}
-                               component={Input}
-                               validate={[required]}
-                               name={'fullName'}
-                               className={s.personInformationInput}/>
-                    </div>
-                </div>
                 <div className={s.editLookForAJob}>
                     <label htmlFor="checkboxId">Looking for a job:</label>
                     <Field type={"checkbox"}
@@ -138,26 +116,6 @@ const ProfileDataForm: FC<InjectedFormProps<FormInputsType, ProfileDataTypes> & 
                                                    validate={[required]}
                                                    name={'lookingForAJobDescription'}
                                                    className={s.personInformationInput}/>
-                </div>
-            </div>
-            <div className={s.formPersonSecond}>
-                <div>
-                    {Object.keys(profile.contacts).map((key, i) => {
-                        if (i < 4) {
-                            return (
-                                <div className={s.editContactRight} key={key}>
-                                    {key}:
-                                    <div>
-                                        <Field placeholder={key}
-                                                      component={Input}
-                                                      validate={[required]}
-                                                      name={'contacts.' + key}
-                                                      className={s.personInformationInput}/>
-                                    </div>
-                                </div>
-                            )
-                        }
-                    })}
                 </div>
                 {error && <div className={s.formError}>{error}</div>}
             </div>

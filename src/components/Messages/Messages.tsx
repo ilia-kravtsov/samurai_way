@@ -13,7 +13,7 @@ const Messages = (props: MessagesPropsType) => {
 
     const messagesItemDataElements = props.users.map((friend,i) => {
 
-        let photoSrc = i === 2 ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd0qLgeb3w2s-sisWSBmrv9J9Y_bLYVz0kOg&usqp=CAU' : friend.photos.small
+        let photoSrc = i === 4 ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd0qLgeb3w2s-sisWSBmrv9J9Y_bLYVz0kOg&usqp=CAU' : friend.photos.small
                                ? friend.photos.small : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKrBK-eMr3u6DP0wzI2zNVrOGDizdwug_pNA&usqp=CAU'
 
         return <MessageItem key={friend.id}

@@ -34,7 +34,7 @@ const FriendAva = (props: {users: UsersApiType, searchValue: string}) => {
 
         return (
             <div key={friend.id} className={s.avaNameBlock}>
-                <img src={ i === 2 ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd0qLgeb3w2s-sisWSBmrv9J9Y_bLYVz0kOg&usqp=CAU' : photoSrc}
+                <img src={ i === 4 ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd0qLgeb3w2s-sisWSBmrv9J9Y_bLYVz0kOg&usqp=CAU' : photoSrc}
                      alt='ava'
                      key={friend.id}
                      className={s.friendAva}/>

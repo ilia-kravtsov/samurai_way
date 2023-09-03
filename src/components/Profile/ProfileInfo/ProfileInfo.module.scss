@@ -6,21 +6,20 @@
     width: 100%;
     height: 35vh;
     border: 20px solid $bgcSecond;
-    background-image: url("../../../backgrounds/2208_w048_n005_279a_p1_279.jpg");
-    background-size: cover;
     box-shadow: $boxShadow;
     margin-top: 10px;
 }
 
 .avaDescriptionBlock {
-    @include flex(row, normal, flex-end);
+    @include flex(row, normal, flex-start);
     width: 100%;
     border: 1px solid blue;
+    height: 100%;
 }
 
 .avaBorderBlock {
     background: $bgcSecond;
-    border-radius: 200px 200px 0 0;
+    border-radius: 200px;
     position: relative;
     border: 1px solid yellow;
 }
@@ -33,6 +32,11 @@
     margin: 20px;
 }
 
+.descriptionBlock {
+    @include flex(column, normal, flex-start);
+    width: 100%;
+}
+
 .borderDescriptionBLock {
     @include flex(column, normal, flex-start);
     background: $bgcSecond;
@@ -40,6 +44,8 @@
     padding: 10px;
     font-family: $fontFamily_1;
     border: 1px solid red;
+    transition: all;
+    transition-duration: 0.5s;
 }
 
 .editInput {
@@ -49,14 +55,26 @@
     font-family: $fontFamily_1;
     height: 40px;
     outline: none;
+    color: $fontColor_3;
+}
+
+.fullName {
+    @include flex(row, flex-start, center);
+    height: 60px;
+    padding: 10px;
+    background: $bgcSecond;
+    width: 25%;
+    border: 1px solid red;
+    color: $fontColor_3;
 }
 
 .status {
     @include flex(row, flex-start, center);
-    height: 10vh;
+    height: 60px;
     padding: 10px;
     background: $bgcSecond;
-    width: 100%;
+    width: 75%;
+    color: $fontColor_3;
     border: 1px solid red;
 }
 
@@ -64,10 +82,14 @@
     @include flex(row, center, center);
     border: 1px solid red;
     margin-left: 5px;
+    position: relative;
+    transition: all;
+    transition-duration: 0.5s;
+    color: $fontColor_3;
 }
 
 .formPersonInformation {
-    @include flex(row, space-between, flex-start);
+    @include flex(row, space-between, flex-end);
     width: 100%;
     padding: 10px;
     overflow-y: scroll;
@@ -76,17 +98,18 @@
 
 .formPersonFirst {
     @include flex(column, space-between, flex-start);
-    width: 50%;
-    border: 1px solid red;
+    width: 100%;
+    border: 1px solid green;
 }
 
 .formPersonFirst div {
     margin: 5px 0;
+    color: $fontColor_3;
 }
 
 .editContact {
     @include flex(row, space-between, center);
-    border: 1px solid red;
+    border: 1px solid green;
     width: 70%;
 }
 
@@ -105,6 +128,7 @@
 
 .formPersonContacts div{
     margin: 5px 0;
+    color: $fontColor_3;
 }
 
 .formError {
@@ -136,6 +160,7 @@
     @include flex(row, space-between, center);
     width: 300px;
     border: 1px solid red;
+    color: $fontColor_3;
 }
 
 .editContactRight div {
@@ -146,4 +171,13 @@
     @include flex(row, space-between, center);
     border: 1px solid red;
     width: 50%;
+    color: $fontColor_3;
+}
+
+.error {
+    width: 400px;
+    position: absolute;
+    color: #b8001c;
+    top: 42px;
+    left: 0;
 }

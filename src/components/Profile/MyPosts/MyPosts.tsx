@@ -52,7 +52,7 @@ export const MyPosts = React.memo((props: MyPostsType) => {
     return (
         <div className={s.postsContainer}>
             <div className={s.postsBlock}>
-                <h3 className={s.title}>My Posts</h3>
+                {/*<h3 className={s.title}>My Posts</h3>*/}
                 <form className={s.addPostContainer}>
                     <TextField className={s.textarea}
                                ref={newPostElement}
