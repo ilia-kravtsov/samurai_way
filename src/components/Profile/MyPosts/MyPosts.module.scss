@@ -55,26 +55,12 @@
     border: 1px solid red;
 }
 
-//.title {
-//    box-shadow: $boxShadow;
-//    padding: 15px;
-//    text-align: center;
-//    width: 100%;
-//    font-family: $fontFamily_1;
-//    margin-bottom: 20px;
-//}
-
-.textarea {
-    box-shadow: $boxShadow;
-    width: 100%;
-    outline: none;
-    resize: none;
-    border: none;
-    background-color: transparent;
-}
-
 .form_control.error input,
 .form_control.erorr textarea
 {
     border: 1px solid red;
+}
+
+.preparePostTextarea {
+    width: 100%;
 }

@@ -14,6 +14,10 @@ export type PostsData = {
     message: string
     likesCount: number
     disLikesCount: number
+    views: number
+    isLike: boolean
+    isDislike: boolean
+    comments: number
 }
 export type ProfilePageType = {
     postsData: Array<PostsData>

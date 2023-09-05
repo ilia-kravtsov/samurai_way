@@ -57,6 +57,8 @@
     height: 10vh;
     padding: 10px;
     width: 30%;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .status {
@@ -65,6 +67,7 @@
     padding: 10px;
     background: $bgcSecond;
     width: 70%;
+    font-weight: bold;
     border: 1px solid red;
 }
 
@@ -75,27 +78,43 @@
 }
 
 .formPersonInformation {
-    @include flex(row, space-between, flex-end);
+    @include flex(row, space-between, flex-start);
     width: 100%;
     padding: 10px;
     overflow-y: scroll;
     border: 1px solid red;
+    animation: fadeIn 0.5s;
+    @keyframes fadeIn {
+        0% {
+            transform: scale(0.9);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+}
+
+.formPersonInformation button{
+    align-self: flex-end;
 }
 
 .formPersonFirst {
     @include flex(column, space-between, flex-start);
-    width: 60%;
+    width: 50%;
     border: 1px solid red;
     align-self: flex-start;
 }
 
 .descriptionData {
-    height: 50px;
-    margin: 5px 0;
+    margin-top: 5px;
+}
+
+.preparePostLI {
+    font-weight: bold;
 }
 
 .formPersonSecond {
-    width: 40%;
+    width: 50%;
     @include flex(row, normal, flex-end);
     border: 1px solid blue;
 }
@@ -107,8 +126,9 @@
     border: 1px solid red;
 }
 
-.formPersonContacts div{
-    margin: 5px 0;
+.preparePostHeader {
+    font-size: 20px;
+    text-decoration: underline;
 }
 
 .formError {
@@ -138,24 +158,19 @@
     border: 1px solid red;
 }
 
-.editContactRight div {
-    margin: 5px 0;
-}
-
 .lookForAJob {
     @include flex(row, space-between, center);
     border: 1px solid red;
-    margin: 2px 0;
+    height: 50px;
 }
 
 .lookForAJobCheckbox {
     margin-left: 10px;
 }
 
-.aboutMe {
+.aboutMeSkill {
     @include flex(row, space-between, center);
     border: 1px solid red;
-    height: 75px;
     width: 400px;
 }
 
@@ -167,10 +182,10 @@
 .textareaSkill {
     @include flex(row, space-between, center);
     border: 1px solid red;
-    height: 75px;
-    width: 370px;
+    width: 400px;
 }
 
-.contact {
-    height: 50px;
+.textareaEditMode {
+    resize: none;
+    border: 1px solid red;
 }

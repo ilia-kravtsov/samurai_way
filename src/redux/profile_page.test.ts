@@ -1,5 +1,4 @@
 import {addPost, delPost, profilePageReducer} from "redux/profile_page_reducer";
-import {ActionsTypes} from "redux/redux-store";
 import {v1} from "uuid";
 import {ProfileDataType} from "components/Profile/ProfileContainer";
 import {PostsData} from "components/Profile/MyPosts/MyPostsContainer";
@@ -16,8 +15,8 @@ type initialStateType = {
 
 const state: initialStateType = {
     postsData: [
-        {id: v1(), message: "Hey, how's it going?", likesCount: 0, disLikesCount: 0},
-        {id: v1(), message: "Hey, how's it going?", likesCount: 0, disLikesCount: 0},
+        {id: v1(), message: "Hey, how's it going?", likesCount: 0, disLikesCount: 0, views: 0, isLike: false, isDislike: false, comments: 0},
+        {id: v1(), message: "Hey, how's it going?", likesCount: 0, disLikesCount: 0, views: 0, isLike: false, isDislike: false, comments: 0},
     ],
     profile: {} as ProfileDataType,
     status: '',

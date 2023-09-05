@@ -8,9 +8,10 @@ import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import ImageIcon from '@mui/icons-material/Image';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import {PostsData} from "components/Profile/MyPosts/MyPostsContainer";
 
 type MyPostsType = {
-    postsData: Array<{ id: string, message: string, likesCount: number, disLikesCount: number }>
+    postsData: Array<PostsData>
     newPostText: string
     addPost: (postText: string) => void
     onLikeHandler: (id: string) => void
@@ -29,6 +30,8 @@ export const MyPosts = React.memo((props: MyPostsType) => {
               message={p.message}
               likesCount={p.likesCount}
               disLikesCount={p.disLikesCount}
+              views={p.views}
+              comments={p.comments}
               onLikeHandler={props.onLikeHandler}
               onDisLikeHandler={props.onDisLikeHandler}
               delPost={props.delPost}
@@ -36,7 +39,9 @@ export const MyPosts = React.memo((props: MyPostsType) => {
     );
 
     const addPost = () => {
-        props.addPost(props.newPostText)
+        if (props.newPostText.trim()) {
+            props.addPost(props.newPostText)
+        }
     }
 
     const newPostElement = React.createRef<HTMLDivElement>()
@@ -56,8 +61,9 @@ export const MyPosts = React.memo((props: MyPostsType) => {
     return (
         <div className={s.postsContainer}>
             <div className={s.postsBlock}>
+
                 <form className={s.addPostContainer}>
-                    <TextField className={s.textarea}
+                    <TextField className={s.preparePostTextarea}
                                ref={newPostElement}
                                value={props.newPostText}
                                onChange={onPostChange}

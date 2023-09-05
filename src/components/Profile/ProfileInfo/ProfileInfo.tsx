@@ -3,7 +3,7 @@ import s from './ProfileInfo.module.scss';
 import {ProfileDataType} from "../ProfileContainer";
 import {PreLoader} from "../../common/PreLoader/PreLoader";
 import {FormInputsType, ProfileStatusWithHooks} from "components/Profile/ProfileInfo/ProfileStatusWithHooks";
-import {Button, IconButton, Tooltip} from "@mui/material";
+import {Button, IconButton, TextField, Tooltip} from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
@@ -87,9 +87,10 @@ const ProfileInfo = (props: ProfileInfo) => {
                         <span className={s.statusHeader}>Status: </span>
                         {editMode
                             ? <span className={s.statusBlock}>
-                                    <input value={status}
+                                    <TextField value={status}
                                            onChange={changeStatus}
                                            className={s.editInput}
+                                           variant={'standard'}
                                            autoFocus
                                     />
                                     <Button sx={{ml: '10px'}} variant={'contained'} onClick={deActivateStatus}>

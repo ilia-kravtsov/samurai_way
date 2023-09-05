@@ -10,24 +10,26 @@ type TextareaType = {
     props: any
     tag: any
     placeholder: string
+    maxlength: number
 }
 
 export const Textarea: FC<TextareaType> = ({input, meta, placeholder, ...props}) => {
-    return <FormControl props={props} input={input} meta={meta} tag={'textarea'} placeholder={placeholder}></FormControl>
+    return <FormControl props={props} input={input} meta={meta} tag={'textarea'} placeholder={placeholder} maxlength={40}></FormControl>
 }
 
 export const Input: FC<TextareaType> = ({input, meta, placeholder, ...props}) => {
-    return <FormControl props={props} input={input} meta={meta} tag={'input'} placeholder={placeholder}></FormControl>
+    return <FormControl props={props} input={input} meta={meta} tag={'input'} placeholder={placeholder} maxlength={30}></FormControl>
 }
 
-const FormControl: FC<TextareaType> = ({input, meta: {touched, error}, tag, placeholder}) => {
+const FormControl: FC<TextareaType> = ({input, meta: {touched, error}, tag, placeholder,maxlength }) => {
     const hasError = touched && error
     return (
         <div className={s.container}>
             {React.createElement(tag, {
                 placeholder,
                 ...input,
-                className: tag === 'textarea' ? `${s.textarea} ${hasError && s.error}` : `${s.inputs} ${hasError && s.error}`
+                maxLength: maxlength,
+                className: tag === 'textarea' ? `${s.preparePostTextarea} ${hasError && s.error}` : `${s.inputs} ${hasError && s.error}`
             })}
             {hasError && <span className={s.colorRed}>{error}</span>}
         </div>

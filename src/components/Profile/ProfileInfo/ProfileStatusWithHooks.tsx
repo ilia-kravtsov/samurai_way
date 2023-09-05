@@ -52,12 +52,14 @@ const ProfileData = (props: ProfileDataTypes) => {
     return (
         <div className={s.formPersonInformation}>
             <div className={s.formPersonFirst}>
-                <div className={s.descriptionData}>Looking for a job: {props.profile.lookingForAJob ? 'yes' : 'no'}</div>
-                <div className={s.descriptionData}>About me: {props.profile.aboutMe || "i'm the best"}</div>
-                <div className={s.descriptionData}>Skills: {props.profile.lookingForAJobDescription || "i almost know React"}</div>
+                <h2 className={s.preparePostHeader}>Information:</h2>
+                <div className={s.descriptionData}><span className={s.preparePostLI}>About me:</span> {props.profile.aboutMe || "i'm the best"}</div>
+                <div className={s.descriptionData}><span className={s.preparePostLI}>Skills:</span> {props.profile.lookingForAJobDescription || "i almost know React"}</div>
+                <div className={s.descriptionData}><span className={s.preparePostLI}>Looking for a job:</span> {props.profile.lookingForAJob ? 'yes' : 'no'}</div>
             </div>
             <div className={s.formPersonSecond}>
                 <div className={s.formPersonContacts}>
+                    <h2 className={s.preparePostHeader}>Contacts:</h2>
                     {Object.keys(props.profile.contacts).map((key, i) => {
                         if (i > 3 && i < 7) {
                             // @ts-ignore
@@ -75,6 +77,15 @@ const ProfileData = (props: ProfileDataTypes) => {
         </div>
 
     )
+}
+
+type ContactType = {
+    contactTitle: string
+    contactValue: string
+}
+
+const Contact = (props: ContactType) => {
+    return <div className={s.descriptionData}><span className={s.preparePostLI}>{props.contactTitle}:</span> {props.contactValue}</div>
 }
 
 export type FormInputsType = {
@@ -103,35 +114,34 @@ const ProfileDataForm: FC<InjectedFormProps<FormInputsType, ProfileDataTypes> & 
     return (
         <form className={s.formPersonInformation} onSubmit={props.handleSubmit}>
             <div className={s.formPersonFirst}>
+                <div className={s.aboutMeSkill}>
+                    <span className={s.preparePostLI}>About me:</span>
+                    <div className={s.personInformationInput}>
+                        <Field placeholder={'tell about yourself'}
+                               component={Input}
+                               validate={[required]}
+                               name={'aboutMe'}
+                        />
+                    </div>
+                </div>
+                <div className={s.aboutMeSkill}>
+                    <span className={s.preparePostLI}>Skills:</span>
+                    <div className={s.personInformationInput}>
+                        <Field placeholder={'your skills'}
+                               component={Input}
+                               validate={[required]}
+                               name={'lookingForAJobDescription'}
+                        />
+                    </div>
+                </div>
                 <div className={s.lookForAJob}>
-                    <label htmlFor="checkboxId">Looking for a job:</label>
+                    <label htmlFor="checkboxId"><span className={s.preparePostLI}>Looking for a job:</span></label>
                     <Field type={"checkbox"}
                            id={'checkboxId'}
                            component={'input'}
                            name={'lookingForAJob'}
                            className={s.lookForAJobCheckbox}
                     />
-                </div>
-                <div className={s.aboutMe}>
-                    About me:
-                    <div className={s.personInformationInput}>
-                        <Field placeholder={'tell about yourself'}
-                               component={Input}
-                               validate={[required]}
-                               name={'aboutMe'}
-                               />
-                    </div>
-                </div>
-                <div className={s.textareaSkill}>
-                    Skills:
-                    <div>
-                    <Field placeholder={'your skills'}
-                                                   component={Textarea}
-                                                   validate={[required]}
-                                                   name={'lookingForAJobDescription'}
-                                                   className={s.personInformationInput}
-                    />
-                    </div>
                 </div>
             </div>
             <div className={s.formPersonSecond}>
@@ -140,7 +150,7 @@ const ProfileDataForm: FC<InjectedFormProps<FormInputsType, ProfileDataTypes> & 
                         if (i > 3 && i < 7) {
                             return (
                                 <div className={s.editContactRight} key={key}>
-                                    {key}:
+                                    <span className={s.preparePostLI}>{key}:</span>
                                     <div>
                                         <Field placeholder={key}
                                                component={Input}
@@ -164,15 +174,6 @@ const ProfileDataForm: FC<InjectedFormProps<FormInputsType, ProfileDataTypes> & 
 }
 
 const ProfileReduxForm = reduxForm<FormInputsType, ProfileDataTypes>({form: 'profileData'})(ProfileDataForm)
-
-type ContactType = {
-    contactTitle: string
-    contactValue: string
-}
-
-const Contact = (props: ContactType) => {
-    return <div className={s.contact}>{props.contactTitle}: {props.contactValue}</div>
-}
 
 
 // state = {
