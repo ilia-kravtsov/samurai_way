@@ -19,8 +19,6 @@ type PostType = {
     disLikesCount: number
     views: number
     comments: number
-    onLikeHandler: (id: string) => void
-    onDisLikeHandler: (id: string) => void
     delPost: (id: string) => void
     activeLikeColorCB: (id: string, value: 'primary' | 'secondary') => void
     activeDisLikeColorCB: (id: string, value: 'primary' | 'secondary') => void
@@ -36,16 +34,14 @@ const Post = (props: PostType) => {
         } else {
             props.activeLikeColorCB(props.id, 'secondary')
         }
-        props.onLikeHandler(props.id)
     }
-    console.log(props.activeLikeColor)
+
     const disLikeClick = () => {
         if (props.activeDisLikeColor === 'secondary') {
             props.activeDisLikeColorCB(props.id, 'primary')
         } else {
             props.activeDisLikeColorCB(props.id, 'secondary')
         }
-        props.onDisLikeHandler(props.id)
     }
 
     const delClick = () => {

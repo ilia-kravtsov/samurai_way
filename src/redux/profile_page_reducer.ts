@@ -75,34 +75,6 @@ export const profilePageReducer = (state = initialState, action: ActionsTypes): 
             return {...state, postsData: [newPost, ...state.postsData], newPostText: ''}
         case DELETE_POST:
             return {...state, postsData: state.postsData.filter(p => p.id !== action.index)}
-        case ON_LIKE_HANDLER_TYPE:
-            return {
-                ...state, postsData: state.postsData.map(p =>
-                    (p.id === action.index)
-                        ? {
-                            ...p,
-                            likesCount: p.isLike ? p.likesCount - 1 : p.likesCount + 1,
-                            disLikesCount: p.activeDisLikeColor === 'primary' ? p.disLikesCount : p.disLikesCount - 1,
-                            isLike: true,
-                            isDislike: false
-                          }
-                        : p
-                )
-            }
-        case ON_DISLIKE_HANDLER_TYPE:
-            return {
-                ...state, postsData: state.postsData.map(p =>
-                    (p.id === action.index)
-                        ? {
-                            ...p,
-                            disLikesCount: p.activeDisLikeColor === 'primary' ? p.disLikesCount + 1 : p.disLikesCount - 1,
-                            likesCount: p.activeLikeColor === 'primary' ? p.likesCount : p.likesCount - 1,
-                            isLike: false,
-                            isDislike: true
-                          }
-                        : p
-                )
-            }
         case SET_USER_PROFILE:
             return {...state, profile: action.profile}
         case SET_STATUS:
@@ -116,9 +88,9 @@ export const profilePageReducer = (state = initialState, action: ActionsTypes): 
         case NEW_POST_TEXT:
             return {...state, newPostText: action.newText}
         case ACTIVE_LIKE_COLOR:
-            return {...state, postsData: state.postsData.map(p => p.id === action.id ? {...p, activeLikeColor: p.activeLikeColor === 'primary' ? 'secondary' : 'primary', activeDisLikeColor: p.activeDisLikeColor === 'secondary' ? 'primary' : 'primary'} : p)}
+            return {...state, postsData: state.postsData.map(p => p.id === action.id ? {...p, activeLikeColor: p.activeLikeColor === 'primary' ? 'secondary' : 'primary', activeDisLikeColor: p.activeDisLikeColor === 'secondary' ? 'primary' : 'primary', likesCount: p.activeLikeColor === 'primary' ? p.likesCount + 1 : p.likesCount - 1, disLikesCount: p.activeDisLikeColor === 'primary' ? p.disLikesCount : p.disLikesCount - 1} : p)}
         case ACTIVE_DISLIKE_COLOR:
-            return {...state, postsData: state.postsData.map(p => p.id === action.id ? {...p, activeDisLikeColor: p.activeDisLikeColor === 'primary' ? 'secondary' : 'primary', activeLikeColor: p.activeLikeColor === 'secondary' ? 'primary' : 'primary'} : p)}
+            return {...state, postsData: state.postsData.map(p => p.id === action.id ? {...p, activeDisLikeColor: p.activeDisLikeColor === 'primary' ? 'secondary' : 'primary', activeLikeColor: p.activeLikeColor === 'secondary' ? 'primary' : 'primary', disLikesCount: p.activeDisLikeColor === 'primary' ? p.disLikesCount + 1 : p.disLikesCount - 1, likesCount: p.activeLikeColor === 'primary' ? p.likesCount : p.likesCount - 1} : p)}
         default:
             return state
     }

@@ -9,7 +9,6 @@ import VideocamIcon from '@mui/icons-material/Videocam';
 import ImageIcon from '@mui/icons-material/Image';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import {PostsData} from "components/Profile/MyPosts/MyPostsContainer";
-import {activeLikeColorCB} from "redux/profile_page_reducer";
 
 type MyPostsType = {
     postsData: Array<PostsData>
@@ -39,8 +38,6 @@ export const MyPosts = React.memo((props: MyPostsType) => {
               activeLikeColorCB={props.activeLikeColorCB}
               activeDisLikeColorCB={props.activeDisLikeColorCB}
               comments={p.comments}
-              onLikeHandler={props.onLikeHandler}
-              onDisLikeHandler={props.onDisLikeHandler}
               delPost={props.delPost}
 
         />
