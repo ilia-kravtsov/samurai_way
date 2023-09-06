@@ -1,5 +1,7 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import {
+    activeDisLikeColorCB,
+    activeLikeColorCB,
     addPost,
     delPost,
     maxCountOfSymbolsWhenUpdateStatusAC,
@@ -76,6 +78,8 @@ export type ActionsTypes =
     | ReturnType<typeof setNewPostText>
     | ReturnType<typeof setMyNewMessageAC>
     | ReturnType<typeof changeMyMessageAC>
+    | ReturnType<typeof activeLikeColorCB>
+    | ReturnType<typeof activeDisLikeColorCB>
     | {type: 'profile/FAKE'}
 
 export type AppThunk<ReturnType = void> = ThunkAction<void, RootStateType, unknown, ActionsTypes>

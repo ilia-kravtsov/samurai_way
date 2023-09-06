@@ -15,8 +15,8 @@ type initialStateType = {
 
 const state: initialStateType = {
     postsData: [
-        {id: v1(), message: "Hey, how's it going?", likesCount: 0, disLikesCount: 0, views: 0, isLike: false, isDislike: false, comments: 0},
-        {id: v1(), message: "Hey, how's it going?", likesCount: 0, disLikesCount: 0, views: 0, isLike: false, isDislike: false, comments: 0},
+        {id: v1(), message: "Hey, how's it going?", likesCount: 0, disLikesCount: 0, views: 0, isLike: false, isDislike: false, comments: 0, activeLikeColor: 'primary', activeDisLikeColor: 'primary'},
+        {id: v1(), message: "Hey, how's it going?", likesCount: 0, disLikesCount: 0, views: 0, isLike: false, isDislike: false, comments: 0, activeLikeColor: 'primary', activeDisLikeColor: 'primary'},
     ],
     profile: {} as ProfileDataType,
     status: '',

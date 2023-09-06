@@ -13,18 +13,17 @@
 }
 
 .imgSpanContainer {
-    @include flex(row, normal, flex-end);
+    @include flex(row, normal, flex-start);
     width: 100%;
     border: 1px solid red;
 }
 
 .postMessage {
-    width: 75%;
+    width: 100%;
     box-shadow: $boxShadow;
     border-radius: 10px 10px 10px 0;
     padding: 10px;
     word-wrap: break-word;
-    margin-top: 10px;
     min-height: 60px;
     font-family: $fontFamily_1;
 }
@@ -33,10 +32,10 @@
     @include flex(row, space-evenly, center);
     box-shadow: $boxShadow;
     background-color: $bgcSecond;
-    width: 50%;
+    width: 70%;
     padding: 10px;
     border-radius: 10px;
-    margin: 10px 0;
+    margin-top: 10px;
     border: 1px solid red;
 }
 

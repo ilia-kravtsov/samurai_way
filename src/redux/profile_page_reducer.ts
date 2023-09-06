@@ -17,6 +17,8 @@ const SAVE_NEW_PHOTO = 'profile/SET_NEW_PHOTO';
 const PROFILE_TOGGLE = 'profile/PROFILE_TOGGLE';
 const MAX_COUNT_OF_SYMBOLS = 'profile/MAX_COUNT_OF_SYMBOLS';
 const NEW_POST_TEXT = 'profile/NEW_POST_TEXT';
+const ACTIVE_LIKE_COLOR = 'profile/ACTIVE_LIKE_COLOR';
+const ACTIVE_DISLIKE_COLOR = 'profile/ACTIVE_DISLIKE_COLOR';
 
 type initialStateType = {
     postsData: Array<PostsData>
@@ -30,15 +32,30 @@ type initialStateType = {
 
 const initialState: initialStateType = {
     postsData: [
-        {id: v1(),
+        {
+            id: v1(),
             message: "Self-development is a concept that holds great significance in the pursuit of personal growth and fulfillment. It refers to the intentional and continuous process of improving oneself, whether it be intellectually, emotionally, or spiritually. At its core, self-development is about cultivating a deeper understanding of oneself and striving towards becoming the best version of oneself. It involves setting goals, acquiring new skills, and expanding one's knowledge and perspectives. It is a journey that requires self-reflection, self-awareness, and a willingness to step outside of one's comfort zone",
             likesCount: 139,
             disLikesCount: 11,
             views: 287,
             comments: 16,
             isLike: false,
-            isDislike: false},
-        {id: v1(), message: "it's nice to see you here, what's up?", likesCount: 168, disLikesCount: 7, views: 318, comments: 4, isLike: false, isDislike: false},
+            isDislike: false,
+            activeLikeColor: 'primary',
+            activeDisLikeColor: 'primary',
+        },
+        {
+            id: v1(),
+            message: "The journey of self-development is an ongoing process of learning and growth. We must remain open to new knowledge, experiences, and perspectives. Engaging in lifelong learning, whether through formal education, reading, or seeking wisdom from mentors, enables us to broaden our horizons and evolve as individuals. By nurturing a curious and receptive mind, we ensure that our journey of self-development remains dynamic and ever-evolving.",
+            likesCount: 168,
+            disLikesCount: 7,
+            views: 318,
+            comments: 4,
+            isLike: false,
+            isDislike: false,
+            activeLikeColor: 'primary',
+            activeDisLikeColor: 'primary',
+        },
     ],
     profile: {} as ProfileDataType,
     status: '',
@@ -54,7 +71,7 @@ export const profilePageReducer = (state = initialState, action: ActionsTypes): 
         case FAKE:
             return {...state, fake: state.fake + 1}
         case ADD_POST:
-            let newPost: PostsData = {id: v1(), message: action.postText, likesCount: 0, disLikesCount: 0, views: 0, comments: 0, isLike: false, isDislike: false}
+            let newPost: PostsData = {id: v1(), message: action.postText, likesCount: 0, disLikesCount: 0, views: 0, comments: 0, isLike: false, isDislike: false, activeLikeColor: 'primary', activeDisLikeColor: 'primary'}
             return {...state, postsData: [newPost, ...state.postsData], newPostText: ''}
         case DELETE_POST:
             return {...state, postsData: state.postsData.filter(p => p.id !== action.index)}
@@ -64,8 +81,8 @@ export const profilePageReducer = (state = initialState, action: ActionsTypes): 
                     (p.id === action.index)
                         ? {
                             ...p,
-                            likesCount: p.isLike ? p.likesCount : p.likesCount + 1,
-                            disLikesCount: p.isDislike? p.disLikesCount - 1 : p.disLikesCount,
+                            likesCount: p.isLike ? p.likesCount - 1 : p.likesCount + 1,
+                            disLikesCount: p.activeDisLikeColor === 'primary' ? p.disLikesCount : p.disLikesCount - 1,
                             isLike: true,
                             isDislike: false
                           }
@@ -78,8 +95,8 @@ export const profilePageReducer = (state = initialState, action: ActionsTypes): 
                     (p.id === action.index)
                         ? {
                             ...p,
-                            disLikesCount: p.isDislike? p.disLikesCount : p.disLikesCount + 1,
-                            likesCount: p.isLike ? p.likesCount - 1 : p.likesCount,
+                            disLikesCount: p.activeDisLikeColor === 'primary' ? p.disLikesCount + 1 : p.disLikesCount - 1,
+                            likesCount: p.activeLikeColor === 'primary' ? p.likesCount : p.likesCount - 1,
                             isLike: false,
                             isDislike: true
                           }
@@ -98,6 +115,10 @@ export const profilePageReducer = (state = initialState, action: ActionsTypes): 
             return {...state, errorStatusFlag: action.error}
         case NEW_POST_TEXT:
             return {...state, newPostText: action.newText}
+        case ACTIVE_LIKE_COLOR:
+            return {...state, postsData: state.postsData.map(p => p.id === action.id ? {...p, activeLikeColor: p.activeLikeColor === 'primary' ? 'secondary' : 'primary', activeDisLikeColor: p.activeDisLikeColor === 'secondary' ? 'primary' : 'primary'} : p)}
+        case ACTIVE_DISLIKE_COLOR:
+            return {...state, postsData: state.postsData.map(p => p.id === action.id ? {...p, activeDisLikeColor: p.activeDisLikeColor === 'primary' ? 'secondary' : 'primary', activeLikeColor: p.activeLikeColor === 'secondary' ? 'primary' : 'primary'} : p)}
         default:
             return state
     }
@@ -113,6 +134,8 @@ export const maxCountOfSymbolsWhenUpdateStatusAC = (error: string) => ({type: MA
 export const savePhotoAC = (photos: { small: string, large: string }) => ({type: SAVE_NEW_PHOTO, photos} as const)
 export const profileToggle = (personDataFlag: boolean) => ({type: PROFILE_TOGGLE, personDataFlag} as const)
 export const setNewPostText = (newText: string) => ({type: NEW_POST_TEXT, newText} as const)
+export const activeLikeColorCB = (id: string, value: 'primary' | 'secondary') => ({type: ACTIVE_LIKE_COLOR, id, value} as const)
+export const activeDisLikeColorCB = (id: string, value: 'primary' | 'secondary') => ({type: ACTIVE_DISLIKE_COLOR, id, value} as const)
 
 //thunks
 export const loginTC = (userId: string): AppThunk => async dispatch => {

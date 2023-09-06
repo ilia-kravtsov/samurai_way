@@ -6,6 +6,7 @@ import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
+import EditIcon from "@mui/icons-material/Edit";
 
 /*
 fix the post
@@ -21,15 +22,29 @@ type PostType = {
     onLikeHandler: (id: string) => void
     onDisLikeHandler: (id: string) => void
     delPost: (id: string) => void
+    activeLikeColorCB: (id: string, value: 'primary' | 'secondary') => void
+    activeDisLikeColorCB: (id: string, value: 'primary' | 'secondary') => void
+    activeLikeColor: 'primary' | 'secondary'
+    activeDisLikeColor: 'primary' | 'secondary'
 }
 
 const Post = (props: PostType) => {
 
     const likeClick = () => {
+        if (props.activeLikeColor === 'secondary') {
+            props.activeLikeColorCB(props.id, 'primary')
+        } else {
+            props.activeLikeColorCB(props.id, 'secondary')
+        }
         props.onLikeHandler(props.id)
     }
-
+    console.log(props.activeLikeColor)
     const disLikeClick = () => {
+        if (props.activeDisLikeColor === 'secondary') {
+            props.activeDisLikeColorCB(props.id, 'primary')
+        } else {
+            props.activeDisLikeColorCB(props.id, 'secondary')
+        }
         props.onDisLikeHandler(props.id)
     }
 
@@ -60,19 +75,25 @@ const Post = (props: PostType) => {
                 </IconButton>
                 <span className={s.postNumbers}>{props.comments}</span>
                 <IconButton onClick={likeClick}
-                            color={'primary'}
+                            color={props.activeLikeColor}
+                            className={s.activeIcon}
                             sx={{boxShadow: '0 1px 5px 0 rgba(0, 0, 0, 0.2)'}}
                 >
                     <ThumbUpAltIcon/>
                 </IconButton>
                 <span className={s.postNumbers}>{props.likesCount}</span>
                 <IconButton onClick={disLikeClick}
-                            color={'primary'}
+                            color={props.activeDisLikeColor}
                             sx={{boxShadow: '0 1px 5px 0 rgba(0, 0, 0, 0.2)'}}
                 >
                     <ThumbDownAltIcon/>
                 </IconButton>
                 <span className={s.postNumbers}>{props.disLikesCount}</span>
+                <IconButton color={'primary'}
+                            sx={{boxShadow: '0 1px 5px 0 rgba(0, 0, 0, 0.2)'}}
+                >
+                    <EditIcon/>
+                </IconButton>
                 <IconButton onClick={delClick}
                             color={'primary'}
                             sx={{boxShadow: '0 1px 5px 0 rgba(0, 0, 0, 0.2)'}}

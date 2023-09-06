@@ -1,5 +1,7 @@
 import React from 'react';
 import {
+    activeDisLikeColorCB,
+    activeLikeColorCB,
     addPost,
     delPost,
     onDisLikeHandler,
@@ -18,6 +20,8 @@ export type PostsData = {
     isLike: boolean
     isDislike: boolean
     comments: number
+    activeLikeColor: 'primary' | 'secondary'
+    activeDisLikeColor: 'primary' | 'secondary'
 }
 export type ProfilePageType = {
     postsData: Array<PostsData>
@@ -36,7 +40,9 @@ export const MyPostsContainer = connect(mapStateToProps, {
     onLikeHandler,
     onDisLikeHandler,
     delPost,
-    setNewPostText
+    setNewPostText,
+    activeLikeColorCB,
+    activeDisLikeColorCB
 })(MyPosts);
 
 

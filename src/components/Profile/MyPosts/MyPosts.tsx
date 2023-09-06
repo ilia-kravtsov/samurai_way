@@ -9,6 +9,7 @@ import VideocamIcon from '@mui/icons-material/Videocam';
 import ImageIcon from '@mui/icons-material/Image';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import {PostsData} from "components/Profile/MyPosts/MyPostsContainer";
+import {activeLikeColorCB} from "redux/profile_page_reducer";
 
 type MyPostsType = {
     postsData: Array<PostsData>
@@ -18,6 +19,8 @@ type MyPostsType = {
     onDisLikeHandler: (id: string) => void
     delPost: (id: string) => void
     setNewPostText: (newText: string) => void
+    activeLikeColorCB: (id: string, value: 'primary' | 'secondary') => void
+    activeDisLikeColorCB: (id: string, value: 'primary' | 'secondary') => void
 }
 
 export const MyPosts = React.memo((props: MyPostsType) => {
@@ -31,10 +34,15 @@ export const MyPosts = React.memo((props: MyPostsType) => {
               likesCount={p.likesCount}
               disLikesCount={p.disLikesCount}
               views={p.views}
+              activeLikeColor={p.activeLikeColor}
+              activeDisLikeColor={p.activeDisLikeColor}
+              activeLikeColorCB={props.activeLikeColorCB}
+              activeDisLikeColorCB={props.activeDisLikeColorCB}
               comments={p.comments}
               onLikeHandler={props.onLikeHandler}
               onDisLikeHandler={props.onDisLikeHandler}
               delPost={props.delPost}
+
         />
     );
 

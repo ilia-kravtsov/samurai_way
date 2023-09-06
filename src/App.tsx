@@ -94,7 +94,7 @@ const theme = createTheme({
             main: '#1e88e5',
         },
         secondary: {
-            main: '#FFF',
+            main: '#d0244f',
         },
     },
     typography: {
