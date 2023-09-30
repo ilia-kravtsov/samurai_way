@@ -1,6 +1,6 @@
-import React from "react";
+import React, {ChangeEvent, useState} from "react";
 import s from './Post.module.scss';
-import {IconButton} from '@mui/material';
+import {Button, IconButton, TextField} from '@mui/material';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -20,6 +20,7 @@ type PostType = {
     views: number
     comments: number
     delPost: (id: string) => void
+    saveNewPostTextCB: (id: string, newPostText: string) => void
     activeLikeColorCB: (id: string, value: 'primary' | 'secondary') => void
     activeDisLikeColorCB: (id: string, value: 'primary' | 'secondary') => void
     activeLikeColor: 'primary' | 'secondary'
@@ -27,6 +28,9 @@ type PostType = {
 }
 
 const Post = (props: PostType) => {
+
+    let [postText, setNewPostText] = useState<string>(props.message)
+    let [editMode, setEditMode] = useState<boolean>(false)
 
     const likeClick = () => {
         if (props.activeLikeColor === 'secondary') {
@@ -44,8 +48,15 @@ const Post = (props: PostType) => {
         }
     }
 
-    const delClick = () => {
-        props.delPost(props.id)
+    const delClick = () => props.delPost(props.id);
+    const editPostCB = () => setEditMode(true);
+    const changePost = (e: ChangeEvent<HTMLInputElement>) => setNewPostText(e.currentTarget.value);
+
+    const saveNewPostText = () => {
+        if (postText.trim()) {
+            props.saveNewPostTextCB(props.id, postText)
+            setEditMode(false)
+        }
     }
 
     return (
@@ -55,7 +66,22 @@ const Post = (props: PostType) => {
                     src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKrBK-eMr3u6DP0wzI2zNVrOGDizdwug_pNA&usqp=CAU'
                     alt='brad pit' className={s.itemImg}/>
                 <span className={s.anglePost}></span>
-                <span className={s.postMessage}>{props.message}</span>
+                {
+                    editMode
+                        ? <span>
+                            <TextField value={postText}
+                                       onChange={changePost}
+                                       variant={'outlined'}
+                                       autoFocus
+                                       className={s.editPostBlock}
+                                       multiline
+                            />
+                            <Button sx={{ml: '10px'}} variant={'contained'} onClick={saveNewPostText}>
+                                Save
+                            </Button>
+                          </span>
+                        : <span className={s.postMessage}>{props.message}</span>
+                }
             </div>
             <div className={s.likeDisContainer}>
                 <IconButton color={'primary'}
@@ -87,6 +113,7 @@ const Post = (props: PostType) => {
                 <span className={s.postNumbers}>{props.disLikesCount}</span>
                 <IconButton color={'primary'}
                             sx={{boxShadow: '0 1px 5px 0 rgba(0, 0, 0, 0.2)'}}
+                            onClick={editPostCB}
                 >
                     <EditIcon/>
                 </IconButton>

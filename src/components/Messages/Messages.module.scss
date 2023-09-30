@@ -4,7 +4,6 @@
 .messagesContainer {
     @include flex(row, normal, normal);
     width: 100%;
-    border: 1px solid red;
 }
 
 .messagesItems{

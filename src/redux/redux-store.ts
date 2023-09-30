@@ -5,10 +5,8 @@ import {
     addPost,
     delPost,
     maxCountOfSymbolsWhenUpdateStatusAC,
-    onDisLikeHandler,
-    onLikeHandler,
     profilePageReducer,
-    profileToggle,
+    profileToggle, saveNewPostTextCB,
     savePhotoAC,
     setNewPostText,
     setStatusAC,
@@ -55,12 +53,11 @@ export type RootStateType = ReturnType<typeof rootReducer>
 export type ActionsTypes =
     ReturnType<typeof addPost>
     | ReturnType<typeof addMyNewMessageAC>
-    | ReturnType<typeof onLikeHandler>
-    | ReturnType<typeof onDisLikeHandler>
     | ReturnType<typeof follow>
     | ReturnType<typeof unFollow>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof delPost>
+    | ReturnType<typeof saveNewPostTextCB>
     | ReturnType<typeof deleteMyNewMessageAC>
     | ReturnType<typeof onPaginationClick>
     | ReturnType<typeof setTotalUsersCount>

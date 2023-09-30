@@ -15,7 +15,6 @@
 .imgSpanContainer {
     @include flex(row, normal, flex-start);
     width: 100%;
-    border: 1px solid red;
 }
 
 .postMessage {
@@ -36,7 +35,6 @@
     padding: 10px;
     border-radius: 10px;
     margin-top: 10px;
-    border: 1px solid red;
 }
 
 .itemImg {
@@ -54,4 +52,8 @@
 
 .postNumbers {
 
+}
+
+.editPostBlock {
+    width:  37vw;
 }

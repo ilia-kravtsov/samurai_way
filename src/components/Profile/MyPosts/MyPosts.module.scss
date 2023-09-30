@@ -20,7 +20,6 @@
 
 .postIcons {
     @include flex(row, space-between, center);
-    border: 1px solid blue;
     position: absolute;
     bottom: 10px;
     right: 10px;
@@ -52,14 +51,11 @@
     @include flex(row, space-between, center);
     width: 100%;
     position: relative;
-    border: 1px solid red;
 }
 
 .form_control.error input,
 .form_control.erorr textarea
-{
-    border: 1px solid red;
-}
+{}
 
 .preparePostTextarea {
     width: 100%;

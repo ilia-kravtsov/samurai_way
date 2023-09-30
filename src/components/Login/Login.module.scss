@@ -19,7 +19,6 @@
     width: 80%;
     position: relative;
     font-family: $fontFamily_1;
-    border: 1px solid purple;
 }
 
 .personInformationInput {
@@ -37,7 +36,6 @@
     width: 90%;
     height: 40px;
     margin-top: 10px;
-    border: 1px solid red;
 }
 
 .remember {
@@ -94,7 +92,6 @@
     @include flex(column, space-evenly, center);
     width: 60%;
     height: 130px;
-    border: 1px solid red;
 }
 
 .freeLoginData div {

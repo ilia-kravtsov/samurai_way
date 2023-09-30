@@ -15,14 +15,12 @@
 .avaDescriptionBlock {
     @include flex(row, normal, flex-end);
     width: 100%;
-    border: 1px solid blue;
 }
 
 .avaBorderBlock {
     background: $bgcSecond;
     border-radius: 200px 200px 0 0;
     position: relative;
-    border: 1px solid yellow;
 }
 
 .ava {
@@ -39,7 +37,6 @@
     width: 100%;
     padding: 10px;
     font-family: $fontFamily_1;
-    border: 1px solid red;
 }
 
 .editInput {
@@ -68,12 +65,10 @@
     background: $bgcSecond;
     width: 70%;
     font-weight: bold;
-    border: 1px solid red;
 }
 
 .statusBlock {
     @include flex(row, center, center);
-    border: 1px solid red;
     margin-left: 5px;
 }
 
@@ -82,7 +77,6 @@
     width: 100%;
     padding: 10px;
     overflow-y: scroll;
-    border: 1px solid red;
     animation: fadeIn 0.5s;
     @keyframes fadeIn {
         0% {
@@ -101,7 +95,6 @@
 .formPersonFirst {
     @include flex(column, space-between, flex-start);
     width: 50%;
-    border: 1px solid red;
     align-self: flex-start;
 }
 
@@ -116,14 +109,12 @@
 .formPersonSecond {
     width: 50%;
     @include flex(row, normal, flex-end);
-    border: 1px solid blue;
 }
 
 .formPersonContacts {
     @include flex(column, space-between, flex-start);
     width: 100%;
     flex-wrap: wrap;
-    border: 1px solid red;
 }
 
 .preparePostHeader {
@@ -155,12 +146,10 @@
 .editContactRight {
     @include flex(row, space-between, center);
     width: 300px;
-    border: 1px solid red;
 }
 
 .lookForAJob {
     @include flex(row, space-between, center);
-    border: 1px solid red;
     height: 50px;
 }
 
@@ -170,22 +159,18 @@
 
 .aboutMeSkill {
     @include flex(row, space-between, center);
-    border: 1px solid red;
     width: 400px;
 }
 
 .personInformationInput {
-    border: 1px solid red;
     width: 300px;
 }
 
 .textareaSkill {
     @include flex(row, space-between, center);
-    border: 1px solid red;
     width: 400px;
 }
 
 .textareaEditMode {
     resize: none;
-    border: 1px solid red;
 }

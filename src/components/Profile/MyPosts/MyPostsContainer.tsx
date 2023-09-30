@@ -3,9 +3,8 @@ import {
     activeDisLikeColorCB,
     activeLikeColorCB,
     addPost,
-    delPost,
-    onDisLikeHandler,
-    onLikeHandler, setNewPostText,
+    delPost, saveNewPostTextCB,
+    setNewPostText,
 } from "../../../redux/profile_page_reducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
@@ -37,9 +36,8 @@ const mapStateToProps = (state: RootStateType): ProfilePageType => {
 
 export const MyPostsContainer = connect(mapStateToProps, {
     addPost,
-    onLikeHandler,
-    onDisLikeHandler,
     delPost,
+    saveNewPostTextCB,
     setNewPostText,
     activeLikeColorCB,
     activeDisLikeColorCB

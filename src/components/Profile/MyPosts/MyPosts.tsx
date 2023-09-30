@@ -14,9 +14,8 @@ type MyPostsType = {
     postsData: Array<PostsData>
     newPostText: string
     addPost: (postText: string) => void
-    onLikeHandler: (id: string) => void
-    onDisLikeHandler: (id: string) => void
     delPost: (id: string) => void
+    saveNewPostTextCB: (id: string, newPostText: string) => void
     setNewPostText: (newText: string) => void
     activeLikeColorCB: (id: string, value: 'primary' | 'secondary') => void
     activeDisLikeColorCB: (id: string, value: 'primary' | 'secondary') => void
@@ -39,7 +38,7 @@ export const MyPosts = React.memo((props: MyPostsType) => {
               activeDisLikeColorCB={props.activeDisLikeColorCB}
               comments={p.comments}
               delPost={props.delPost}
-
+              saveNewPostTextCB={props.saveNewPostTextCB}
         />
     );
 

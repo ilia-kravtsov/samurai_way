@@ -8,6 +8,7 @@ import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'profile/ADD-POST';
 const DELETE_POST = 'profile/DELETE_POST';
+const SAVE_NEW_POST_TEXT = 'profile/SAVE_NEW_POST_TEXT';
 const ON_LIKE_HANDLER_TYPE = 'profile/ON-LIKE-HANDLER-TYPE';
 const ON_DISLIKE_HANDLER_TYPE = 'profile/ON_DISLIKE_HANDLER_TYPE';
 const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
@@ -91,15 +92,18 @@ export const profilePageReducer = (state = initialState, action: ActionsTypes): 
             return {...state, postsData: state.postsData.map(p => p.id === action.id ? {...p, activeLikeColor: p.activeLikeColor === 'primary' ? 'secondary' : 'primary', activeDisLikeColor: p.activeDisLikeColor === 'secondary' ? 'primary' : 'primary', likesCount: p.activeLikeColor === 'primary' ? p.likesCount + 1 : p.likesCount - 1, disLikesCount: p.activeDisLikeColor === 'primary' ? p.disLikesCount : p.disLikesCount - 1} : p)}
         case ACTIVE_DISLIKE_COLOR:
             return {...state, postsData: state.postsData.map(p => p.id === action.id ? {...p, activeDisLikeColor: p.activeDisLikeColor === 'primary' ? 'secondary' : 'primary', activeLikeColor: p.activeLikeColor === 'secondary' ? 'primary' : 'primary', disLikesCount: p.activeDisLikeColor === 'primary' ? p.disLikesCount + 1 : p.disLikesCount - 1, likesCount: p.activeLikeColor === 'primary' ? p.likesCount : p.likesCount - 1} : p)}
+        case SAVE_NEW_POST_TEXT:
+            return {...state, postsData: state.postsData.map(p => p.id === action.postId ? {...p, message: action.newPostText} : p)}
         default:
             return state
     }
 }
 // actions
-export const delPost = (index: string) => ({type: DELETE_POST, index: index} as const)
+export const delPost = (index: string) => ({type: DELETE_POST, index} as const)
+export const saveNewPostTextCB = (postId: string, newPostText: string) => ({type: SAVE_NEW_POST_TEXT, postId, newPostText} as const)
 export const addPost = (postText: string) => ({type: ADD_POST, postText} as const)
-export const onLikeHandler = (index: string) => ({type: ON_LIKE_HANDLER_TYPE, index: index} as const)
-export const onDisLikeHandler = (index: string) => ({type: ON_DISLIKE_HANDLER_TYPE, index: index} as const)
+export const onLikeHandler = (index: string) => ({type: ON_LIKE_HANDLER_TYPE, index} as const)
+export const onDisLikeHandler = (index: string) => ({type: ON_DISLIKE_HANDLER_TYPE, index} as const)
 export const setUserProfile = (profile: ProfileDataType) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatusAC = (status: string) => ({type: SET_STATUS, status} as const)
 export const maxCountOfSymbolsWhenUpdateStatusAC = (error: string) => ({type: MAX_COUNT_OF_SYMBOLS, error} as const)

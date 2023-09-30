@@ -14,7 +14,6 @@
 .navLinksContainer {
     @include flex(column, space-between, flex-start);
     height: 46vh;
-    border: 1px solid red;
 }
 
 .link {
@@ -28,7 +27,6 @@
     font-family: $fontFamily_1;
     flex-grow: 1;
     padding: 10px;
-    border: 1px solid red;
     transition: all;
     transition-duration: 0.5s;
 }
@@ -36,17 +34,15 @@
 .link:hover {
     cursor: pointer;
     transition: all 0.4s ease;
-    border: 1px solid $bgcFirst;
     color: #1e88e5;
     transform: scale(1.08);
 }
 
 .link:active {
-    border: 1px solid $bgcFirst;
+
 }
 
 .activeLink {
-    border: 1px solid $bgcFirst;
     color: $accentColor;
 }
 
