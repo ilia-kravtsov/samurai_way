@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import s from './App.module.css';
 import {HashRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
-import News from './components/News/News';
 import Music from './components/Music/Music';
-import Settings from './components/Settings/Settings';
-import Video from "./components/Video/Video";
 import UsersContainer from "./components/Users/UsersContainer";
 import {Navbar} from "components/Navbars/Navbar";
 import HeaderContainer from "./components/Headers/HeaderContainer";
@@ -16,6 +13,8 @@ import {RootStateType, store} from "redux/redux-store";
 import {PreLoader} from "components/common/PreLoader/PreLoader";
 import {createTheme, ThemeProvider} from "@mui/material";
 import FriendsContainer from "components/Friends/FriendsContainer";
+import {Photos} from "components/Photos/Photos";
+import {Video} from "components/Video/Video";
 
 // import MessagesContainer from "./components/Messages/MessagesContainer";
 const MessagesContainer = React.lazy(() => import('./components/Messages/MessagesContainer'))
@@ -55,9 +54,8 @@ class App extends Component<AppType, any> {
                                 <Route exact path='/' render={() => <Redirect to={'/profile'}/>}/>
                                 <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                                 <Route path='/messages' render={() => <MessagesContainer/>}/>
-                                <Route path='/news' render={() => <News/>}/>
                                 <Route path='/music' render={() => <Music/>}/>
-                                <Route path='/settings' render={() => <Settings/>}/>
+                                <Route path='/photos' render={() => <Photos/>}/>
                                 <Route path='/video' render={() => <Video/>}/>
                                 <Route path='/users' render={() => <UsersContainer/>}/>
                                 <Route path='/login' render={() => <LoginContainer/>}/>

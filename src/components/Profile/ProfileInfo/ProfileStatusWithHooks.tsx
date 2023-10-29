@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import s from "./ProfileInfo.module.scss";
 import {ProfileDataType} from "components/Profile/ProfileContainer";
-import {Input, Textarea} from "components/common/FormsConntrols/FormControls";
+import {Input} from "components/common/FormsConntrols/FormControls";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {required} from "validators/validators";
 import SaveIcon from '@mui/icons-material/Save';
@@ -58,22 +58,22 @@ const ProfileData = (props: ProfileDataTypes) => {
                 <div className={s.descriptionData}><span className={s.preparePostLI}>Looking for a job:</span> {props.profile.lookingForAJob ? 'yes' : 'no'}</div>
             </div>
             <div className={s.formPersonSecond}>
-                <div className={s.formPersonContacts}>
-                    <h2 className={s.preparePostHeader}>Contacts:</h2>
-                    {Object.keys(props.profile.contacts).map((key, i) => {
-                        if (i > 3 && i < 7) {
-                            // @ts-ignore
-                            return <Contact contactTitle={key} contactValue={props.profile.contacts[key] ? props.profile.contacts[key] : `www.${key}.com`} key={key}/>
-                        }
-                    })}
-                </div>
-                {props.isOwner && <IconButton onClick={props.activateEditMode}
+                {/*<div className={s.formPersonContacts}>*/}
+                {/*    <h2 className={s.preparePostHeader}>Contacts:</h2>*/}
+                {/*    {Object.keys(props.profile.contacts).map((key, i) => {*/}
+                {/*        if (i > 3 && i < 7) {*/}
+                {/*            // @ts-ignore*/}
+                {/*            return <Contact contactTitle={key} contactValue={props.profile.contacts[key] ? props.profile.contacts[key] : `www.${key}.com`} key={key}/>*/}
+                {/*        }*/}
+                {/*    })}*/}
+                {/*</div>*/}
+                {props.isOwner &&
+                    <IconButton onClick={props.activateEditMode}
                                               style={{borderRadius: '5px'}}
                                               color={'primary'}>
-                    <EditIcon/>
-                </IconButton>}
+                        <EditIcon/>
+                    </IconButton>}
             </div>
-
         </div>
 
     )
@@ -145,28 +145,28 @@ const ProfileDataForm: FC<InjectedFormProps<FormInputsType, ProfileDataTypes> & 
                 </div>
             </div>
             <div className={s.formPersonSecond}>
-                <div>
-                    {Object.keys(profile.contacts).map((key, i) => {
-                        if (i > 3 && i < 7) {
-                            return (
-                                <div className={s.editContactRight} key={key}>
-                                    <span className={s.preparePostLI}>{key}:</span>
-                                    <div>
-                                        <Field placeholder={key}
-                                               component={Input}
-                                               validate={[required]}
-                                               name={'contacts.' + key}
-                                               className={s.personInformationInput}/>
-                                    </div>
-                                </div>
-                            )
-                        }
-                    })}
-                </div>
+                {/*<div>*/}
+                {/*    {Object.keys(profile.contacts).map((key, i) => {*/}
+                {/*        if (i > 3 && i < 7) {*/}
+                {/*            return (*/}
+                {/*                <div className={s.editContactRight} key={key}>*/}
+                {/*                    <span className={s.preparePostLI}>{key}:</span>*/}
+                {/*                    <div>*/}
+                {/*                        <Field placeholder={key}*/}
+                {/*                               component={Input}*/}
+                {/*                               validate={[required]}*/}
+                {/*                               name={'contacts.' + key}*/}
+                {/*                               className={s.personInformationInput}/>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            )*/}
+                {/*        }*/}
+                {/*    })}*/}
+                {/*</div>*/}
                 {error && <div className={s.formError}>{error}</div>}
             </div>
             <button>
-                <SaveIcon  style={{boxShadow: '1px 0 5px 0 rgba(0, 0, 0, 0.2)', borderRadius: '5px', cursor: 'pointer'}}
+                <SaveIcon  style={{borderRadius: '5px', cursor: 'pointer'}}
                            color={'primary'}/>
             </button>
         </form>

@@ -6,7 +6,7 @@
     width: 100%;
     height: 35vh;
     border: 20px solid $bgcSecond;
-    background-image: url("../../../backgrounds/2208_w048_n005_279a_p1_279.jpg");
+    background-image: url("https://t3.ftcdn.net/jpg/01/24/92/78/240_F_124927897_c2VkdQdDqUp0E4EuCimRZLHPhueUiKDB.jpg");
     background-size: cover;
     box-shadow: $boxShadow;
     margin-top: 10px;
@@ -73,7 +73,7 @@
 }
 
 .formPersonInformation {
-    @include flex(row, space-between, flex-start);
+    @include flex(row, space-between, flex-end);
     width: 100%;
     padding: 10px;
     overflow-y: scroll;
@@ -108,7 +108,7 @@
 
 .formPersonSecond {
     width: 50%;
-    @include flex(row, normal, flex-end);
+    @include flex(row, flex-end, center);
 }
 
 .formPersonContacts {
@@ -173,4 +173,8 @@
 
 .textareaEditMode {
     resize: none;
+}
+
+button {
+   border: none;
 }

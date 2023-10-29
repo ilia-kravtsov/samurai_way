@@ -4,10 +4,9 @@ import {NavLink} from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
 import Diversity3Icon from '@mui/icons-material/Diversity3';
-import NewspaperIcon from '@mui/icons-material/Newspaper';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
-import SettingsIcon from '@mui/icons-material/Settings';
-import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
+import VideocamIcon from '@mui/icons-material/Videocam';
 
 export const Navbar = () => {
     return (
@@ -21,25 +20,21 @@ export const Navbar = () => {
                     <EmailIcon className={s.linkIcon} color={'primary'}/>
                     {'Messages'}
                 </NavLink>
-                <NavLink to={'/users'} activeClassName={s.activeLink} className={s.link}>
-                    <Diversity3Icon className={s.linkIcon} color={'primary'}/>
-                    {'Friends'}
+                <NavLink to={'/photos'} activeClassName={s.activeLink} className={s.link}>
+                    <PhotoCameraIcon className={s.linkIcon} color={'primary'}/>
+                    {'Photos'}
                 </NavLink>
-                <NavLink to={'/news'} activeClassName={s.activeLink} className={s.link}>
-                    <NewspaperIcon className={s.linkIcon} color={'primary'}/>
-                    {'News'}
+                <NavLink to={'/video'} activeClassName={s.activeLink} className={s.link}>
+                    <VideocamIcon className={s.linkIcon} color={'primary'}/>
+                    {'Video'}
                 </NavLink>
                 <NavLink to={'/music'} activeClassName={s.activeLink} className={s.link}>
                     <MusicNoteIcon className={s.linkIcon} color={'primary'}/>
                     {'Music'}
                 </NavLink>
-                <NavLink to={'/settings'} activeClassName={s.activeLink} className={s.link}>
-                    <SettingsIcon className={s.linkIcon} color={'primary'}/>
-                    {'Settings'}
-                </NavLink>
-                <NavLink to={'/video'} activeClassName={s.activeLink} className={s.link}>
-                    <OndemandVideoIcon className={s.linkIcon} color={'primary'}/>
-                    {'Video'}
+                <NavLink to={'/users'} activeClassName={s.activeLink} className={s.link}>
+                    <Diversity3Icon className={s.linkIcon} color={'primary'}/>
+                    {'Friends'}
                 </NavLink>
             </div>
         </div>
